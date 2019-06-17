@@ -1,0 +1,35 @@
+@charset "ISO-8859-1";
+
+#header {
+	background-color : #3F3F3F;
+	height : 10vh;
+}
+
+#site_name {
+	font-family : 'Lobster', cursive;
+	line-height : 10vh;
+	padding-left : 20px;
+	float : left;
+	color : white;
+	font-size : 24pt;
+}
+
+#nav {
+	overflow : hidden;
+	float : right;
+}
+
+.nav_button {
+	display : table-cell;
+	padding-left : 20px;
+	padding-right : 20px;
+	color : white;
+	height : 10vh;
+	line-height : 10vh;
+	text-align : center;
+	vertical-align : middle;
+}
+
+.nav_button:hover {
+	background-color: #262730;
+}

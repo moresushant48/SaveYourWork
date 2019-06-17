@@ -3,12 +3,48 @@
 <head>
 <meta charset="ISO-8859-1">
 
-<link rel="stylesheet" type="text/css" th:href="@{/css/index.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/css/body.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/header.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/index.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/footer.css}">
+	<link href="https://fonts.googleapis.com/css?family=Amaranth|Lobster&display=swap" rel="stylesheet">
+	
+	<title>HOME</title>
 
-<title>HOME</title>
 </head>
 
 <body>
-	SaveYourWork
+
+	<header id="header"> 
+		<div id="site_name">
+			SaveYourWork
+		</div>
+		
+		<div id="nav">
+			<a href="http://www.example.com"><div class="nav_button" >Login</div></a>
+			<a href="http://www.example.com"><div class="nav_button">Sign Up</div></a>
+		</div>
+	</header>
+
+	<div id="content_area">
+		
+			<img id="image" th:src="@{/images/site_image.svg}">
+			
+			<hr>
+			
+			<p>
+				Looking for a <b>Convenient</b> & <b>Secure</b> File Sharing Service ? 
+				<b>SaveYourWork</b> is here to serve the purpose. 
+				Upload your files and be able to access them from anywhere in the world, with ease.
+			</p>
+			
+			<hr>
+	</div>
+
+	<footer id="footer">
+		<div id=footer_content>
+		&copy; 2019 Sushant More
+		</div>
+	</footer>
 </body>
 </html>

@@ -1,0 +1,9 @@
+@charset "ISO-8859-1";
+
+body {
+	background-color : #DE5360;
+	margin : 0px;
+	max-height : 100vh;
+	height : 100vh;
+	font-family : 'Amaranth', sans-serif;
+}

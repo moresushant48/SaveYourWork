@@ -1,0 +1,15 @@
+@charset "ISO-8859-1";
+
+#footer {
+	background-color : #3F3F3F;
+	height : 10vh;
+	text-align : center;
+}
+
+#footer_content {
+	height : 10vh;
+	width : 100%;
+	line-height : 10vh;
+	color : white;
+	text-align : center;
+}
