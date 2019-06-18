@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<link rel="stylesheet" type="text/css" th:href="@{/css/body.css}">
 	<link rel="stylesheet" type="text/css" th:href="@{/css/header.css}">
@@ -13,9 +14,15 @@
 	
 	<title>Sign Up</title>
 
+	<style>
+	.w3-Amaranth {
+	  font-family: "Amaranth", sans-serif;
+	}
+	</style>
+
 </head>
 
-<body>
+<body class="w3-Amaranth">
 
 	<header id="header"> 
 		<div id="site_name">
@@ -23,8 +30,8 @@
 		</div>
 		
 		<div id="nav">
-			<a href="login"><div class="nav_button" >Login</div></a>
-			<a href="/"><div class="nav_button">Home</div></a>
+			<a style="text-decoration: none" href="login"><div class="nav_button" >Login</div></a>
+			<a style="text-decoration: none" href="/"><div class="nav_button">Home</div></a>
 		</div>
 	</header>
 
@@ -32,16 +39,14 @@
 		
 		<div id="form_area" class="w3-display-middle">
 			<form id="signup_form" action="sign_up" method="post" class="w3-container w3-display-middle w3-card-4">
-				<div style="background-color: #3F3F3F;border-radius: 10px">
-					<h2>Register</h2>
-				</div>
-				<br>
-				<div>
+				
+				<div style="padding : 20px;">
 			      	<input class="w3-input" type="email" placeholder="Email Address"> <br>
 			      	<input class="w3-input" type="text" placeholder="Username"> <br>
 			      	<input class="w3-input" type="password" placeholder="Password"> <br>
-			      	<input class="w3-input" type="submit" value="Submit">
+			      	<input class="w3-input w3-button w3-white w3-border w3-border-red" type="submit" value="Submit">
 		      	</div>
+		      	
 		    </form>
 			
 		</div>			

@@ -7,3 +7,10 @@ body {
 	height : 100vh;
 	font-family : 'Amaranth', sans-serif;
 }
+
+#content_area {
+	width : 100%;
+	height : 80vh;
+	color : white;
+	text-align : center;
+}

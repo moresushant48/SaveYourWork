@@ -30,6 +30,10 @@
 	vertical-align : middle;
 }
 
+.links {
+	text-decoration : none;
+}
+
 .nav_button:hover {
 	background-color: #262730;
 }
