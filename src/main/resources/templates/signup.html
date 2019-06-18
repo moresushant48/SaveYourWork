@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+
+	<link rel="stylesheet" type="text/css" th:href="@{/css/body.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/header.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/index.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/signup.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/footer.css}">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link href="https://fonts.googleapis.com/css?family=Amaranth|Lobster&display=swap" rel="stylesheet">
+	
+	<title>Sign Up</title>
+
+</head>
+
+<body>
+
+	<header id="header"> 
+		<div id="site_name">
+			SaveYourWork
+		</div>
+		
+		<div id="nav">
+			<a href="login"><div class="nav_button" >Login</div></a>
+			<a href="/"><div class="nav_button">Home</div></a>
+		</div>
+	</header>
+
+	<div id="content_area" class="w3-display-container">
+		
+		<div id="form_area" class="w3-display-middle">
+			<form id="signup_form" action="sign_up" method="post" class="w3-container w3-display-middle w3-card-4">
+				<div style="background-color: #3F3F3F;border-radius: 10px">
+					<h2>Register</h2>
+				</div>
+				<br>
+				<div>
+			      	<input class="w3-input" type="email" placeholder="Email Address"> <br>
+			      	<input class="w3-input" type="text" placeholder="Username"> <br>
+			      	<input class="w3-input" type="password" placeholder="Password"> <br>
+			      	<input class="w3-input" type="submit" value="Submit">
+		      	</div>
+		    </form>
+			
+		</div>			
+	</div>
+
+	<footer id="footer">
+		<div id="footer_content">
+		&copy; 2019 Sushant More
+		</div>
+	</footer>
+</body>
+</html>

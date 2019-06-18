@@ -1,0 +1,14 @@
+@charset "ISO-8859-1";
+
+#form_area {
+	height : 80vh;
+	width : 40%;
+	margin : auto;
+}
+
+#signup_form {
+	background-color : white;
+	height : 40vh;
+	width : 100%;
+	border-radius : 10px;
+} 
