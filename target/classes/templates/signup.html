@@ -38,13 +38,15 @@
 	<div id="content_area" class="w3-display-container">
 		
 		<div id="form_area" class="w3-display-middle">
-			<form id="signup_form" action="sign_up" method="post" class="w3-container w3-display-middle w3-card-4">
+			<form id="signup_form" th:action="@{/signup}" th:object="${registerDetails}" method="post" class="w3-container w3-display-middle w3-card-4">
 				
 				<div style="padding : 20px;">
-			      	<input class="w3-input" type="email" placeholder="Email Address"> <br>
-			      	<input class="w3-input" type="text" placeholder="Username"> <br>
-			      	<input class="w3-input" type="password" placeholder="Password"> <br>
+					<h2 style="color:black" class="w3-Amaranth">Register</h2>
+			      	<input name="email" th:field="*{mail}" class="w3-input" type="email" placeholder="Email Address" required> <br>
+			      	<input name="username" th:field="*{username}" class="w3-input" type="text" placeholder="Username" pattern="[a-zA-Z0-9]{4,}" title="* Only alphabates (a-z) & digits (0-9) are allowed. * 4 or more characters only." required> <br>
+			      	<input name="password" th:field="*{password}" class="w3-input" type="password" placeholder="Password" pattern=".{3,15}" title="* Three or more characters. * Not more than 15 characters allowed." required> <br>
 			      	<input class="w3-input w3-button w3-white w3-border w3-border-red" type="submit" value="Submit">
+			      	<p style="color:black">[[${result}]]</p>
 		      	</div>
 		      	
 		    </form>
