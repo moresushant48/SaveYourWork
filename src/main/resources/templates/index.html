@@ -8,15 +8,25 @@
 	<link rel="stylesheet" type="text/css" th:href="@{/css/header.css}">
 	<link rel="stylesheet" type="text/css" th:href="@{/css/index.css}">
 	<link rel="stylesheet" type="text/css" th:href="@{/css/footer.css}">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 	<link href="https://fonts.googleapis.com/css?family=Amaranth|Lobster&display=swap" rel="stylesheet">
+	
+	<style>
+	.w3-Amaranth {
+	  	font-family: "Amaranth", sans-serif;
+	}
+	hr {
+		margin : auto;	
+	}
+	</style>
 	
 	<title>HOME</title>
 
 </head>
 
-<body>
+<body class="w3-Amaranth">
 
-	<header id="header"> 
+	<header id="header" class="w3-card-4"> 
 		<div id="site_name">
 			SaveYourWork
 		</div>
@@ -27,7 +37,7 @@
 		</div>
 	</header>
 
-	<div id="content_area">
+	<div id="content_area" class="w3-display-container">
 		
 			<img id="image" th:src="@{/images/site_image.svg}">
 			
