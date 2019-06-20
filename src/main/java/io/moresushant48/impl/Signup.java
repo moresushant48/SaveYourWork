@@ -1,8 +1,8 @@
 package io.moresushant48.impl;
 
-public class SignupImpl {
+public class Signup {
 
-	private String mail = null;
+	private String mail;
 	private String username;
 	private String password;
 	
