@@ -1,5 +1,6 @@
 package io.moresushant48.Repository;
 
+import java.io.UnsupportedEncodingException;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
@@ -9,6 +10,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCallback;
 import org.springframework.stereotype.Repository;
 
+import io.moresushant48.impl.MD5Generator;
 import io.moresushant48.impl.Signup;
 
 @Repository
@@ -42,7 +44,7 @@ public class SignupRepository {
 	/*
 	 * Implements validateUsername() and validateEmail() and creates account if everything goes right.
 	 */
-	public String addNewUser(Signup signup) {
+	public String addNewUser(Signup signup) throws UnsupportedEncodingException {
 		
 		String validationResult = null;
 		
@@ -58,7 +60,7 @@ public class SignupRepository {
 		
 			String sql = "INSERT INTO users(username,email,pswd) values(?,?,?)";
 			
-			System.out.println(signup.getUsername() + " : " + signup.getMail());
+			signup.setPassword(MD5Generator.MD5(signup.getPassword()));
 			
 			jdbcTemplate.execute(sql, new PreparedStatementCallback<Boolean>() {
 	

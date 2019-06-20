@@ -27,7 +27,12 @@ public class SignupController{
 	@PostMapping("/signup")
 	public ModelAndView sign_up(@ModelAttribute("registerDetails") Signup signup, BindingResult bindingResult) {
 		
-		String validationResult = signupRepository.addNewUser(signup);
+		String validationResult = null;
+		try {
+			validationResult = signupRepository.addNewUser(signup);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("result",validationResult);
