@@ -6,7 +6,7 @@
 	margin : auto;
 }
 
-#signup_form {
+#signup_form, #login_form {
 	background-color : white;
 	height : auto;
 	width : auto;
