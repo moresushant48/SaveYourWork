@@ -17,22 +17,62 @@ public class SignupRepository {
 	@Autowired
 	JdbcTemplate jdbcTemplate;
 	
-	public void addNewUser(Signup signup) {
+	/*
+	 * Check if there exists a same username as the entered value.
+	 */
+	public int validateUsername(Signup signup) {
 		
-		String sql = "INSERT INTO users(username,email,pswd) values(?,?,?)";
+		Integer cnt = jdbcTemplate.queryForObject(
+			    "SELECT count(*) FROM users WHERE username = ?", Integer.class, signup.getUsername());
+		 
+		return cnt;
+	}
+	
+	/*
+	 * Check if there exists an account with same email address.
+	 */
+	public int validateEmail(Signup signup) {
 		
-		System.out.println(signup.getUsername() + " : " + signup.getMail());
+		Integer cnt = jdbcTemplate.queryForObject(
+			    "SELECT count(*) FROM users WHERE email = ?", Integer.class, signup.getMail());
 		
-		jdbcTemplate.execute(sql, new PreparedStatementCallback<Boolean>() {
-
-			@Override
-			public Boolean doInPreparedStatement(PreparedStatement ps) throws SQLException, DataAccessException {
-				ps.setString(1, signup.getUsername());
-				ps.setString(2, signup.getMail());
-				ps.setString(3, signup.getPassword());
-				return ps.execute();
-			}
-		});
+		return cnt;
+	}
+	
+	/*
+	 * Implements validateUsername() and validateEmail() and creates account if everything goes right.
+	 */
+	public String addNewUser(Signup signup) {
+		
+		String validationResult = null;
+		
+		if(validateUsername(signup) > 0) {
+			
+			validationResult = "Username already exists, use another.";
+			
+		}else if(validateEmail(signup) > 0) {
+			
+			validationResult = "Account exists already for this email id.";
+			
+		}else {
+		
+			String sql = "INSERT INTO users(username,email,pswd) values(?,?,?)";
+			
+			System.out.println(signup.getUsername() + " : " + signup.getMail());
+			
+			jdbcTemplate.execute(sql, new PreparedStatementCallback<Boolean>() {
+	
+				@Override
+				public Boolean doInPreparedStatement(PreparedStatement ps) throws SQLException, DataAccessException {
+					ps.setString(1, signup.getUsername());
+					ps.setString(2, signup.getMail());
+					ps.setString(3, signup.getPassword());
+					return ps.execute();
+				}
+			});
+			validationResult = "Registered Successfully, please Login.";
+		}
+		return validationResult;
 	}
 	
 }

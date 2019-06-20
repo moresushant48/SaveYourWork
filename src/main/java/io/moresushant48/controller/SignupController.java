@@ -27,10 +27,10 @@ public class SignupController{
 	@PostMapping("/signup")
 	public ModelAndView sign_up(@ModelAttribute("registerDetails") Signup signup, BindingResult bindingResult) {
 		
-		signupRepository.addNewUser(signup);
+		String validationResult = signupRepository.addNewUser(signup);
 		
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("result","Registered Successfully.");
+		mv.addObject("result",validationResult);
 		return mv;
 	}
 }
