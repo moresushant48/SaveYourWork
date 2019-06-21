@@ -26,11 +26,9 @@ public class LoginController {
 	@PostMapping("/login")
 	public ModelAndView loginPOST(@ModelAttribute("loginDetails") Login login) {
 		
-		String validateLogin = loginRepository.loginUser(login);
-		
+		int cnt = loginRepository.checkForCredentials(login);
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("result", validateLogin);
 		
-		return mv;
+		return loginRepository.checkForSuccess(mv, cnt);
 	}
 }
