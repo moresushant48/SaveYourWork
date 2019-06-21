@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" type="text/css" th:href="@{/css/body.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/header.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/index.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/form.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/footer.css}">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link href="https://fonts.googleapis.com/css?family=Amaranth|Lobster&display=swap" rel="stylesheet">
+	
+	<title>Error</title>
+
+	<style>
+	.w3-Amaranth {
+	  	font-family: "Amaranth", sans-serif;
+	}
+	</style>
+
+</head>
+
+<body class="w3-Amaranth">
+
+	<header id="header" class="w3-card-4"> 
+		<div id="site_name">
+			SaveYourWork
+		</div>
+		
+		<div id="nav">
+			<a style="text-decoration: none" href="signup"><div class="nav_button" >Sign Up</div></a>
+			<a style="text-decoration: none" href="/"><div class="nav_button">Home</div></a>
+		</div>
+	</header>
+
+	<div id="content_area" class="w3-display-container">
+		
+		<div id="form_area" class="w3-display-middle">
+			<form id="login_form" th:action="@{/{name}}" th:object="${noUserFound}" method="post" class="w3-container w3-display-middle w3-card-4">
+				
+				<div style="padding : 20px;">
+					<h2 style="color:black" class="w3-Amaranth">Account dosen't exists, Create one.</h2>
+			      	<a style="text-decoration: none" href="signup"><div class="w3-input w3-button w3-white w3-border w3-border-red">Create an Account</div></a>
+		      	</div>
+		      	
+		    </form>
+			
+		</div>			
+	</div>
+
+	<footer id="footer">
+		<div id="footer_content">
+		&copy; 2019 Sushant More
+		</div>
+	</footer>
+</body>
+</html>
