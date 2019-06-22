@@ -9,6 +9,8 @@
 }
 
 hr {
+	background-color : black;
+	height : 1px;
 	width : 60%;
 }
 
