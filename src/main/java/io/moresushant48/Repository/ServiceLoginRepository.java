@@ -37,17 +37,12 @@ public class ServiceLoginRepository {
 		
 		String pswd = jdbcTemplate.queryForObject(sql, String.class, username);
 		
-		System.out.println("A : " + serviceLogin.getPassword() + "\nB : " + pswd);
-
 		if(serviceLogin.getPassword().equals(pswd)) {
 			mv.setViewName("redirect:/");
 		} else {
-			mv.setViewName("redirect:/{name}");
+			mv.setViewName("serviceLogin.html");
 			mv.addObject("result", "Password is incorrect.");
 		}
-		
 		return mv;
 	}
-	
-	
 }
