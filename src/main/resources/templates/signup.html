@@ -35,7 +35,7 @@
 				
 				<div style="padding : 20px;">
 					<h2 style="color:black" class="w3-oxygen">Register</h2>
-			      	<input name="email" th:field="*{mail}" class="w3-input" type="email" placeholder="Email Address" required> <br>
+			      	<input name="email" th:field="*{mail}" class="w3-input" type="email" placeholder="Email Address" required autofocus> <br>
 			      	<input name="username" th:field="*{username}" class="w3-input" type="text" placeholder="Username" pattern="[a-zA-Z0-9]{4,14}" title="* Only alphabates (a-z) & digits (0-9) are allowed. * Min 4 & Max 14 characters only." required> <br>
 			      	<input name="password" th:field="*{password}" class="w3-input" type="password" placeholder="Password" pattern=".{3,15}" title="* Three or more characters. * Not more than 15 characters allowed." required> <br>
 			      	<input class="w3-input w3-button w3-white w3-border w3-border-red" type="submit" value="Submit">
