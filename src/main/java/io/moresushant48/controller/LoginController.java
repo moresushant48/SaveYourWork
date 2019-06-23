@@ -29,6 +29,6 @@ public class LoginController {
 		int cnt = loginRepository.checkForCredentials(login);
 		ModelAndView mv = new ModelAndView();
 		
-		return loginRepository.checkForSuccess(mv, cnt);
+		return loginRepository.checkForSuccess(mv, cnt, login);
 	}
 }

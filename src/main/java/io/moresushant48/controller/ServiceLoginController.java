@@ -37,7 +37,7 @@ public class ServiceLoginController {
 		
 		ModelAndView mv = new ModelAndView();
 		serviceLoginRepository.checkForPassword(serviceLogin,uname,mv);
-		
+		mv.addObject("username",uname);
 		return mv;
 	}
 }

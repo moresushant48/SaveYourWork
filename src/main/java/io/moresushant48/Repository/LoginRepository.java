@@ -24,11 +24,12 @@ public class LoginRepository {
 		return cnt;
 	}
 	
-	public ModelAndView checkForSuccess(ModelAndView mv, int cnt) {
+	public ModelAndView checkForSuccess(ModelAndView mv, int cnt, Login login) {
 		
 		String validateLogin = null;
 		if(cnt == 1) {
-			mv.setViewName("index.html");
+			mv.addObject("username", login.getUsername());
+			mv.setViewName("redirect:/fileService");
 			
 		}else if (cnt > 1 || cnt < 1) {
 			validateLogin = "Username or Password is incorrect.";

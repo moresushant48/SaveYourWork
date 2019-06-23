@@ -19,10 +19,11 @@
 	float : right;
 }
 
-.nav_button {
+.nav_button{
 	display : table-cell;
 	padding-left : 20px;
 	padding-right : 20px;
+	width : inherit;
 	color : white;
 	height : 10vh;
 	line-height : 10vh;
@@ -30,10 +31,25 @@
 	vertical-align : middle;
 }
 
-.links {
+#nav a {
 	text-decoration : none;
 }
 
 .nav_button:hover {
 	background-color: #5991c8;
+}
+
+.dropdown-content {
+	display: none;
+	position: absolute;
+	right : 0px;
+	background-color : #336699;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	z-index: 1;
+	padding : inherit;
+}
+
+.dropdown:hover .dropdown-content {
+	display: block;
+	width : 150px;
 }

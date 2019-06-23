@@ -12,7 +12,7 @@
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 	<link href="https://fonts.googleapis.com/css?family=Ubuntu|Oxygen|Lobster&display=swap" rel="stylesheet">
 	
-	<title>Error</title>
+	<title>Welcome</title>
 </head>
 
 <body class="w3-oxygen">
@@ -23,24 +23,20 @@
 		</div>
 		
 		<div id="nav">
-			<a href="signup"><div class="nav_button" >Sign Up</div></a>
-			<a href="/"><div class="nav_button">Home</div></a>
+			<div class="nav_button dropdown" >Welcome, [[${username}]]
+				<div class="dropdown-content">
+				    
+				    <a href="/">Logout</a>
+				    
+			    </div>
+			</div>
 		</div>
 	</header>
 
 	<div id="content_area" class="w3-display-container">
 		
-		<div id="form_area" class="w3-display-middle">
-			<form id="login_form" th:action="@{/{name}}" th:object="${noUserFound}" method="post" class="w3-container w3-display-middle w3-card-4">
-				
-				<div style="padding : 20px;">
-					<h2 style="color:black" class="w3-oxygen">Account dosen't exists, Create one.</h2>
-			      	<a style="text-decoration: none" href="signup"><div class="w3-input w3-button w3-white w3-border w3-border-red">Create an Account</div></a>
-		      	</div>
-		      	
-		    </form>
+		
 			
-		</div>			
 	</div>
 
 	<footer id="footer">
