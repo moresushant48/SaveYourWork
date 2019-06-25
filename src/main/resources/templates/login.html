@@ -23,7 +23,7 @@
 		</div>
 		
 		<div id="nav">
-			<a href="signup"><div class="nav_button" >Sign Up</div></a>
+			<a href="register"><div class="nav_button" >Sign Up</div></a>
 			<a href="/"><div class="nav_button">Home</div></a>
 		</div>
 	</header>
@@ -31,14 +31,14 @@
 	<div id="content_area" class="w3-display-container">
 		
 		<div id="form_area" class="w3-display-middle">
-			<form id="login_form" th:action="@{/login}" th:object="${loginDetails}" method="post" class="w3-container w3-display-middle w3-card-4">
+			<form id="login_form" th:action="@{/login}" method="post" class="w3-container w3-display-middle w3-card-4">
 				
 				<div style="padding : 20px;">
 					<h2 style="color:black" class="w3-oxygen">User Login</h2>
-			      	<input name="username" th:field="*{username}" class="w3-input" type="text" placeholder="Username" pattern="[a-zA-Z0-9]{4,14}" title="* Only alphabates (a-z) & digits (0-9) are allowed. * Min 4 & Max 14 characters only." required autofocus> <br>
-			      	<input name="password" th:field="*{password}" class="w3-input" type="password" placeholder="Password" pattern=".{3,15}" title="* Three or more characters. * Not more than 15 characters allowed." required> <br>
+			      	<input name="username" class="w3-input" type="text" placeholder="Username" pattern="[a-zA-Z0-9]{4,14}" title="* Only alphabates (a-z) & digits (0-9) are allowed. * Min 4 & Max 14 characters only." required autofocus> <br>
+			      	<input name="password" class="w3-input" type="password" placeholder="Password" pattern=".{3,15}" title="* Three or more characters. * Not more than 15 characters allowed." required> <br>
 			      	<input class="w3-input w3-button w3-white w3-border w3-border-red" type="submit" value="Submit">
-			      	<p style="color:black;font-size:12pt">[[${result}]]</p>
+			      	<p th:if="${param.error}" style="color:black;font-size:12pt">Email or Password is invalid.</p>
 		      	</div>
 		      	
 		    </form>
