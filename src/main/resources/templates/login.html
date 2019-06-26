@@ -4,11 +4,7 @@
 <meta charset="ISO-8859-1">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<link rel="stylesheet" type="text/css" th:href="@{/css/body.css}">
-	<link rel="stylesheet" type="text/css" th:href="@{/css/header.css}">
-	<link rel="stylesheet" type="text/css" th:href="@{/css/index.css}">
-	<link rel="stylesheet" type="text/css" th:href="@{/css/form.css}">
-	<link rel="stylesheet" type="text/css" th:href="@{/css/footer.css}">
+	<link rel="stylesheet" th:href="@{/css/basic.css}">
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 	<link href="https://fonts.googleapis.com/css?family=Ubuntu|Oxygen|Lobster&display=swap" rel="stylesheet">
 	
@@ -17,39 +13,25 @@
 
 <body class="w3-oxygen">
 
-	<header id="header" class="w3-card-4"> 
-		<div id="site_name">
-			SaveYourWork
-		</div>
-		
-		<div id="nav">
-			<a href="register"><div class="nav_button" >Sign Up</div></a>
-			<a href="/"><div class="nav_button">Home</div></a>
-		</div>
-	</header>
-
-	<div id="content_area" class="w3-display-container">
-		
-		<div id="form_area" class="w3-display-middle">
-			<form id="login_form" th:action="@{/login}" method="post" class="w3-container w3-display-middle w3-card-4">
-				
-				<div style="padding : 20px;">
-					<h2 style="color:black" class="w3-oxygen">User Login</h2>
-			      	<input name="username" class="w3-input" type="text" placeholder="Username" pattern="[a-zA-Z0-9]{4,14}" title="* Only alphabates (a-z) & digits (0-9) are allowed. * Min 4 & Max 14 characters only." required autofocus> <br>
-			      	<input name="password" class="w3-input" type="password" placeholder="Password" pattern=".{3,15}" title="* Three or more characters. * Not more than 15 characters allowed." required> <br>
-			      	<input class="w3-input w3-button w3-white w3-border w3-border-red" type="submit" value="Submit">
-			      	<p th:if="${param.error}" style="color:black;font-size:12pt">Email or Password is invalid.</p>
-		      	</div>
-		      	
-		    </form>
-			
-		</div>			
+	<div id="nav" class="w3-bar w3-large w3-container w3-teal w3-display-top w3-mobile">
+		<section class="w3-bar-item w3-left w3-lobster w3-xlarge">SaveYourWork</section>
+		<a href="register" class="w3-bar-item w3-button w3-right w3-padding-16 w3-hover-amber w3-mobile">Sign Up</a>
+		<a href="/" class="w3-bar-item w3-button w3-right w3-padding-16 w3-hover-amber w3-mobile">Home</a>
 	</div>
 
-	<footer id="footer">
-		<div id="footer_content">
-		&copy; 2019 Sushant More
-		</div>
-	</footer>
+	<div class="w3-container w3-display-container w3-mobile w3-large w3-display-middle">
+
+		<form id="login_form" th:action="@{/login}" method="post" class="w3-container w3-display-middle w3-card-4 w3-round-large w3-white w3-center" style="width:400px">
+			
+			<div style="padding : 20px;">
+				<h2>Login</h2>
+		      	<input name="username" class="w3-input" type="text" placeholder="Username" pattern="[a-zA-Z0-9]{4,14}" title="* Only alphabates (a-z) & digits (0-9) are allowed. * Min 4 & Max 14 characters only." required autofocus> <br>
+		      	<input name="password" class="w3-input" type="password" placeholder="Password" pattern=".{3,15}" title="* Three or more characters. * Not more than 15 characters allowed." required> <br>
+		      	<input class="w3-input w3-button w3-white w3-border w3-border-red" type="submit" value="Submit">
+		      	<p th:if="${param.error}" style="color:black;font-size:12pt">Email or Password is invalid.</p>
+	      	</div>
+	      	
+	    </form>
+	</div>
 </body>
 </html>

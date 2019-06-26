@@ -1,0 +1,13 @@
+@charset "ISO-8859-1";
+
+body {
+	background-color : ghostwhite;
+}
+
+.w3-oxygen {
+	font-family: 'Oxygen', sans-serif;
+}
+
+.w3-lobster {
+	font-family: 'Lobster', sans-serif;
+}

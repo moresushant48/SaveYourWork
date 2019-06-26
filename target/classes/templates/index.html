@@ -4,56 +4,54 @@
 <meta charset="ISO-8859-1">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<link rel="stylesheet" type="text/css" th:href="@{/css/body.css}">
-	<link rel="stylesheet" type="text/css" th:href="@{/css/header.css}">
-	<link rel="stylesheet" type="text/css" th:href="@{/css/index.css}">
-	<link rel="stylesheet" type="text/css" th:href="@{/css/footer.css}">
+	<link rel="stylesheet" th:href="@{/css/basic.css}">
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 	<link href="https://fonts.googleapis.com/css?family=Ubuntu|Oxygen|Lobster&display=swap" rel="stylesheet">
 	
 	<title>HOME</title>
-	
-	<style>
-		hr {
-			margin : auto;
-			height : 1px;
-		}
-	</style>
 
 </head>
 
 <body class="w3-oxygen">
 
-	<header id="header" class="w3-card-4"> 
-		<div id="site_name">
-			SaveYourWork
-		</div>
-		
-		<div id="nav">
-			<a href="login"><div class="nav_button" >Login</div></a>
-			<a href="register"><div class="nav_button">Sign Up</div></a>
-		</div>
-	</header>
-
-	<div id="content_area" class="w3-display-container">
-		
-			<img id="image" th:src="@{/images/site_image.svg}">
-			
-			<hr>
-			
-			<p>
-				Looking for a <b>Convenient</b> & <b>Secure</b> File Sharing Service ? 
-				<b>SaveYourWork</b> is here to serve the purpose. 
-				Upload your files and be able to access them from anywhere in the world, with ease.
-			</p>
-			
-			<hr>
+	<div id="nav" class="w3-bar w3-large w3-container w3-teal w3-display-top w3-mobile">
+		<section class="w3-bar-item w3-left w3-lobster w3-xlarge">SaveYourWork</section>
+		<a href="login" class="w3-bar-item w3-button w3-right w3-padding-16 w3-hover-amber w3-mobile">Login</a>
+		<a href="register" class="w3-bar-item w3-button w3-right w3-padding-16 w3-hover-amber w3-mobile">Sign Up</a>
 	</div>
-
-	<footer id="footer">
-		<div id="footer_content">
-		&copy; 2019 Sushant More
+			
+	<div class="w3-container w3-display-container w3-mobile w3-xlarge">
+	
+		<div class="w3-section w3-row-padding" style="width:100%">
+			<div class="w3-half w3-section">
+				<div class="w3-card">
+					<img th:src="@{/images/image1.jpg}" style="width: 100%">
+					<div class="w3-container w3-center w3-white">
+				      <p>SaveYourWork provides a <b>Convenient</b> & <b>Secure</b> File Sharing Service.</p>
+				    </div>
+				</div>
+			</div>
+			
+			<div class="w3-half w3-section">
+				<div class="w3-card">
+					<img th:src="@{/images/image2.jpg}" style="width: 100%">
+					<div class="w3-container w3-center w3-white">
+				      <p>Upload your files and be able to access them from anywhere in the world, with ease.</p>
+				    </div>
+				</div>
+			</div>
 		</div>
+		<div class="w3-section w3-padding" style="width:100%">
+			<div class="w3-card w3-border w3-border-teal">
+				<div class="w3-container w3-center w3-white">
+			      <p>"www.saveyourwork.org/<b><i>YourUsername</i></b>"<br> Access your account, without much efforts.
+			      </p>
+			    </div>
+			</div>
+		</div>
+	</div>
+	<footer class="w3-card-4 w3-container w3-teal w3-display-bottommiddle w3-mobile" style="width: 100%; text-align: center">
+		&copy; 2019 Sushant More
 	</footer>
 </body>
 </html>

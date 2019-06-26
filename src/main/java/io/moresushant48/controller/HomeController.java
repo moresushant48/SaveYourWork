@@ -14,6 +14,7 @@ public class HomeController {
 	public ModelAndView root() {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("index");
+		mv.addObject("currentPage","index");
 		return mv; 
 	}
 }
