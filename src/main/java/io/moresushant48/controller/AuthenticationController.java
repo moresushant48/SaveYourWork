@@ -46,4 +46,11 @@ public class AuthenticationController {
 		mv.setViewName("register");
 		return mv = userService.registerUser(user,mv);
 	}
+	
+	@GetMapping("/home")
+	public ModelAndView home() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("home");
+		return mv;
+	}
 }

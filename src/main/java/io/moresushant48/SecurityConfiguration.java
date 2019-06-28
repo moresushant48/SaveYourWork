@@ -42,7 +42,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 		.antMatchers("/").permitAll()
 		.antMatchers("/login").permitAll()
 		.antMatchers("/register").permitAll()
-		.antMatchers("/{username}").hasAnyAuthority("SUPER_USER","ADMIN_USER","SITE_ADMIN")
+		.antMatchers("/home/**").hasAnyAuthority("SUPER_USER","ADMIN_USER","SITE_ADMIN")
 		.anyRequest().authenticated()
 		.and()
 		
@@ -50,7 +50,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 		.csrf().disable().formLogin()
 		.loginPage("/login")
 		.failureUrl("/login?error=true")
-		.defaultSuccessUrl("/{username}")
+		.defaultSuccessUrl("/home")
 		.usernameParameter("username")
 		.passwordParameter("password")
 		.and()
