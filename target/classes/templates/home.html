@@ -23,13 +23,26 @@
 	</div>
 	
 	<div class="w3-bar w3-pale-green w3-container w3-display-top w3-mobile" style="overflow:hidden">
-		<form action="/upload-file" method="post" enctype="multipart/form-data" class="w3-bar w3-right">
-			<input class="w3-bar-item w3-pale-green" type="file" name="file">
-			<input class="w3-bar-item w3-button w3-pale-green" type="submit" value="Upload">
-		</form>
-		<a>
+		
+		<!-- Trigger/Open the Modal -->
+		<a onclick="document.getElementById('modalbox').style.display='block'" class="w3-bar-item w3-button w3-right w3-hover-amber w3-mobile">Upload</a>
+		
+		<!-- The Modal -->
+		<div id="modalbox" class="w3-modal w3-card-4">
+		 <div class="w3-modal-content">
+		   <div class="w3-container">
+		     <span onclick="document.getElementById('modalbox').style.display='none'" 
+		     class="w3-button w3-display-topright">&times;</span>
+		     <p>Choose a file to upload :
+		     	<form action="/upload-file" method="post" enctype="multipart/form-data">
+					<input class="w3-input w3-pale-green" type="file" name="file">
+					<input class="w3-input w3-button w3-border w3-border-teal w3-section" type="submit" value="Upload">
+				</form>
+		    </div>
+		  </div>
+		</div>
 			
-		</a>
+		<a href="list-files" class="w3-bar-item w3-button w3-padding w3-right w3-hover-amber w3-mobile">List Files</a>
 	</div>
 			
 	<div class="w3-container w3-display-container w3-mobile w3-xlarge" style="height:85vh">
