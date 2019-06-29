@@ -50,7 +50,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 		.csrf().disable().formLogin()
 		.loginPage("/login")
 		.failureUrl("/login?error=true")
-		.defaultSuccessUrl("/home")
+		.defaultSuccessUrl("/list-files")
 		.usernameParameter("username")
 		.passwordParameter("password")
 		.and()
