@@ -12,6 +12,11 @@
       "type": "java.lang.String",
       "description": "Folder location for storing files",
       "sourceType": "io.moresushant48.storage.StorageProperties"
+    },
+    {
+      "name": "storage.username",
+      "type": "java.lang.String",
+      "sourceType": "io.moresushant48.storage.StorageProperties"
     }
   ],
   "hints": []

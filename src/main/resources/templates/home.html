@@ -35,7 +35,7 @@
 		     class="w3-button w3-display-topright">&times;</span>
 		     <p>Choose a file to upload :
 		     	<form action="/upload-file" method="post" enctype="multipart/form-data">
-					<input class="w3-input w3-pale-green" type="file" name="file">
+					<input class="w3-input w3-pale-green" type="file" name="file" multiple>
 					<input class="w3-input w3-button w3-border w3-border-teal w3-section" type="submit" value="Upload">
 				</form>
 		    </div>
@@ -45,19 +45,14 @@
 		<a href="list-files" class="w3-bar-item w3-button w3-padding w3-hover-amber w3-left w3-mobile">List Files</a>
 	</div>
 			
-	<div class="w3-container w3-display-container w3-mobile w3-xlarge" style="height:85vh">
-		
-		
-		<div class="w3-threequarter w3-container w3-padding" style="overflow:auto">
-			<table>
-				<caption class="w3-blue-grey w3-padding-small">Uploaded Files</caption>
-				<tr th:each="file : ${files}">
-					<td th:text="${file}" class="w3-light-grey w3-padding"/>
-					<td><a th:href="${file}" class="fa fa-download w3-light-grey w3-padding"/></td>
-				</tr>
-			</table>
-		</div>
-		
+	<div class="w3-container w3-mobile w3-xlarge">
+		<table class="w3-center" style="margin:auto;width:100%">
+			<caption class="w3-blue-grey w3-padding-small">Uploaded Files</caption>
+			<tr th:each="file : ${files}">
+				<td th:text="${file}" class="w3-light-grey w3-padding w3-animate-left"/>
+				<td class="w3-light-grey w3-padding w3-animate-right"><a th:href="${file}" class="fa fa-download"/></td>
+			</tr>
+		</table>
 	</div>
 </body>
 </html>

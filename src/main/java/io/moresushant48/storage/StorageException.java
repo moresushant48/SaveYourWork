@@ -2,7 +2,12 @@ package io.moresushant48.storage;
 
 public class StorageException extends RuntimeException {
 
-    public StorageException(String message) {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public StorageException(String message) {
         super(message);
     }
 

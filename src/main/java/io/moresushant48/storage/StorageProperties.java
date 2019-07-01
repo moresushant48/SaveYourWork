@@ -8,7 +8,8 @@ public class StorageProperties {
     /**
      * Folder location for storing files
      */
-    private String location = "S:\\files\\";
+    private String location = "E:\\files\\";
+    private String username;
 
     public String getLocation() {
         return location;
@@ -18,4 +19,11 @@ public class StorageProperties {
         this.location = location;
     }
 
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
 }

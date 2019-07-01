@@ -1,5 +1,6 @@
 package io.moresushant48.storage;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
@@ -9,7 +10,6 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.stream.Stream;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
@@ -20,12 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 @Service
 public class FileSystemStorageService implements StorageService {
 
-    private final Path rootLocation;
-
-    @Autowired
-    public FileSystemStorageService(StorageProperties properties) {
-        this.rootLocation = Paths.get(properties.getLocation());
-    }
+    private static Path rootLocation = null;
 
     @Override
     public void store(MultipartFile file) {
@@ -41,7 +36,7 @@ public class FileSystemStorageService implements StorageService {
                                 + filename);
             }
             try (InputStream inputStream = file.getInputStream()) {
-                Files.copy(inputStream, this.rootLocation.resolve(filename),
+                Files.copy(inputStream, FileSystemStorageService.rootLocation.resolve(filename),
                     StandardCopyOption.REPLACE_EXISTING);
             }
         }
@@ -53,9 +48,9 @@ public class FileSystemStorageService implements StorageService {
     @Override
     public Stream<Path> loadAll() {
         try {
-            return Files.walk(this.rootLocation, 1)
-                .filter(path -> !path.equals(this.rootLocation))
-                .map(this.rootLocation::relativize);
+            return Files.walk(FileSystemStorageService.rootLocation, 1)
+                .filter(path -> !path.equals(FileSystemStorageService.rootLocation))
+                .map(FileSystemStorageService.rootLocation::relativize);
         }
         catch (IOException e) {
             throw new StorageException("Failed to read stored files", e);
@@ -93,12 +88,19 @@ public class FileSystemStorageService implements StorageService {
     }
 
     @Override
-    public void init() {
+    public void init(String username) {
+    	
+    	File file = new File("\\files\\" + username);
+    	
         try {
+        	FileSystemStorageService.rootLocation =  Paths.get(file.toURI());
             Files.createDirectories(rootLocation);
         }
         catch (IOException e) {
             throw new StorageException("Could not initialize storage", e);
         }
+        catch (NullPointerException e1) {
+			e1.printStackTrace();
+		}
     }
 }
