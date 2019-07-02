@@ -19,6 +19,7 @@
 		<section class="w3-bar-item w3-left w3-lobster w3-xlarge w3-mobile">SaveYourWork</section>
 		<a href="logout" class="w3-bar-item w3-button w3-right w3-padding-16 w3-hover-amber w3-mobile">Logout</a>
 		<a href="/" class="w3-bar-item w3-button w3-right w3-padding-16 w3-hover-amber w3-mobile">Home</a>
+		<a href="adminPanel" th:if="${#authorization.expression('hasAuthority(''SUPER_USER'')')}" class="w3-bar-item w3-button w3-right w3-padding-16 w3-hover-amber w3-mobile">Admin Panel</a>
 		<a class="w3-bar-item w3-right w3-padding-16 w3-mobile">Welcome, [[${#authentication.name}]]</a>
 	</div>
 	
