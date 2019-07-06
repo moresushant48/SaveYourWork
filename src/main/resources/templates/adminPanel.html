@@ -34,11 +34,13 @@
 				<th class="w3-blue-grey w3-padding w3-animate-opacity">Id</th>
 				<th class="w3-blue-grey w3-padding w3-animate-opacity">Username</th>
 				<th class="w3-blue-grey w3-padding w3-animate-opacity">Email</th>
+				<th class="w3-blue-grey w3-padding w3-animate-opacity">Remove</th>
 			</tr>
 			<tr th:each="user : ${users}">
 				<td th:text="${user.id}" class="w3-light-grey w3-padding w3-animate-opacity"/>
 				<td th:text="${user.username}" class="w3-light-grey w3-padding w3-animate-opacity"/>
 				<td th:text="${user.email}" class="w3-light-grey w3-padding w3-animate-opacity"/>
+				<td class="w3-light-grey w3-padding w3-animate-opacity"><a th:href="@{/delete-user(id=${user.id})}" class="fa fa-trash"></a></td>
 			</tr>
 		</table>
 	</div>
