@@ -1,5 +1,7 @@
 package io.moresushant48.Repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
@@ -15,4 +17,7 @@ public interface UserRepository extends CrudRepository<User, Integer>{
 	
 	@Query(value = "SELECT email FROM auth_user where email = ?1", nativeQuery = true)
 	public String findByEmail(String email);
+	
+	@Query(value = "SELECT * FROM auth_user", nativeQuery = true)
+	public User[] listAllUsers();
 }

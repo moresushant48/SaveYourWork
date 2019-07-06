@@ -1,5 +1,7 @@
 package io.moresushant48.services;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +47,10 @@ public class UserService {
 		return userRepository.findByEmail(email);
 	}
 	
+	public User[] listAllUsers() {
+		return userRepository.listAllUsers();
+	}
+	
 	/*
 	 * Check for Username and Email existence and Add the User accordingly
 	 */
@@ -54,7 +60,7 @@ public class UserService {
 			if(findByUsername(user.getUsername()) == null) {
 				
 				saveUser(user);
-				mv.addObject("result", "Login Successful.");
+				mv.addObject("result", "Registration Successful.");
 				return mv;
 			}else {				
 				mv.addObject("result", "Username already exists. Choose another !");
