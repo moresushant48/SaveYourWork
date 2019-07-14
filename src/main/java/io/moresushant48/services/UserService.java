@@ -45,8 +45,18 @@ public class UserService {
 		return userRepository.findByEmail(email);
 	}
 	
+	// Return User object array flooded with List of all users.
 	public User[] listAllUsers() {
 		return userRepository.listAllUsers();
+	}
+	
+	// Return User object filled with User detail of respective id.
+	public User getUserDetails(int id) {
+		return userRepository.getUserDetails(id);
+	}
+	
+	public void updateRole(int roleID, int userID) {
+		userRepository.updateRole(roleID, userID);
 	}
 	
 	/*

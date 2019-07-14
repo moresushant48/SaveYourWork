@@ -24,7 +24,7 @@
 				</a>
 				<a th:case="*">
 					<a href="logout" class="w3-bar-item w3-button w3-right w3-padding-16 w3-hover-amber w3-mobile">Logout</a>
-					<a href="list-files" class="w3-bar-item w3-button w3-right w3-padding-16 w3-hover-amber w3-mobile">My Files</a>
+					<a href="file-home" class="w3-bar-item w3-button w3-right w3-padding-16 w3-hover-amber w3-mobile">My Files</a>
 					<a href="list-users" th:if="${#authorization.expression('hasAuthority(''SUPER_USER'')')}" class="w3-bar-item w3-button w3-right w3-padding-16 w3-hover-amber w3-mobile">Admin Panel</a>
 					<a class="w3-bar-item w3-right w3-padding-16 w3-mobile">Welcome, [[${#authentication.name}]]</a>
 				</a>

@@ -4,6 +4,10 @@ body {
 	background-color : ghostwhite;
 }
 
+a {
+	text-decoration : none;
+}
+
 .w3-oxygen {
 	font-family: 'Oxygen', sans-serif;
 }

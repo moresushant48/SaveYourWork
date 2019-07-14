@@ -3,6 +3,9 @@ package io.moresushant48.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -22,6 +25,7 @@ public class AdminController {
 	public ModelAndView listUsers() {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("users", userService.listAllUsers());
+//		mv.addObject("users", userService.listUsers());
 		mv.setViewName("adminPanel");
 		return mv;
 	}
@@ -34,9 +38,19 @@ public class AdminController {
 		return mv;
 	}
 	
-	@GetMapping("/manage-roles")
-	public ModelAndView roles() {
-		
-		return null;
+	@RequestMapping("/manage-role")
+	public ModelAndView role(@RequestParam("id") int id) {
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("user", userService.getUserDetails(id));
+		mv.setViewName("userDetails");
+		return mv;
+	}
+	
+	@PostMapping("/updateRole")
+	public ModelAndView updateRole(@RequestParam("role") int roleID, @RequestParam("id") int userID) {
+		ModelAndView mv = new ModelAndView();
+		userService.updateRole(roleID, userID);
+		mv.setViewName("redirect:/list-users");
+		return mv;
 	}
 }
