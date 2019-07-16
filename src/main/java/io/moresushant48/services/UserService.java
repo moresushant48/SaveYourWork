@@ -11,7 +11,6 @@ import io.moresushant48.Repository.UserRepository;
 import io.moresushant48.model.Role;
 import io.moresushant48.model.User;
 
-
 /*
  * Service Class that acts as interface betn Repo and Model
  */

@@ -30,7 +30,7 @@ public class Role {
 	private String desc;
 	
 	@OneToMany(mappedBy = "role")
-	private List<User> user = new ArrayList<User>();
+	private List<User> users = new ArrayList<User>();
 	
 	public long getId() {
 		return id;
@@ -57,10 +57,10 @@ public class Role {
 	}
 
 	public List<User> getUser() {
-		return user;
+		return users;
 	}
 
-	public void setUser(List<User> user) {
-		this.user = user;
+	public void setUser(List<User> users) {
+		this.users = users;
 	}
 }

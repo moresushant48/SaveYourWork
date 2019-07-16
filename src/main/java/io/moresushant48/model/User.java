@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -33,7 +32,7 @@ public class User {
 	private String password;
 	
 	@ManyToOne
-	@JoinTable(name = "auth_user_role", joinColumns = @JoinColumn(referencedColumnName =  "auth_user_id"), inverseJoinColumns = @JoinColumn(name = "auth_role_id"))
+	@JoinColumn(name = "auth_role_id")
 	private Role role;
 	
 	public int getId() {
