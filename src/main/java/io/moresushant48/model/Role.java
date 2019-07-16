@@ -1,10 +1,14 @@
 package io.moresushant48.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /*
@@ -24,7 +28,10 @@ public class Role {
 	
 	@Column(name = "role_desc")
 	private String desc;
-
+	
+	@OneToMany(mappedBy = "role")
+	private List<User> user = new ArrayList<User>();
+	
 	public long getId() {
 		return id;
 	}
@@ -47,5 +54,13 @@ public class Role {
 
 	public void setDesc(String desc) {
 		this.desc = desc;
+	}
+
+	public List<User> getUser() {
+		return user;
+	}
+
+	public void setUser(List<User> user) {
+		this.user = user;
 	}
 }

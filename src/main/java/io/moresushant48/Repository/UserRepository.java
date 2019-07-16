@@ -1,15 +1,15 @@
 package io.moresushant48.Repository;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
 
 import io.moresushant48.model.User;
 
 /*
  * Extended with CRUD Repo to get some default DB connectivity functions
  */
-public interface UserRepository extends CrudRepository<User, Integer>{
+public interface UserRepository extends JpaRepository<User, Integer>{
 
 	@Query(value = "SELECT username FROM auth_user where username = ?1", nativeQuery = true)
 	public String findByUsername(String username);

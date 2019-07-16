@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
 import io.moresushant48.Repository.UserRepository;
+import io.moresushant48.model.Role;
 import io.moresushant48.model.User;
 
 
@@ -20,7 +21,7 @@ public class UserService {
 	
 	@Autowired
 	private final UserRepository userRepository;
-	
+
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 	
@@ -29,7 +30,7 @@ public class UserService {
 		this.userRepository = userRepository;
 	}
 
-	// default CRUD's save(entity) call
+	// default JpaRepo's save(entity) call
 	public void saveUser(User user) {
 		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 		userRepository.save(user);
@@ -66,11 +67,13 @@ public class UserService {
 		if(findByEmail(user.getEmail()) == null) {
 			
 			if(findByUsername(user.getUsername()) == null) {
-				
+				Role role = new Role();
+				role.setId(3);
+				user.setRole(role);
 				saveUser(user);
 				mv.addObject("result", "Registration Successful.");
 				return mv;
-			}else {				
+			}else {
 				mv.addObject("result", "Username already exists. Choose another !");
 				return mv;
 			}
