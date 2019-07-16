@@ -24,6 +24,6 @@ public interface UserRepository extends JpaRepository<User, Integer>{
 	public User getUserDetails(int id);
 	
 	@Modifying
-	@Query(value = "UPDATE auth_user_role SET auth_role_id = ?1 where auth_user_id = ?2", nativeQuery = true)
+	@Query(value = "UPDATE auth_user SET auth_role_id = ?1 where auth_user_id = ?2", nativeQuery = true)
 	public void updateRole(int roleID, int userID);
 }
