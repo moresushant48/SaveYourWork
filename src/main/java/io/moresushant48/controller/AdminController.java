@@ -23,8 +23,8 @@ public class AdminController {
 	@GetMapping("/list-users")
 	public ModelAndView listUsers() {
 		ModelAndView mv = new ModelAndView();
+		mv.addObject("currentPage", "adminPanel");
 		mv.addObject("users", userService.listAllUsers());
-//		mv.addObject("users", userService.listUsers());
 		mv.setViewName("adminPanel");
 		return mv;
 	}
@@ -37,9 +37,10 @@ public class AdminController {
 		return mv;
 	}
 	
-	@RequestMapping("/manage-role")
+	@GetMapping("/manage-role")
 	public ModelAndView role(@RequestParam("id") int id) {
 		ModelAndView mv = new ModelAndView();
+		mv.addObject("currentPage", "userDetails");
 		mv.addObject("user", userService.getUserDetails(id));
 		mv.setViewName("userDetails");
 		return mv;

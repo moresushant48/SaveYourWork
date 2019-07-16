@@ -24,6 +24,7 @@ public class AuthenticationController {
 	public ModelAndView login() {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("login");
+		mv.addObject("currentPage","login");
 		return mv;
 	}
 	
@@ -33,6 +34,7 @@ public class AuthenticationController {
 	@GetMapping("/register")
 	public String registerGet(Model model) {
 		model.addAttribute("registerDetails", new User());
+		model.addAttribute("currentPage","register");
 		return "register.html";
 	}
 	
@@ -45,12 +47,5 @@ public class AuthenticationController {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("register");
 		return mv = userService.registerUser(user,mv);
-	}
-	
-	@GetMapping("/home")
-	public ModelAndView home() {
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("home");
-		return mv;
 	}
 }

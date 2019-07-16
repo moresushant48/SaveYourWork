@@ -47,14 +47,16 @@ public class UploadController {
     }
     
 	@GetMapping("/list-files") 
-	public String listUploadedFiles(Model model) throws IOException {
+	public ModelAndView listUploadedFiles(Model model) throws IOException {
 	
+		ModelAndView mv = new ModelAndView();
 		model.addAttribute("files", storageService.loadAll().map(
 				path -> MvcUriComponentsBuilder.fromMethodName(UploadController.class, 
 						"serveFile", path.getFileName().toString()).build().toString())
 							.collect(Collectors.toList()));
-		  
-		return "home"; 
+		mv.addObject("currentPage", "home");
+		mv.setViewName("home");
+		return mv; 
 	}
 	 
 
@@ -75,7 +77,6 @@ public class UploadController {
 		return "redirect:/list-files"; 
 	}
 	 
-
     @ExceptionHandler(StorageFileNotFoundException.class)
     public ResponseEntity<?> handleStorageFileNotFound(StorageFileNotFoundException exc) {
         return ResponseEntity.notFound().build();

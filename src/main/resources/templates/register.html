@@ -13,11 +13,7 @@
 
 <body class="w3-oxygen">
 
-	<div id="nav" class="w3-bar w3-large w3-container w3-teal w3-display-top w3-mobile w3-card-4">
-		<section class="w3-bar-item w3-left w3-xlarge w3-lobster w3-mobile">SaveYourWork</section>
-		<a href="login" class="w3-bar-item w3-button w3-right w3-padding-16 w3-hover-amber w3-mobile">Login</a>
-		<a href="/" class="w3-bar-item w3-button w3-right w3-padding-16 w3-hover-amber w3-mobile">Home</a>
-	</div>
+	<span th:replace="includes :: header"></span>
 
 	<form id="signup_form" th:action="@{/register}" th:object="${registerDetails}" method="post" class="w3-container w3-section w3-card-4 w3-round-large w3-white w3-center w3-mobile" style="margin:auto;width:400px">
 		<div style="padding : 20px;">
