@@ -19,7 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import io.moresushant48.model.File;
-import io.moresushant48.services.FileService;
+import io.moresushant48.servicesImpl.FileService;
 
 @Controller
 public class FileController {
