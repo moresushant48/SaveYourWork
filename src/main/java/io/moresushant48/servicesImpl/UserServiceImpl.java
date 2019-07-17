@@ -71,14 +71,15 @@ public class UserServiceImpl implements UserService{
 				role.setId(3);
 				user.setRole(role);
 				saveUser(user);
-				mv.addObject("result", "Registration Successful.");
+//				mv.addObject("/register?success=true");
+				mv.setViewName("redirect:/register?success=true");
 				return mv;
 			}else {
-				mv.addObject("result", "Username already exists. Choose another !");
+				mv.setViewName("redirect:/register?userexists=true");
 				return mv;
 			}
 		} else {
-			mv.addObject("result", "Account already exists for your E-mail!");
+			mv.setViewName("redirect:/register?emailexists=true");
 			return mv;
 		}
 	}
