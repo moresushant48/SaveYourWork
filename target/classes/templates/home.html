@@ -17,10 +17,10 @@
 
 	<span th:replace="includes :: header"></span>
 	
-	<div class="w3-bar w3-pale-green w3-container w3-display-top w3-mobile" style="overflow:hidden">
+	<div class="w3-bar w3-white w3-card-2 w3-container w3-display-top w3-mobile" style="overflow:hidden">
 		
 		<!-- Trigger/Open the Modal -->
-		<a onclick="document.getElementById('modalbox').style.display='block'" class="w3-bar-item w3-button w3-left w3-hover-amber w3-mobile">Upload</a>
+		<a onclick="document.getElementById('modalbox').style.display='block'" class="w3-bar-item w3-button w3-left w3-hover-none w3-border-white w3-bottombar w3-hover-border-amber w3-mobile">Upload</a>
 		
 		<!-- The Modal -->
 		<div id="modalbox" class="w3-modal w3-card-4">
@@ -37,15 +37,14 @@
 		  </div>
 		</div>
 			
-		<a href="list-files" class="w3-bar-item w3-button w3-padding w3-hover-amber w3-left w3-mobile">List Files</a>
+		<a href="list-files" class="w3-bar-item w3-button w3-left w3-hover-none w3-border-white w3-bottombar w3-hover-border-amber w3-mobile">List Files</a>
 	</div>
 			
-	<div class="w3-container w3-mobile w3-xlarge">
-		<table class="w3-center" style="margin:auto;width:100%">
-			<caption class="w3-blue-grey w3-padding-small">Uploaded Files</caption>
+	<div class="w3-container w3-mobile w3-xlarge w3-margin-top">
+		<table class="w3-center w3-table w3-striped w3-bordered w3-border" style="margin:auto;width:100%">
 			<tr th:each="file : ${files}">
-				<td th:text="${file}" class="w3-light-grey w3-padding w3-animate-left"/>
-				<td class="w3-light-grey w3-padding w3-animate-right"><a th:href="${file}" class="fa fa-download"/></td>
+				<td th:text="${file}" class="w3-padding w3-animate-opacity"/>
+				<td class="w3-padding w3-animate-opacity"><a th:href="${file}" class="fa fa-download"/></td>
 			</tr>
 		</table>
 	</div>

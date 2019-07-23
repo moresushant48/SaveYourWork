@@ -17,13 +17,13 @@
 
 	<span th:replace="includes :: header"></span>
 	
-	<div class="w3-bar w3-pale-green w3-container w3-display-top w3-mobile" style="overflow:hidden">
-		<a href="list-users" class="w3-bar-item w3-button w3-padding w3-hover-amber w3-left w3-mobile">All Users</a>
-		<a href="manage-roles" class="w3-bar-item w3-button w3-padding w3-hover-amber w3-left w3-mobile">Assign Role</a>
+	<div class="w3-bar w3-white w3-card-2 w3-container w3-display-top w3-mobile" style="overflow:hidden">
+		<a href="list-users" class="w3-bar-item w3-button w3-left w3-hover-none w3-border-white w3-bottombar w3-hover-border-amber w3-mobile">All Users</a>
+		<a href="manage-roles" class="w3-bar-item w3-button w3-left w3-hover-none w3-border-white w3-bottombar w3-hover-border-amber w3-mobile">Assign Role</a>
 	</div>
 
-	<div class="w3-container w3-mobile w3-xlarge">
-		<table class="w3-center" style="margin:auto;width:100%">
+	<div class="w3-container w3-mobile w3-xlarge w3-margin-top">
+		<table class="w3-center w3-table w3-striped w3-bordered w3-border" style="margin:auto;width:100%">
 			<tr>
 				<th class="w3-blue-grey w3-padding w3-animate-opacity">Id</th>
 				<th class="w3-blue-grey w3-padding w3-animate-opacity">Username</th>
@@ -32,11 +32,11 @@
 				<th class="w3-blue-grey w3-padding w3-animate-opacity">Remove</th>
 			</tr>
 			<tr th:each="user : ${users}">
-				<td th:text="${user.id}" class="w3-light-grey w3-padding w3-animate-opacity"/>
-				<td th:text="${user.username}" class="w3-light-grey w3-padding w3-animate-opacity"/>
-				<td th:text="${user.email}" class="w3-light-grey w3-padding w3-animate-opacity"/>
-				<td class="w3-light-grey w3-padding w3-animate-opacity"><a th:href="@{/manage-role(id=${user.id})}" class="fa fa-edit"></a></td>
-				<td class="w3-light-grey w3-padding w3-animate-opacity"><a th:href="@{/delete-user(id=${user.id})}" class="fa fa-trash"></a></td>
+				<td th:text="${user.id}" class="w3-padding w3-animate-opacity"/>
+				<td th:text="${user.username}" class="w3-padding w3-animate-opacity"/>
+				<td th:text="${user.email}" class="w3-padding w3-animate-opacity"/>
+				<td class="w3-padding w3-animate-opacity"><a th:href="@{/manage-role(id=${user.id})}" class="fa fa-edit"></a></td>
+				<td class="w3-padding w3-animate-opacity"><a th:href="@{/delete-user(id=${user.id})}" class="fa fa-trash"></a></td>
 			</tr>
 		</table>
 	</div>
