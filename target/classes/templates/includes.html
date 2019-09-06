@@ -41,7 +41,7 @@
 			<div th:switch="${#authentication.name}">
 				<span th:replace="includes :: sitename"/>
 					<span th:case="anonymousUser">
-						<span th:replace="includes :: btnLogin"/>
+						<a href="login" class="w3-mobile w3-bar-item w3-padding-16 w3-right w3-amber w3-hover-text-white">Login</a>
 						<span th:replace="includes :: btnSignUp"/>
 					</span>
 					<span th:case="*">
