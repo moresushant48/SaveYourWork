@@ -15,7 +15,7 @@
 
 	<span th:replace="includes :: header"></span>
 
-	<form id="login_form" th:action="@{/login}" method="post" class="w3-container w3-section w3-card-4 w3-round-large w3-white w3-center w3-mobile" style="margin:auto;width:400px">
+	<form id="login_form" th:action="@{/login}" method="post" class="w3-container w3-section w3-card w3-round-large w3-white w3-center w3-mobile" style="margin:auto;width:400px">
 		<div style="padding : 20px;">
 			<h2>Login</h2>
 	      	<input name="username" class="w3-input" type="text" placeholder="Username" pattern="[a-zA-Z0-9]{4,14}" title="* Only alphabates (a-z) & digits (0-9) are allowed. * Min 4 & Max 14 characters only." required autofocus> <br>
