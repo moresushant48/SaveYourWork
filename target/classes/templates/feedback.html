@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" th:href="@{/css/basic.css}">
+	<link rel="stylesheet" th:href="@{/css/w3.css}">
+	<link href="https://fonts.googleapis.com/css?family=Ubuntu|Oxygen|Lobster&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	<title>Feedback</title>
+	
+	<script type="text/javascript">
+	
+		function disable(){
+			document.getElementById("feedarea").style.display = "none";
+			document.getElementById("success").style.display = "none";
+		}
+		function setHappy(){
+			document.getElementById("happy").style.color = "green";
+			document.getElementById("sad").style.display = "none";
+			document.getElementById("feedarea").style.display = "block";
+		}
+		function setSad(){
+			document.getElementById("sad").style.color = "red";
+			document.getElementById("happy").style.display = "none";
+			document.getElementById("feedarea").style.display = "block";
+		}
+		function success(){
+			document.getElementById("success").style.display = "block";
+		}
+	
+	</script>
+	
+</head>
+
+<body class="w3-oxygen" onload="disable()">
+
+	<span th:replace="includes :: header"></span>
+
+	<form id="feedback_form" th:action="@{/feedback}" th:object="${feedback}" method="post" class="w3-container w3-section w3-card w3-round-large w3-white w3-center w3-mobile" style="margin:auto;width:400px">
+		<div style="padding : 20px;">
+			<h2>Your Feedback</h2>
+			<hr>
+			<h5>We would like your feedback to improve our websites.</h5>
+					
+			<i id="happy" class="fa fa-smile-o fa-4x w3-hover-text-amber" onclick="setHappy()"></i>
+			<i id="sad" class="fa fa-frown-o fa-4x w3-hover-text-amber" onclick="setSad()"></i>
+			
+			<hr>
+			<div id="feedarea">
+				<textarea id="feed" name="feed" th:field="*{message}" class="w3-input w3-border w3-border-teal w3-margin-bottom" placeholder="Provide your feedback here." rows="5" style="resize: none"></textarea> 
+		      	<input class="w3-input w3-button w3-white w3-border w3-border-red" type="submit" value="Submit" onclick="success()">
+		      	<br>
+		      	<label id="success">Feedback successfully submitted.</label>
+	      	</div>
+	      	
+      	</div>
+    </form>
+</body>
+</html>
