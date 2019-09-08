@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" th:href="@{/css/basic.css}">
+	<link rel="stylesheet" th:href="@{/css/w3.css}">
+	<link href="https://fonts.googleapis.com/css?family=Ubuntu|Oxygen|Lobster&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	<title>Contact Us</title>
+	
+</head>
+
+<body class="w3-oxygen">
+
+	<span th:replace="includes :: header"></span>
+
+	<form id="contactus_form" th:action="@{/contactus}" th:object="${contactus}" method="post" class="w3-display-middle w3-container w3-section w3-row w3-mobile" style="width: 100%">
+		
+		<div class="w3-half w3-padding-large">
+			<h1>Don't be a Stranger.</h1>
+			<h2 style="color: #767676">Just say hello. We would <i class="fa fa-heart"></i> to help !</h2>
+			<hr>
+			<h2><b>SaveYourWork</b></h2>
+			<table>
+				<tr>
+					<td class="w3-center"><i class="fa fa-map-marker fa-2x"></i></td>
+					<td><h3> Mumbai, India.</h3></td>
+				</tr>
+				<tr>
+					<td class="w3-center"><i class="fa fa-phone fa-2x"></i></td>
+					<td><h3> (213) 375-0883</h3></td>
+				</tr>
+				<tr>
+					<td class="w3-center"><i class="fa fa-envelope-o fa-2x"></i></td>
+					<td><h3> moresushant48@gmail.com</h3></td>
+				</tr>
+			</table>			
+      	</div>
+      	
+      	<div class="w3-half w3-padding-large">
+      		<div class="w3-padding w3-white w3-card">
+	      		<input type="text" placeholder="Your Name" name="name" class="w3-input w3-margin-top" required="required">
+				<input type="email" placeholder="Email" name="email" class="w3-input w3-margin-top" required="required">
+				<textarea rows="6" style="width:100%; resize: none" name="message" placeholder="Message" class="w3-input w3-margin-top"></textarea>
+			    <input class="w3-input w3-button w3-white w3-border w3-border-red w3-margin-top w3-margin-bottom" type="submit" value="Submit">
+      		</div>
+      	</div>
+      	
+    </form>
+</body>
+</html>

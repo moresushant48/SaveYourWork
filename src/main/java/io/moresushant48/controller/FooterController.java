@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import io.moresushant48.model.Email;
 import io.moresushant48.model.Feedback;
 import io.moresushant48.services.FeedbackService;
 
@@ -31,6 +32,22 @@ public class FooterController {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("redirect:/feedback");
 		feedbackService.saveFeedback(feedback);
+		return mv;
+	}
+	
+	@GetMapping("/contactus")
+	public ModelAndView contactusGET(Model model) {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("contactus");
+		mv.addObject("currentPage","contactus");
+		return mv;
+	}
+	
+	@PostMapping("/contactus")
+	public ModelAndView contactusPOST(@ModelAttribute("contactus") Email email) {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("redirect:/contactus");
+		feedbackService.sendEmail(email);
 		return mv;
 	}
 }

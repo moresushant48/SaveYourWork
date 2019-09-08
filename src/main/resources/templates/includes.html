@@ -105,6 +105,14 @@
 				<span th:replace="includes :: btnAuthName"/>
 			</div>
 		</span>
+		<span th:case="contactus">
+			<span th:replace="includes :: sitename"/>
+				<span th:replace="includes :: btnLogout"/>
+				<span th:replace="includes :: btnHome"/>
+				<span th:replace="includes :: btnMyFiles"/>
+				<span th:replace="includes :: btnAuthName"/>
+			</div>
+		</span>
 	</header>
 	
 	<footer th:fragment="footer" class="w3-container w3-mobile w3-border">
@@ -113,7 +121,7 @@
 		<p class="w3-right w3-margin-right w3-mobile">
 			<a href="about" class="w3-hover-text-amber">About</a>&nbsp;&nbsp;
 			<a href="feedback" class="w3-hover-text-amber">Feedback</a>&nbsp;&nbsp;
-			<a href="contact" class="w3-hover-text-amber">Contact</a>
+			<a href="contactus" class="w3-hover-text-amber">Contact</a>
 		</p>
 		<p class="w3-right w3-margin w3-mobile" style="border-left : 2px solid grey; height:20px;"></p>
 		<p class="w3-right w3-mobile">
