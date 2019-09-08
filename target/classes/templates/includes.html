@@ -106,11 +106,19 @@
 			</div>
 		</span>
 		<span th:case="contactus">
-			<span th:replace="includes :: sitename"/>
-				<span th:replace="includes :: btnLogout"/>
-				<span th:replace="includes :: btnHome"/>
-				<span th:replace="includes :: btnMyFiles"/>
-				<span th:replace="includes :: btnAuthName"/>
+			<div th:switch="${#authentication.name}">
+				<span th:replace="includes :: sitename"/>
+					<span th:case="anonymousUser">
+						<a href="login" class="w3-mobile w3-bar-item w3-padding-16 w3-right w3-amber w3-hover-text-white">Login</a>
+						<span th:replace="includes :: btnSignUp"/>
+					</span>
+					<span th:case="*">
+						<span th:replace="includes :: btnLogout"/>
+						<span th:replace="includes :: btnMyFiles"/>
+						<span th:replace="includes :: btnAdminPanel"/>
+						<span th:replace="includes :: btnAuthName"/>
+					</span>
+				</div>
 			</div>
 		</span>
 	</header>
