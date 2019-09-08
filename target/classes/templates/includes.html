@@ -121,6 +121,14 @@
 				</div>
 			</div>
 		</span>
+		<span th:case="userFeedback">
+			<span th:replace="includes :: sitename"/>
+				<span th:replace="includes :: btnLogout"/>
+				<span th:replace="includes :: btnHome"/>
+				<span th:replace="includes :: btnMyFiles"/>
+				<span th:replace="includes :: btnAuthName"/>
+			</div>
+		</span>
 	</header>
 	
 	<footer th:fragment="footer" class="w3-container w3-mobile w3-border">

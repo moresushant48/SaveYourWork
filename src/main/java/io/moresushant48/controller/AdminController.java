@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import io.moresushant48.Repository.FeedbackRepository;
 import io.moresushant48.Repository.UserRepository;
 import io.moresushant48.services.UserService;
 
@@ -18,6 +19,9 @@ public class AdminController {
 	
 	@Autowired
 	UserRepository userRepository;
+	
+	@Autowired
+	FeedbackRepository feedbackRepository;
 
 	@GetMapping("/list-users")
 	public ModelAndView listUsers() {
@@ -50,6 +54,23 @@ public class AdminController {
 		ModelAndView mv = new ModelAndView();
 		userService.updateRole(roleID, userID);
 		mv.setViewName("redirect:/list-users");
+		return mv;
+	}
+	
+	@GetMapping("/userFeedback")
+	public ModelAndView userFeedback() {
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("feedbacks",feedbackRepository.getFeedbacks());
+		mv.addObject("currentPage", "userFeedback");
+		mv.setViewName("viewFeedback");
+		return mv;
+	}
+	
+	@GetMapping("/delete-feedback")
+	public ModelAndView deleteFeedback(@RequestParam("id") Long id) {
+		ModelAndView mv = new ModelAndView();
+		feedbackRepository.deleteById(id);
+		mv.setViewName("redirect:/userFeedback");
 		return mv;
 	}
 }
