@@ -62,7 +62,7 @@ public class AdminController {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("feedbacks",feedbackRepository.getFeedbacks());
 		mv.addObject("currentPage", "userFeedback");
-		mv.setViewName("viewFeedback");
+		mv.setViewName("adminPanel");
 		return mv;
 	}
 	
