@@ -10,6 +10,21 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	
 	<title>HOME</title>
+	
+	<script type="text/javascript">
+		document.onkeydown = function(evt) {
+		    evt = evt || window.event;
+		    var isEscape = false;
+		    if ("key" in evt) {
+		        isEscape = (evt.key === "Escape" || evt.key === "Esc");
+		    } else {
+		        isEscape = (evt.keyCode === 27);
+		    }
+		    if (isEscape) {
+		    	document.getElementById('modalbox').style.display='none';
+		    }
+		};
+	</script>
 
 </head>
 
