@@ -20,6 +20,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 
+import io.moresushant48.Repository.UserRepository;
+import io.moresushant48.model.User;
 import io.moresushant48.storage.FileSystemStorageService;
 import io.moresushant48.storage.StorageFileNotFoundException;
 import io.moresushant48.storage.StorageService;
@@ -31,7 +33,11 @@ public class UploadController {
     private FileSystemStorageService fileSystemStorageService;
 	
     private final StorageService storageService;
-
+    private User user;    
+    
+    @Autowired
+    UserRepository userRepository;
+    
     @Autowired
     public UploadController(StorageService storageService) {
         this.storageService = storageService;
@@ -40,8 +46,11 @@ public class UploadController {
     @GetMapping("/file-home")
     public ModelAndView fileHome(Principal principal) {
     	ModelAndView mv = new ModelAndView();
+    	
     	fileSystemStorageService.init(principal.getName());
-		System.out.println(principal.getName());
+    	System.out.println(principal.getName());
+    	user = userRepository.findIdByUsername(principal.getName());
+		
 		mv.setViewName("redirect:/list-files");
     	return mv;
     }
@@ -58,7 +67,6 @@ public class UploadController {
 		mv.setViewName("home");
 		return mv; 
 	}
-	 
 
     @GetMapping("/files/{filename:.+}")
     @ResponseBody
@@ -72,7 +80,7 @@ public class UploadController {
 	@PostMapping("/upload-file")
 	public String handleFileUpload(@RequestParam("file") MultipartFile[] files) {
 		for(MultipartFile file : files) {
-			storageService.store(file);
+			storageService.store(file, user);
 		}
 		return "redirect:/list-files"; 
 	}

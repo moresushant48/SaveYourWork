@@ -3,6 +3,8 @@ package io.moresushant48.storage;
 import org.springframework.core.io.Resource;
 import org.springframework.web.multipart.MultipartFile;
 
+import io.moresushant48.model.User;
+
 import java.nio.file.Path;
 import java.util.stream.Stream;
 
@@ -10,7 +12,7 @@ public interface StorageService {
 
     void init(String username);
     
-    void store(MultipartFile file);
+    void store(MultipartFile file, User user);
 
     Stream<Path> loadAll();
 

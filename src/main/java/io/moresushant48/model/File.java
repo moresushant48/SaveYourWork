@@ -2,7 +2,11 @@ package io.moresushant48.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -10,8 +14,9 @@ import javax.persistence.Table;
 public class File {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id")
-    private String id;
+    private Long id;
 
 	@Column(name = "file_name")
     private String fileName;
@@ -19,24 +24,28 @@ public class File {
 	@Column(name = "file_type")
     private String fileType;
 	
-	@Column(name = "file_url")
-	private String fileUrl;
-
+	@Column(name = "file_size")
+	private String fileSize;
+	
+	@ManyToOne
+	@JoinColumn(name = "auth_user_id")
+	private User user;
+	
     public File() {
 
     }
 
-    public File(String fileName, String fileType, String fileUrl) {
+    public File(String fileName, String fileType, String fileSize) {
         this.fileName = fileName;
         this.fileType = fileType;
-        this.fileUrl = fileUrl;
+        this.fileSize = fileSize;
     }
 
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -56,11 +65,26 @@ public class File {
 		this.fileType = fileType;
 	}
 
-	public String getFileUrl() {
-		return fileUrl;
+	public String getFileSize() {
+		return fileSize;
 	}
 
-	public void setFileUrl(String fileUrl) {
-		this.fileUrl = fileUrl;
+	public void setFileSize(String fileSize) {
+		this.fileSize = fileSize;
 	}
+	
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	@Override
+	public String toString() {
+		return "File [id=" + id + ", fileName=" + fileName + ", fileType=" + fileType + ", fileSize=" + fileSize + "]";
+	}
+	
+	
 }

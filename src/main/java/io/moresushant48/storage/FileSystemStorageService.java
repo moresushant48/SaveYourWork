@@ -10,6 +10,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.stream.Stream;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
@@ -17,13 +18,21 @@ import org.springframework.util.FileSystemUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import io.moresushant48.Repository.FileRepository;
+import io.moresushant48.model.User;
+
 @Service
 public class FileSystemStorageService implements StorageService {
 
     private static Path rootLocation = null;
-
-    @Override
-    public void store(MultipartFile file) {
+        
+    private io.moresushant48.model.File myFile;
+    
+    @Autowired
+    FileRepository fileRepository;
+    
+	@Override
+    public void store(MultipartFile file, User user) {
         String filename = StringUtils.cleanPath(file.getOriginalFilename());
         try {
             if (file.isEmpty()) {
@@ -36,6 +45,23 @@ public class FileSystemStorageService implements StorageService {
                                 + filename);
             }
             try (InputStream inputStream = file.getInputStream()) {
+            	
+            	System.out.println(FileSystemStorageService.rootLocation);
+            	
+            	
+            	/*
+            	 * Fetch the Current User entity and setUser() in File entity.
+            	 */
+            	myFile = new io.moresushant48.model.File();
+            	myFile.setFileName(file.getOriginalFilename());
+            	myFile.setFileType(file.getContentType());
+            	myFile.setFileSize(String.valueOf(file.getSize()));
+            	myFile.setUser(user);
+            	fileRepository.save(myFile);
+            	
+            	/*
+            	 * Save the files.
+            	 */
                 Files.copy(inputStream, FileSystemStorageService.rootLocation.resolve(filename),
                     StandardCopyOption.REPLACE_EXISTING);
             }
