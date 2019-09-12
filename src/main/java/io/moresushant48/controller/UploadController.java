@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 
+import io.moresushant48.Repository.FileRepository;
 import io.moresushant48.Repository.UserRepository;
 import io.moresushant48.model.User;
 import io.moresushant48.storage.FileSystemStorageService;
@@ -37,6 +38,9 @@ public class UploadController {
     
     @Autowired
     UserRepository userRepository;
+    
+    @Autowired
+    FileRepository fileRepository;
     
     @Autowired
     public UploadController(StorageService storageService) {
@@ -58,11 +62,8 @@ public class UploadController {
 	@GetMapping("/list-files") 
 	public ModelAndView listUploadedFiles(Model model) throws IOException {
 	
-		ModelAndView mv = new ModelAndView();
-		model.addAttribute("files", storageService.loadAll().map(
-				path -> MvcUriComponentsBuilder.fromMethodName(UploadController.class, 
-						"serveFile", path.getFileName().toString()).build().toString())
-							.collect(Collectors.toList()));
+		ModelAndView mv = new ModelAndView();		
+		model.addAttribute("files", fileRepository.listFiles(user.getId()));
 		mv.addObject("currentPage", "home");
 		mv.setViewName("home");
 		return mv; 

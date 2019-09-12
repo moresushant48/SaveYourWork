@@ -9,6 +9,6 @@ import io.moresushant48.model.File;
 @Repository
 public interface FileRepository extends JpaRepository<File, Long>{
 	
-	@Query(value = "select * from user_files", nativeQuery = true)
-	public File[] listFiles();
+	@Query(value = "SELECT * FROM user_files WHERE auth_user_id = ?1", nativeQuery = true)
+	public File[] listFiles(int id);
 }

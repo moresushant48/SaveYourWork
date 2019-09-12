@@ -56,10 +56,21 @@
 	</div>
 			
 	<div class="w3-section w3-container w3-mobile w3-xlarge">
-		<table class="w3-center w3-table w3-striped w3-bordered w3-border" style="margin:auto;width:100%">
+	
+		<h1 th:if="${#arrays.length(files) == 0 }" class="w3-display-middle w3-center w3-border w3-border-amber w3-padding w3-hover-border-red">You don't have any files here.<br> Upload some.</h1>
+	
+		<table th:if="${#arrays.length(files) > 0 }" class="w3-center w3-table w3-striped w3-bordered w3-border" style="margin:auto;width:100%">
+			<tr>
+				<th class="w3-blue-grey w3-padding w3-animate-opacity">Name</th>
+				<th class="w3-blue-grey w3-padding w3-animate-opacity">Type</th>
+				<th class="w3-blue-grey w3-padding w3-animate-opacity">Size</th>
+				<th class="w3-blue-grey w3-padding w3-animate-opacity w3-center">Downloads</th>
+			</tr>
 			<tr th:each="file : ${files}">
-				<td th:text="${file}" class="w3-padding w3-animate-opacity"/>
-				<td class="w3-padding w3-animate-opacity"><a th:href="${file}" class="fa fa-download"/></td>
+				<td th:text="${file.fileName}" class="w3-padding w3-animate-opacity"/>
+				<td th:text="${file.fileType}" class="w3-padding w3-animate-opacity"/>
+				<td th:text="${file.fileSize}" class="w3-padding w3-animate-opacity"/>
+				<td class="w3-padding w3-animate-opacity w3-center"><a th:href="@{files/} + ${file.fileName}" class="fa fa-download"/></td>
 			</tr>
 		</table>
 	</div>
