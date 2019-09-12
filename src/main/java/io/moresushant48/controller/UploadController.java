@@ -2,7 +2,6 @@ package io.moresushant48.controller;
 
 import java.io.IOException;
 import java.security.Principal;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
@@ -18,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 
 import io.moresushant48.Repository.FileRepository;
 import io.moresushant48.Repository.UserRepository;
@@ -59,7 +57,7 @@ public class UploadController {
     	return mv;
     }
     
-	@GetMapping("/list-files") 
+	@GetMapping("/list-files")
 	public ModelAndView listUploadedFiles(Model model) throws IOException {
 	
 		ModelAndView mv = new ModelAndView();		

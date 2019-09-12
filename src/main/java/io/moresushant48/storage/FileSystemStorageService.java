@@ -55,7 +55,7 @@ public class FileSystemStorageService implements StorageService {
             	myFile = new io.moresushant48.model.File();
             	myFile.setFileName(file.getOriginalFilename());
             	myFile.setFileType(file.getContentType());
-            	myFile.setFileSize(String.valueOf(file.getSize()));
+            	myFile.setFileSize(String.format("%.2f", (double)file.getSize() / (1024*1024)) + " Mb");
             	myFile.setUser(user);
             	fileRepository.save(myFile);
             	
@@ -70,7 +70,7 @@ public class FileSystemStorageService implements StorageService {
             throw new StorageException("Failed to store file " + filename, e);
         }
     }
-
+	
     @Override
     public Stream<Path> loadAll() {
         try {
