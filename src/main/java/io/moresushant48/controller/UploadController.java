@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import io.moresushant48.Repository.FileRepository;
 import io.moresushant48.Repository.UserRepository;
+import io.moresushant48.model.File;
 import io.moresushant48.model.User;
 import io.moresushant48.storage.FileSystemStorageService;
 import io.moresushant48.storage.StorageFileNotFoundException;
@@ -32,7 +33,8 @@ public class UploadController {
     private FileSystemStorageService fileSystemStorageService;
 	
     private final StorageService storageService;
-    private User user;    
+    private User user;
+    private File[] myFiles;
     
     @Autowired
     UserRepository userRepository;
@@ -52,7 +54,7 @@ public class UploadController {
     	fileSystemStorageService.init(principal.getName());
     	System.out.println(principal.getName());
     	user = userRepository.findIdByUsername(principal.getName());
-		
+		    	
 		mv.setViewName("redirect:/list-files");
     	return mv;
     }
@@ -60,7 +62,7 @@ public class UploadController {
 	@GetMapping("/list-files")
 	public ModelAndView listUploadedFiles(Model model) throws IOException {
 	
-		ModelAndView mv = new ModelAndView();		
+		ModelAndView mv = new ModelAndView();
 		model.addAttribute("files", fileRepository.listFiles(user.getId()));
 		mv.addObject("currentPage", "home");
 		mv.setViewName("home");
@@ -79,7 +81,8 @@ public class UploadController {
 	@PostMapping("/upload-file")
 	public String handleFileUpload(@RequestParam("file") MultipartFile[] files) {
 		for(MultipartFile file : files) {
-			storageService.store(file, user);
+			myFiles = fileRepository.listFiles(user.getId());
+			storageService.store(file, user, myFiles);
 		}
 		return "redirect:/list-files"; 
 	}

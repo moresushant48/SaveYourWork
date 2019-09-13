@@ -32,7 +32,7 @@ public class FileSystemStorageService implements StorageService {
     FileRepository fileRepository;
     
 	@Override
-    public void store(MultipartFile file, User user) {
+    public void store(MultipartFile file, User user, io.moresushant48.model.File[] myFiles) {
         String filename = StringUtils.cleanPath(file.getOriginalFilename());
         try {
             if (file.isEmpty()) {
@@ -48,16 +48,34 @@ public class FileSystemStorageService implements StorageService {
             	
             	System.out.println(FileSystemStorageService.rootLocation);
             	
+            	boolean value = false;
+            	
+            	/*
+            	 * Overwrite the file if the same named file exists in the database.
+            	 */
+            	for(io.moresushant48.model.File tempFile : myFiles) {
+            		if(tempFile.getFileName().equals(file.getOriginalFilename())) {
+            			
+            			tempFile.setFileSize(String.format("%.2f", (double)file.getSize() / (1024*1024)) + " Mb");
+                		fileRepository.save(tempFile);
+                		value = true;
+                		break;
+            		}
+            	}
             	
             	/*
             	 * Fetch the Current User entity and setUser() in File entity.
             	 */
+            	
             	myFile = new io.moresushant48.model.File();
-            	myFile.setFileName(file.getOriginalFilename());
-            	myFile.setFileType(file.getContentType());
-            	myFile.setFileSize(String.format("%.2f", (double)file.getSize() / (1024*1024)) + " Mb");
-            	myFile.setUser(user);
-            	fileRepository.save(myFile);
+            	
+            	if(!value) {
+		        	myFile.setFileName(file.getOriginalFilename());
+		        	myFile.setFileType(file.getContentType());
+		        	myFile.setFileSize(String.format("%.2f", (double)file.getSize() / (1024*1024)) + " Mb");
+		        	myFile.setUser(user);
+		        	fileRepository.save(myFile);
+            	}
             	
             	/*
             	 * Save the files.
