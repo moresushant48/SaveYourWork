@@ -17,8 +17,8 @@
 
 	<span th:replace="includes :: header"></span>
 	
-	<form action="updateRole" method="post" class="w3-container w3-section w3-card-4 w3-round-large w3-xlarge w3-white w3-mobile" style="margin:auto;width:400px">
-		<table style="padding: 20px">
+	<form action="updateRole" method="post" class="w3-container w3-section w3-card-2 w3-round-large w3-xlarge w3-white w3-mobile" style="margin:auto;width:400px">
+		<table style="padding: 20px" class="w3-table w3-row-padding w3-padding w3-margin-top">
 			<tr>
 				<td class="fa fa-user"></td>
 				<td>&nbsp;[[${user.username}]]</td>
@@ -29,13 +29,18 @@
 			</tr>
 			<tr>
 				<td class="fa fa-key"></td>
-				<td><input type="radio" name="role" value="1">SUPER_USER <br><input type="radio" name="role" value="2">SITE_ADMIN <br><input type="radio" name="role" value="3">SITE_USER</td>
+				<td class="w3-large">
+					&nbsp;&nbsp;<input type="radio" name="role" value="1"> &nbsp; SUPER_USER <br>
+					&nbsp;&nbsp;<input type="radio" name="role" value="2"> &nbsp; SITE_ADMIN <br>
+					&nbsp;&nbsp;<input type="radio" name="role" value="3"> &nbsp; SITE_USER</td>
 			</tr>
 			<tr>
 				<td><input type="hidden" th:value="${user.id}" th:name="id"></td>
-				<td><input type="submit" class="w-input w3-button w3-border w3-border-teal" value="Update Role" style="width:100%"></td>
+				<td></td>
 			</tr>
+			
 		</table>
+		<input type="submit" class="w3-input w3-button w3-border w3-border-teal w3-margin-bottom" value="Update Role">
 	</form>
 	
 </body>
