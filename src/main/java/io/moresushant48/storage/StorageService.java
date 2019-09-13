@@ -15,6 +15,8 @@ public interface StorageService {
     
     void store(MultipartFile file, User user, File[] myFiles);
 
+    void deleteById(Long id, String name);
+
     Stream<Path> loadAll();
 
     Path load(String filename);
