@@ -2,21 +2,17 @@ package io.moresushant48.servicesImpl;
 
 import java.util.UUID;
 
-import javax.mail.MessagingException;
-import javax.mail.internet.MimeMessage;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
 import io.moresushant48.Repository.UserRepository;
-import io.moresushant48.model.Email;
 import io.moresushant48.model.Role;
 import io.moresushant48.model.User;
+import io.moresushant48.services.EmailService;
 import io.moresushant48.services.UserService;
 
 /*
@@ -27,7 +23,7 @@ import io.moresushant48.services.UserService;
 public class UserServiceImpl implements UserService{
 	
 	@Autowired
-	private JavaMailSender javaMailSender;
+	private EmailService emailService;
 	
 	@Autowired
 	private final UserRepository userRepository;
@@ -85,7 +81,6 @@ public class UserServiceImpl implements UserService{
 				role.setId(3);
 				user.setRole(role);
 				saveUser(user);
-//				mv.addObject("/register?success=true");
 				mv.setViewName("redirect:/register?success=true");
 				return mv;
 			}else {
@@ -108,20 +103,10 @@ public class UserServiceImpl implements UserService{
 		
 		if(user != null) {
 			
-			MimeMessage message = javaMailSender.createMimeMessage();
-	        MimeMessageHelper helper = new MimeMessageHelper(message);
-	        try {
-	            helper.setFrom(Email.getMyEmail());
-	            helper.setTo(email);
-	            helper.setSubject("Username at SaveYourWork");
-	            helper.setText("Your Credentials at SaveYourWork are : \nUsername : " + user.getUsername() 
-	            		+ "\n\nIf this wasn't you, make use of our contact service : http://localhost:8888/contactus"
-        				+ "\n\nRegards,\nSushant More @ SaveYourWork.");
-	            
-	        } catch (MessagingException e) {
-	            e.printStackTrace();
-	        }
-	        javaMailSender.send(message);
+			emailService.sendEmail(email, "Username at SaveYourWork", "Your Credentials at SaveYourWork are : \nUsername : " + user.getUsername() 
+    					+ "\n\nIf this wasn't you, make use of our contact service : http://localhost:8888/contactus"
+    					+ "\n\nRegards,\nSushant More @ SaveYourWork.");
+			
 	        mv.setViewName("redirect:/forgotUsername?found=true");
 		}
 		else {
@@ -144,22 +129,11 @@ public class UserServiceImpl implements UserService{
 		
 		if(user != null) {
 			
-			MimeMessage message = javaMailSender.createMimeMessage();
-	        MimeMessageHelper helper = new MimeMessageHelper(message);
-	        try {
-	        		        	
-	            helper.setFrom(Email.getMyEmail());
-	            helper.setTo(email);
-	            helper.setSubject("Password at SaveYourWork");
-	            helper.setText("You have requested to change the Password for your SaveYourWork account. Click on the link below "
-	            		+ "and fill your new password : \n\n" + "http://localhost:8888/newPassword?token=" + generatedToken
-	            		+ "&email=" + this.encEmail + "\n\nIf this wasn't you, make use of our contact service : http://localhost:8888/contactus"
-	            				+ "\n\nRegards,\nSushant More @ SaveYourWork.");
-	            System.out.println(generatedToken);
-	        } catch (MessagingException e) {
-	            e.printStackTrace();
-	        }
-	        javaMailSender.send(message);
+			emailService.sendEmail(email,"Password at SaveYourWork", "You have requested to change the Password for your SaveYourWork account. Click on the link below "
+            		+ "and fill your new password : \n\n" + "http://localhost:8888/newPassword?token=" + generatedToken
+            		+ "&email=" + this.encEmail + "\n\nIf this wasn't you, make use of our contact service : http://localhost:8888/contactus"
+            				+ "\n\nRegards,\nSushant More @ SaveYourWork.");
+			
 	        mv.setViewName("redirect:/forgotPassword?found=true");
 		}
 		else {
