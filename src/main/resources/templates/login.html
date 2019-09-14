@@ -26,10 +26,10 @@
 		<div style="padding : 20px;">
 			<h2>Login</h2>
 	      	<input name="username" class="w3-input" type="text" placeholder="Username" pattern="[a-zA-Z0-9]{4,14}" title="* Only alphabates (a-z) & digits (0-9) are allowed. * Min 4 & Max 14 characters only." required autofocus>
-	      	<a href="/forgotUsername" class="w3-left w3-margin-bottom" style="padding: 2px">Forgot Username ?</a>
+	      	<a href="/forgotUsername" class="w3-left w3-margin-bottom w3-text-grey" style="padding: 2px">Forgot Username ?</a>
 	      	
 	      	<input name="password" class="w3-input" type="password" placeholder="Password" pattern=".{3,15}" title="* Three or more characters. * Not more than 15 characters allowed." required>
-	      	<a href="/forgotPassword" class="w3-left w3-margin-bottom" style="padding: 2px">Forgot password ?</a>
+	      	<a href="/forgotPassword" class="w3-left w3-margin-bottom w3-text-grey" style="padding: 2px">Forgot password ?</a>
 	      	
 	      	<input class="w3-input w3-button w3-white w3-border w3-border-red" type="submit" value="Submit">
 	      	<p th:if="${param.error}" style="color:black;font-size:12pt">Email or Password is invalid.</p>
