@@ -36,7 +36,7 @@ public class FeedbackServiceImpl implements FeedbackService{
 
 	        try {
 	            helper.setFrom(email.getEmail());
-	            helper.setTo(email.getMyEmail());
+	            helper.setTo(Email.getMyEmail());
 	            helper.setSubject("Emailed by : " + email.getName());
 	            helper.setText(email.getMessage());
 	            

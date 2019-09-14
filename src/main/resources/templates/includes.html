@@ -20,7 +20,8 @@
 
 	<header>
 	
-		<div th:if="${currentPage == 'index' OR currentPage == 'contactus' OR currentPage == 'feedback'}" class="w3-container w3-bar w3-border w3-white">
+		<div th:if="${currentPage == 'index' OR currentPage == 'contactus' OR currentPage == 'feedback'
+					OR currentPage == 'forgotUsername' OR currentPage == 'forgotPassword' OR currentPage == 'newPassword'}" class="w3-container w3-bar w3-border w3-white">
 			<span th:if="${#authentication.name == 'anonymousUser'}">
 				<span th:replace="includes :: sitename"></span>
 				<a href="login" class="w3-mobile w3-bar-item w3-padding-16 w3-right w3-amber w3-hover-text-white">Login</a>

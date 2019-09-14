@@ -11,11 +11,11 @@ import io.moresushant48.model.User;
  */
 public interface UserRepository extends JpaRepository<User, Integer>{
 
-	@Query(value = "SELECT username FROM auth_user WHERE username = ?1", nativeQuery = true)
-	public String findByUsername(String username);
+	@Query(value = "SELECT * FROM auth_user WHERE username = ?1", nativeQuery = true)
+	public User findByUsername(String username);
 	
-	@Query(value = "SELECT email FROM auth_user WHERE email = ?1", nativeQuery = true)
-	public String findByEmail(String email);
+	@Query(value = "SELECT * FROM auth_user WHERE email = ?1", nativeQuery = true)
+	public User findByEmail(String email);
 	
 	@Query(value = "SELECT * FROM auth_user WHERE username = ?1", nativeQuery = true)
 	public User findIdByUsername(String username);

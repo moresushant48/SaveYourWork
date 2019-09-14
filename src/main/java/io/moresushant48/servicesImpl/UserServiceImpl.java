@@ -1,13 +1,18 @@
 package io.moresushant48.servicesImpl;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
 import io.moresushant48.Repository.UserRepository;
+import io.moresushant48.model.Email;
 import io.moresushant48.model.Role;
 import io.moresushant48.model.User;
 import io.moresushant48.services.UserService;
@@ -18,6 +23,9 @@ import io.moresushant48.services.UserService;
 @Service
 @Transactional
 public class UserServiceImpl implements UserService{
+	
+	@Autowired
+	private JavaMailSender javaMailSender;
 	
 	@Autowired
 	private final UserRepository userRepository;
@@ -37,12 +45,12 @@ public class UserServiceImpl implements UserService{
 	}
 	
 	// Return Existence of Username as a result
-	public String findByUsername(String username) {
+	public User findByUsername(String username) {
 		return userRepository.findByUsername(username);
 	}
 	
 	// Return Existence of email as a result
-	public String findByEmail(String email) {
+	public User findByEmail(String email) {
 		return userRepository.findByEmail(email);
 	}
 	
@@ -83,4 +91,93 @@ public class UserServiceImpl implements UserService{
 			return mv;
 		}
 	}
+	
+	/*
+	 * Check for valid email and mail the username to client.
+	 */
+	@Override
+	public ModelAndView forgotUsername(ModelAndView mv, String email) {
+        
+		User user = findByEmail(email);
+		
+		if(user != null) {
+			
+			MimeMessage message = javaMailSender.createMimeMessage();
+	        MimeMessageHelper helper = new MimeMessageHelper(message);
+	        try {
+	            helper.setFrom(Email.getMyEmail());
+	            helper.setTo(email);
+	            helper.setSubject("Username at SaveYourWork");
+	            helper.setText("Your Credentials at SaveYourWork are : \nUsername : " + user.getUsername() 
+	            		+ "\n\nIf this wasn't you, make use of our contact service : http://localhost:8888/contactus"
+        				+ "\n\nRegards,\nSushant More @ SaveYourWork.");
+	            
+	        } catch (MessagingException e) {
+	            e.printStackTrace();
+	        }
+	        javaMailSender.send(message);
+	        mv.setViewName("redirect:/forgotUsername?found=true");
+		}
+		else {
+			mv.setViewName("redirect:/forgotUsername?notfound=true");
+		}
+		
+		return mv;
+	}	
+	
+	/*
+	 * Check for valid email and process to change the user password.
+	 */
+	@Override
+	public ModelAndView forgotPassword(ModelAndView mv, String email, String token) {
+		
+		User user = findByEmail(email);
+		
+		if(user != null) {
+			
+			MimeMessage message = javaMailSender.createMimeMessage();
+	        MimeMessageHelper helper = new MimeMessageHelper(message);
+	        try {
+	        		        	
+	            helper.setFrom(Email.getMyEmail());
+	            helper.setTo(email);
+	            helper.setSubject("Password at SaveYourWork");
+	            helper.setText("You have requested to change the Password for your SaveYourWork account. Click on the link below "
+	            		+ "and fill your new password : \n\n" + "http://localhost:8888/newPassword?token=" + token
+	            		+ "&email=" + email + "\n\nIf this wasn't you, make use of our contact service : http://localhost:8888/contactus"
+	            				+ "\n\nRegards,\nSushant More @ SaveYourWork.");
+	            System.out.println(token);
+	        } catch (MessagingException e) {
+	            e.printStackTrace();
+	        }
+	        javaMailSender.send(message);
+	        mv.setViewName("redirect:/forgotPassword?found=true");
+		}
+		else {
+			mv.setViewName("redirect:/forgotPassword?notfound=true");
+		}
+		
+		return mv;
+	}
+
+	/*
+	 * Take the email and password parameters and update the password for defined email.
+	 */
+	
+	@Override
+	public ModelAndView changePassword(ModelAndView mv, String email, String password) {
+		
+		User user = findByEmail(email);
+		if(user != null) {
+			user.setPassword(password);
+			saveUser(user);
+			mv.setViewName("redirect:/gotNewPassword?success=true");
+		}
+		else {
+			mv.setViewName("redirect:/gotNewPassword?unsuccess=true");
+		}
+		
+		
+		return mv;
+	}	
 }

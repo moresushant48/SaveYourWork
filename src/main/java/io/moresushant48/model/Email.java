@@ -2,17 +2,17 @@ package io.moresushant48.model;
 
 public class Email {
 
-	private String myEmail = "moresushant48@gmail.com";
+	private static String myEmail = "moresushant48@gmail.com";
 	
 	private String name;
 	private String email;
 	private String message;
 	
-	public String getMyEmail() {
+	public static String getMyEmail() {
 		return myEmail;
 	}
 	public void setMyEmail(String myEmail) {
-		this.myEmail = myEmail;
+		Email.myEmail = myEmail;
 	}
 	
 	public String getName() {
