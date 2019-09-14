@@ -1,7 +1,5 @@
 package io.moresushant48.controller;
 
-import java.util.UUID;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,8 +17,6 @@ public class AuthenticationController {
 	
 	@Autowired
 	private UserService userService;
-	
-	private String generatedToken;
 
 	/*
 	 * Return basic login page to the user.
@@ -89,11 +85,10 @@ public class AuthenticationController {
 	}
 	
 	@PostMapping("/forgotPassword")
-	public ModelAndView forgotPasswordPOST(@RequestParam("email") String email) {
+	public ModelAndView forgotPasswordPOST(@RequestParam("email") String emailstr) {
 		
 		ModelAndView mv = new ModelAndView();
-		generatedToken = UUID.randomUUID().toString();
-		mv = userService.forgotPassword(mv,email,generatedToken);
+		mv = userService.forgotPassword(mv,emailstr);
 		return mv;
 	}
 	
@@ -102,17 +97,13 @@ public class AuthenticationController {
 	 */
 	
 	@GetMapping("/newPassword")
-	public ModelAndView newPassword(@RequestParam("token") String receivedToken, @RequestParam("email") String email) {
+	public ModelAndView newPassword(@RequestParam("token") String receivedToken, @RequestParam("email") String encodedEmail) {
 		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("login");
 		
-		if(this.generatedToken.equals(receivedToken)) {
-			mv.addObject("userEmail", email);
-			mv.addObject("currentPage","newPassword");
-		}else {
-			mv.addObject("currentPage","index");
-		}
+		mv = userService.verifyTokenAndEmail(mv,receivedToken,encodedEmail);
+		
 		return mv;
 	}
 	

@@ -1,5 +1,7 @@
 package io.moresushant48.servicesImpl;
 
+import java.util.UUID;
+
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import javax.transaction.Transactional;
@@ -32,6 +34,10 @@ public class UserServiceImpl implements UserService{
 
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
+	
+	private String generatedToken;
+	private String encEmail;
+	private String email;
 	
 	// constructor
 	public UserServiceImpl(UserRepository userRepository) {
@@ -129,9 +135,12 @@ public class UserServiceImpl implements UserService{
 	 * Check for valid email and process to change the user password.
 	 */
 	@Override
-	public ModelAndView forgotPassword(ModelAndView mv, String email, String token) {
+	public ModelAndView forgotPassword(ModelAndView mv, String emailstr) {
 		
 		User user = findByEmail(email);
+		generatedToken = UUID.randomUUID().toString();
+		this.email = emailstr;
+		this.encEmail = bCryptPasswordEncoder.encode(emailstr);
 		
 		if(user != null) {
 			
@@ -143,10 +152,10 @@ public class UserServiceImpl implements UserService{
 	            helper.setTo(email);
 	            helper.setSubject("Password at SaveYourWork");
 	            helper.setText("You have requested to change the Password for your SaveYourWork account. Click on the link below "
-	            		+ "and fill your new password : \n\n" + "http://localhost:8888/newPassword?token=" + token
-	            		+ "&email=" + email + "\n\nIf this wasn't you, make use of our contact service : http://localhost:8888/contactus"
+	            		+ "and fill your new password : \n\n" + "http://localhost:8888/newPassword?token=" + generatedToken
+	            		+ "&email=" + this.encEmail + "\n\nIf this wasn't you, make use of our contact service : http://localhost:8888/contactus"
 	            				+ "\n\nRegards,\nSushant More @ SaveYourWork.");
-	            System.out.println(token);
+	            System.out.println(generatedToken);
 	        } catch (MessagingException e) {
 	            e.printStackTrace();
 	        }
@@ -161,9 +170,25 @@ public class UserServiceImpl implements UserService{
 	}
 
 	/*
-	 * Take the email and password parameters and update the password for defined email.
+	 * Check if the ReceivedToken and the Received EncodedEmail is matching.
 	 */
 	
+	@Override
+	public ModelAndView verifyTokenAndEmail(ModelAndView mv, String receivedToken, String encodedEmail) {
+		
+		if(this.generatedToken.equals(receivedToken) && this.encEmail.equals(encodedEmail)) {
+			mv.addObject("userEmail", this.email);
+			mv.addObject("currentPage","newPassword");
+		}else {
+			mv.setViewName("login");
+		}
+		return mv;
+	}
+	
+	/*
+	 * Take the email and password parameters and update the password for defined email.
+	 */
+
 	@Override
 	public ModelAndView changePassword(ModelAndView mv, String email, String password) {
 		

@@ -14,8 +14,9 @@ public interface UserService {
 	public void updateRole(int roleID, int userID);
 	public ModelAndView registerUser(User user, ModelAndView mv);
 	public ModelAndView forgotUsername(ModelAndView mv, String email);
-	public ModelAndView forgotPassword(ModelAndView mv, String email, String token);
+	public ModelAndView forgotPassword(ModelAndView mv, String email);
 	public ModelAndView changePassword(ModelAndView mv, String email, String password);
+	public ModelAndView verifyTokenAndEmail(ModelAndView mv, String receivedToken, String encodedEmail);
 	
 	
 }
