@@ -14,6 +14,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 /*
  * Model Class for User
  */
@@ -75,6 +77,7 @@ public class User {
 		this.password = password;
 	}
 
+	@JsonManagedReference
 	public Role getRole() {
 		return role;
 	}

@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 /*
  * Model Class for Roles
  */
@@ -56,6 +58,7 @@ public class Role {
 		this.desc = desc;
 	}
 
+	@JsonBackReference
 	public List<User> getUser() {
 		return users;
 	}
