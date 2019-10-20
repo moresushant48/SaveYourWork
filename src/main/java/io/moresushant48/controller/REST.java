@@ -66,17 +66,17 @@ public class REST {
 		User userEmail = userRepository.findByEmail(email);
 		if(userEmail != null) {
 			
-			return "Email Exists.";
+			return email;
 		}else{
 			
 			User userUsername = userRepository.findByUsername(username);
 			if(userUsername != null) {
 				
-				return "Username Exists.";
+				return username;
+				
 			}else {
 				
 				User user = new User();
-				
 				Role role = new Role();
 				role.setId(3);
 				
@@ -86,7 +86,7 @@ public class REST {
 				user.setRole(role);
 				
 				userRepository.save(user);
-				return "Register Success.	";
+				return "Registration Successful.";
 			}			
 		}
 	}
