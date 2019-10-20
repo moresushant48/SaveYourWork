@@ -49,14 +49,15 @@ public class REST {
 	
 	
 	@PostMapping("/login")
-	public User login(@RequestParam("username") String username) {
-		
+	public boolean login(@RequestParam("username") String username, @RequestParam("password") String password) {
+			
 		User user = userRepository.findByUsername(username);
-		
-		if(user != null) {
-			return user;
+		if(user!=null) {
+			if(bCryptPasswordEncoder.matches(password, user.getPassword())) {
+				return true;
+			}
 		}
-		return user;
+		return false;
 	}
 	
 	@PostMapping("/register")
