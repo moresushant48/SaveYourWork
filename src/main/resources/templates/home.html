@@ -24,18 +24,17 @@
 		    	document.getElementById('modalbox').style.display='none';
 		    }
 		};
+		
 	</script>
 
 </head>
 
 <body class="w3-oxygen">
-
-	<span th:replace="includes :: header"></span>
 	
-	<div class="w3-bar w3-white w3-container w3-display-top w3-mobile" style="overflow:hidden">
-		
+	<div class="w3-sidebar w3-bar-block w3-center w3-animate-left w3-mobile" style="padding-top: 100px">			
+	
 		<!-- Trigger/Open the Modal -->
-		<a onclick="document.getElementById('modalbox').style.display='block'" class="w3-bar-item w3-button w3-left w3-hover-none w3-border-white w3-bottombar w3-hover-border-amber w3-mobile">Upload</a>
+		<a onclick="document.getElementById('modalbox').style.display='block'" class="w3-bar-item w3-button w3-padding-16 w3-mobile">Upload</a>
 		
 		<!-- The Modal -->
 		<div id="modalbox" class="w3-modal w3-card-4">
@@ -46,30 +45,32 @@
 		     <p>Choose a file to upload :
 		     	<form action="/upload-file" method="post" enctype="multipart/form-data">
 					<input class="w3-input w3-light-grey" type="file" name="file" multiple>
-					<input class="w3-input w3-button w3-border w3-border-amber w3-section" type="submit" value="Upload">
+					<input class="w3-input w3-button w3-border w3-border-red w3-section" type="submit" value="Upload">
 				</form>
 		    </div>
 		  </div>
 		</div>
 			
-		<a href="list-files" class="w3-bar-item w3-button w3-left w3-hover-none w3-border-white w3-bottombar w3-hover-border-amber w3-mobile">List Files</a>
+		<a href="list-files" class="w3-bar-item w3-button w3-padding-16 w3-mobile">List Files</a>
 	</div>
 			
-	<div class="w3-section w3-container w3-mobile w3-xlarge">
+	<span th:replace="includes :: header"></span>
+			
+	<div class="w3-section w3-container w3-mobile w3-xlarge" style="margin-left: 200px">
 	
-		<h1 th:if="${#arrays.length(files) == 0 }" class="w3-display-middle w3-center w3-border w3-border-amber w3-padding w3-hover-border-red">You don't have any files here.<br> Upload some.</h1>
+		<h1 th:if="${#arrays.length(files) == 0 }" class="w3-display-middle w3-center w3-border w3-border-teal w3-padding w3-hover-border-red">You don't have any files here.<br> Upload some.</h1>
 	
-		<table th:if="${#arrays.length(files) > 0 }" class="w3-center w3-table w3-striped w3-bordered w3-border" style="margin:auto;width:100%">
-			<tr>
+		<table th:if="${#arrays.length(files) > 0 }" class="w3-center w3-table w3-striped w3-hoverable" style="margin:auto;width:100%">
+			<!-- <tr>
 				<th class="w3-blue-grey w3-padding w3-animate-opacity">Name</th>
 				<th class="w3-blue-grey w3-padding w3-animate-opacity">Type</th>
 				<th class="w3-blue-grey w3-padding w3-animate-opacity">Size</th>
 				<th class="w3-blue-grey w3-padding w3-animate-opacity w3-center">Downloads</th>
 				<th class="w3-blue-grey w3-padding w3-animate-opacity w3-center">Remove</th>
-			</tr>
+			</tr> -->
 			<tr th:each="file : ${files}">
 				<td th:text="${file.fileName}" class="w3-padding w3-animate-opacity"/>
-				<td th:text="${file.fileType}" class="w3-padding w3-animate-opacity"/>
+				<!-- <td th:text="${file.fileType}" class="w3-padding w3-animate-opacity"/> -->
 				<td th:text="${file.fileSize}" class="w3-padding w3-animate-opacity"/>
 				<td class="w3-padding w3-animate-opacity w3-center"><a th:href="@{files/} + ${file.fileName}" class="fa fa-download"></a></td>
 				<td class="w3-padding w3-animate-opacity w3-center"><a th:href="@{/delete-file(id=${file.id},name=${file.fileName})}" class="fa fa-trash"></a></td>

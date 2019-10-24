@@ -22,16 +22,18 @@
 		Login page
 	  -->
 
-	<form th:if="${currentPage == 'login'}" id="login_form" th:action="@{/login}" method="post" class="w3-container w3-section w3-card w3-round-large w3-white w3-center w3-mobile" style="margin:auto;width:400px">
+	<form th:if="${currentPage == 'login'}" id="login_form" th:action="@{/login}" method="post" class="w3-container w3-section w3-round-large w3-center w3-card w3-white w3-mobile" style="margin:auto;width:400px">
 		<div style="padding : 20px;">
 			<h2>Login</h2>
+			<hr>
 	      	<input name="username" class="w3-input" type="text" placeholder="Username" pattern="[a-zA-Z0-9]{4,14}" title="* Only alphabates (a-z) & digits (0-9) are allowed. * Min 4 & Max 14 characters only." required autofocus>
 	      	<a href="/forgotUsername" class="w3-left w3-margin-bottom w3-text-grey" style="padding: 2px">Forgot Username ?</a>
 	      	
 	      	<input name="password" class="w3-input" type="password" placeholder="Password" pattern=".{3,15}" title="* Three or more characters. * Not more than 15 characters allowed." required>
 	      	<a href="/forgotPassword" class="w3-left w3-margin-bottom w3-text-grey" style="padding: 2px">Forgot password ?</a>
 	      	
-	      	<input class="w3-input w3-button w3-white w3-border w3-border-red" type="submit" value="Submit">
+	      	<input class="w3-input w3-button w3-border w3-border-red" type="submit" value="Submit">
+	      	<hr>
 	      	<p th:if="${param.error}" style="color:black;font-size:12pt">Email or Password is invalid.</p>
       	</div>
     </form>
@@ -40,13 +42,14 @@
     	forgotUsername Page
     -->
     
-    <form th:if="${currentPage == 'forgotUsername'}" th:action="@{/forgotUsername}" method="post" class="w3-container w3-section w3-card w3-round-large w3-white w3-center w3-mobile" style="margin:auto;width:400px">
+    <form th:if="${currentPage == 'forgotUsername'}" th:action="@{/forgotUsername}" method="post" class="w3-container w3-section w3-round-large w3-center w3-card w3-white w3-mobile" style="margin:auto;width:400px">
 		<div style="padding : 20px;">
 			<h2>Forgot Username</h2>
-	      	
+	      	<hr>
 	      	<input name="email" class="w3-input" type="email" placeholder="Email Address" required autofocus>
 	      	<br>
-	      	<input class="w3-input w3-button w3-white w3-border w3-border-red" type="submit" value="Submit">
+	      	<input class="w3-input w3-button w3-border w3-border-red" type="submit" value="Submit">
+	      	<hr>
 	      	<p th:if="${param.found}" style="color:black;font-size:12pt">Credentials are sent to your Email.<br><a href="login" class="w3-text-blue">Please Login</a></p>
 	      	<p th:if="${param.notfound}" style="color:black;font-size:12pt">No such Email exists.</p>
       	</div>
@@ -56,14 +59,14 @@
     	forgotPassword Page
     -->
     
-    <form th:if="${currentPage == 'forgotPassword'}" th:action="@{/forgotPassword}" method="post" class="w3-container w3-section w3-card w3-round-large w3-white w3-center w3-mobile" style="margin:auto;width:400px">
+    <form th:if="${currentPage == 'forgotPassword'}" th:action="@{/forgotPassword}" method="post" class="w3-container w3-section w3-round-large w3-center w3-card w3-white w3-mobile" style="margin:auto;width:400px">
 		<div style="padding : 20px;">
 			<h2>Forgot Password</h2>
-	      	
+	      	<hr>
 	      	<input name="email" class="w3-input" type="email" placeholder="Email Address" required autofocus>
 	      	<br>
-	      	<input class="w3-input w3-button w3-white w3-border w3-border-red" type="submit" value="Submit">
-	      	
+	      	<input class="w3-input w3-button w3-border w3-border-red" type="submit" value="Submit">
+	      	<hr>
 	      	<p th:if="${param.found}" style="color:black;font-size:12pt">Please check your E-Mail.</p>
 	      	<p th:if="${param.notfound}" style="color:black;font-size:12pt">No such Email exists.</p>
       	</div>
@@ -73,15 +76,16 @@
     	New Password page
     -->
     
-	<form th:if="${currentPage == 'newPassword'}" th:action="@{/newPassword}" method="post" class="w3-container w3-section w3-card w3-round-large w3-white w3-center w3-mobile" style="margin:auto;width:400px">
+	<form th:if="${currentPage == 'newPassword'}" th:action="@{/newPassword}" method="post" class="w3-container w3-section w3-round-large w3-center w3-card w3-white w3-mobile" style="margin:auto;width:400px">
 		<div style="padding : 20px;">
 			<h2>Reset Password</h2>
+			<hr>
 	      	<input class="w3-input" type="email" placeholder="Email Address" th:value="${userEmail}" required disabled="disabled">
 	      	<input name="email" type="hidden" th:value="${userEmail}" required="required">
 	      	<br>
 	      	<input name="password" class="w3-input" type="password" placeholder="Password" pattern=".{3,15}" title="* Three or more characters. * Not more than 15 characters allowed." required>
 	      	<br>
-	      	<input class="w3-input w3-button w3-white w3-border w3-border-red" type="submit" value="Submit">
+	      	<input class="w3-input w3-button w3-border w3-border-red" type="submit" value="Submit">
 	      	
 	      	<p th:if="${param.success}" style="color:black;font-size:12pt">Password changed Successfully.<br><a href="login" class="w3-text-blue">Please Login</a></p>
 	      	<p th:if="${param.unsuccess}" style="color:black;font-size:12pt">Couldn't change password.</p>

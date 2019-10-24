@@ -8,6 +8,14 @@ a {
 	text-decoration : none;
 }
 
+.w3-custom-teal-fg {
+	color : #00bfa5;
+}
+
+.w3-custom-teal-bg {
+	background-color : #00bfa5;
+}
+
 .w3-oxygen {
 	font-family: 'Oxygen', sans-serif;
 }

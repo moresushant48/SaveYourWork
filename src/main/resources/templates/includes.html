@@ -2,29 +2,29 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
 		
-	<a th:fragment="sitename" href="/" class="w3-mobile w3-lobster w3-xxlarge w3-margin-left w3-hover-text-amber" style="color: #767676">SaveYourWork</a>
+	<a th:fragment="sitename" href="/" class="w3-mobile w3-lobster w3-xxlarge w3-custom-teal-fg w3-margin-left w3-hover-text-grey">SaveYourWork</a>
 	
-	<a th:fragment="btnLogin" href="login" class="w3-mobile w3-bar-item w3-padding-16 w3-right w3-hover-text-amber">Login</a>
+	<a th:fragment="btnLogin" href="login" class="w3-mobile w3-bar-item w3-padding-16 w3-right w3-hover-light-grey w3-hover-text-teal">Login</a>
 
-	<a th:fragment="btnLogout" href="logout" class="w3-mobile w3-bar-item w3-padding-16 w3-right w3-amber w3-hover-text-white">Logout</a>
+	<a th:fragment="btnLogout" href="logout" class="w3-mobile w3-bar-item w3-padding-16 w3-right w3-hover-light-grey w3-hover-text-teal">Logout</a>
 	
-	<a th:fragment="btnSignUp" href="register" class="w3-mobile w3-bar-item w3-padding-16 w3-right w3-hover-text-amber">Sign Up</a>
+	<a th:fragment="btnSignUp" href="register" class="w3-mobile w3-bar-item w3-padding-16 w3-right w3-hover-light-grey w3-hover-text-teal">Sign Up</a>
 		
-	<a th:fragment="btnMyFiles" href="file-home" class="w3-mobile w3-bar-item w3-padding-16 w3-right w3-hover-text-amber">My Files</a>
+	<a th:fragment="btnMyFiles" href="file-home" class="w3-mobile w3-bar-item w3-padding-16 w3-right w3-hover-light-grey w3-hover-text-teal">My Files</a>
 	
-	<a th:fragment="btnHome" href="/" class="w3-mobile w3-bar-item w3-padding-16 w3-right w3-hover-text-amber">Home</a>	
+	<a th:fragment="btnHome" href="/" class="w3-mobile w3-bar-item w3-padding-16 w3-right w3-hover-light-grey w3-hover-text-teal">Home</a>	
 
-	<a th:fragment="btnAdminPanel" href="list-users" th:if="${#authorization.expression('hasAuthority(''SUPER_USER'')')}" class="w3-mobile w3-bar-item w3-padding-16 w3-right w3-hover-text-amber">Admin Panel</a>
+	<a th:fragment="btnAdminPanel" href="list-users" th:if="${#authorization.expression('hasAuthority(''SUPER_USER'')')}" class="w3-mobile w3-bar-item w3-padding-16 w3-right w3-hover-light-grey w3-hover-text-teal">Admin Panel</a>
 
-	<a th:fragment="btnAuthName" class="w3-bar-item w3-right w3-padding-16 w3-mobile">Welcome, [[${#authentication.name}]]</a>
+	<a th:fragment="btnAuthName" class="w3-mobile w3-bar-item w3-padding-16 w3-right w3-hover-text-teal">Welcome, [[${#authentication.name}]]</a>
 
-	<header>
+	<header class="w3-container w3-padding-large w3-bar w3-card w3-white" style="position: sticky; z-index: 1">
 	
 		<div th:if="${currentPage == 'index' OR currentPage == 'contactus' OR currentPage == 'feedback'
-					OR currentPage == 'forgotUsername' OR currentPage == 'forgotPassword' OR currentPage == 'newPassword'}" class="w3-container w3-bar w3-border w3-white">
+					OR currentPage == 'forgotUsername' OR currentPage == 'forgotPassword' OR currentPage == 'newPassword'}">
 			<span th:if="${#authentication.name == 'anonymousUser'}">
 				<span th:replace="includes :: sitename"></span>
-				<a href="login" class="w3-mobile w3-bar-item w3-padding-16 w3-right w3-amber w3-hover-text-white">Login</a>
+				<span th:replace="includes :: btnLogin"></span>
 				<span th:replace="includes :: btnSignUp"></span>
 			</span>
 			<span th:if="${#authentication.name != 'anonymousUser'}">
@@ -36,7 +36,7 @@
 			</span>
 		</div>
 			
-		<div th:if="${currentPage == 'home'}" class="w3-container w3-bar w3-border w3-white">
+		<div th:if="${currentPage == 'home'}">
 			<span th:replace="includes :: sitename"></span>
 			<span th:replace="includes :: btnLogout"></span>
 			<span th:replace="includes :: btnAdminPanel"></span>
@@ -44,19 +44,19 @@
 			<span th:replace="includes :: btnAuthName"></span>
 		</div>
 	
-		<div th:if="${currentPage == 'login'}" class="w3-container w3-bar w3-border w3-white">
+		<div th:if="${currentPage == 'login'}">
 			<span th:replace="includes :: sitename"></span>
 			<span th:replace="includes :: btnSignUp"></span>
 			<span th:replace="includes :: btnHome"></span>
 		</div>
 		
-		<div th:if="${currentPage == 'register'}" class="w3-container w3-bar w3-border w3-white">
+		<div th:if="${currentPage == 'register'}">
 			<span th:replace="includes :: sitename"></span>
 			<span th:replace="includes :: btnLogin"></span>
 			<span th:replace="includes :: btnHome"></span>
 		</div>
 		
-		<div th:if="${currentPage == 'adminPanel'}" class="w3-container w3-bar w3-border w3-white">
+		<div th:if="${currentPage == 'adminPanel'}">
 			<span th:replace="includes :: sitename"></span>
 			<span th:replace="includes :: btnLogout"></span>
 			<span th:replace="includes :: btnHome"></span>
@@ -64,7 +64,7 @@
 			<span th:replace="includes :: btnAuthName"></span>
 		</div>
 		
-		<div th:if="${currentPage == 'userDetails'}" class="w3-container w3-bar w3-border w3-white">
+		<div th:if="${currentPage == 'userDetails'}">
 			<span th:replace="includes :: sitename"></span>
 			<span th:replace="includes :: btnLogout"></span>
 			<span th:replace="includes :: btnHome"></span>
@@ -72,7 +72,7 @@
 			<span th:replace="includes :: btnAuthName"></span>
 		</div>
 		
-		<div th:if="${currentPage == 'userFeedback'}" class="w3-container w3-bar w3-border w3-white">
+		<div th:if="${currentPage == 'userFeedback'}">
 			<span th:replace="includes :: sitename"></span>
 			<span th:replace="includes :: btnLogout"></span>
 			<span th:replace="includes :: btnHome"></span>
@@ -86,15 +86,15 @@
 		<p class="w3-left w3-margin-left w3-mobile">&copy; Copyright 2019 Sushant More - All Rights Reserved</p>
 		
 		<p class="w3-right w3-margin-right w3-mobile">
-			<a href="about" class="w3-hover-text-amber">About</a>&nbsp;&nbsp;
-			<a href="feedback" class="w3-hover-text-amber">Feedback</a>&nbsp;&nbsp;
-			<a href="contactus" class="w3-hover-text-amber">Contact</a>
+			<a href="about" class="w3-hover-text-teal">About</a>&nbsp;&nbsp;
+			<a href="feedback" class="w3-hover-text-teal">Feedback</a>&nbsp;&nbsp;
+			<a href="contactus" class="w3-hover-text-teal">Contact</a>
 		</p>
 		<p class="w3-right w3-margin w3-mobile" style="border-left : 2px solid grey; height:20px;"></p>
 		<p class="w3-right w3-mobile">
-			<a class="fa fa-facebook fa-lg w3-hover-text-amber" href="https://www.facebook.com/" target="_BLANK"></a>&nbsp;&nbsp;
-			<a class="fa fa-github fa-lg w3-hover-text-amber" href="https://www.github.com/moresushant48/" target="_BLANK"></a>&nbsp;&nbsp;
-			<a class="fa fa-twitter fa-lg w3-hover-text-amber" href="https://twitter.com/" target="_BLANK"></a>&nbsp;&nbsp;
+			<a class="fa fa-facebook fa-lg w3-hover-text-teal" href="https://www.facebook.com/" target="_BLANK"></a>&nbsp;&nbsp;
+			<a class="fa fa-github fa-lg w3-hover-text-teal" href="https://www.github.com/moresushant48/" target="_BLANK"></a>&nbsp;&nbsp;
+			<a class="fa fa-twitter fa-lg w3-hover-text-teal" href="https://twitter.com/" target="_BLANK"></a>&nbsp;&nbsp;
 		</p>
 	</footer>
 </body>
