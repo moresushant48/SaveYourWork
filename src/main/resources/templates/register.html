@@ -15,7 +15,7 @@
 
 	<span th:replace="includes :: header"></span>
 
-	<form id="signup_form" th:action="@{/register}" th:object="${registerDetails}" method="post" class="w3-container w3-section w3-round-large w3-center w3-card w3-white w3-mobile" style="margin:auto;width:400px">
+	<form id="signup_form" th:action="@{/register}" th:object="${registerDetails}" method="post" class="w3-container w3-section w3-center w3-card w3-white w3-mobile" style="margin:auto;width:400px">
 		<div style="padding : 20px;">
 			<h2>Register</h2>
 			<hr>
@@ -23,11 +23,17 @@
 	      	<input name="username" th:field="*{username}" class="w3-input" type="text" placeholder="Username" pattern="[a-zA-Z0-9]{4,14}" title="* Only alphabates (a-z) & digits (0-9) are allowed. * Min 4 & Max 14 characters only." required> <br>
 	      	<input name="password" th:field="*{password}" class="w3-input" type="password" placeholder="Password" pattern=".{3,15}" title="* Three or more characters. * Not more than 15 characters allowed." required> <br>
 	      	<input class="w3-input w3-button w3-border w3-border-red" type="submit" value="Submit">
-	      	<hr>
+	      	
 	      	<p style="color:black;font-size:12pt">[[${result}]]</p>
-	      	<p th:if="${param.success}" style="color:black;font-size:12pt">Registered Successfully</p>
-	      	<p th:if="${param.userexists}" style="color:black;font-size:12pt">Username already exists, use another.</p>
-	      	<p th:if="${param.emailexists}" style="color:black;font-size:12pt">Account exists for your E-mail, please try to login.</p>
+	      	<div class="w3-panel w3-green" th:if="${param.success}">
+	      		<p style="font-size:12pt">Registered Successfully</p>
+	      	</div>
+	      	<div class="w3-panel w3-red" th:if="${param.userexists}">	
+	      		<p style="font-size:12pt">Username already exists, use another.</p>
+	      	</div>
+	      	<div class="w3-panel w3-red" th:if="${param.emailexists}">	
+	      		<p style="font-size:12pt">Account exists for your E-mail, please try to login.</p>
+	      	</div>	
       	</div>
     </form>
 </body>
