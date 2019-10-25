@@ -23,7 +23,7 @@ public interface UserRepository extends JpaRepository<User, Integer>{
 	@Query(value = "SELECT * FROM auth_user WHERE username = ?1", nativeQuery = true)
 	public User findIdByUsername(String username);
 		
-	@Query(value = "SELECT * FROM auth_user", nativeQuery = true)
+	@Query(value = "SELECT * FROM auth_user ORDER BY auth_user_id", nativeQuery = true)
 	public User[] listAllUsers();
 	
 	@Query(value = "SELECT * FROM auth_user WHERE auth_user_id = ?1", nativeQuery = true)
