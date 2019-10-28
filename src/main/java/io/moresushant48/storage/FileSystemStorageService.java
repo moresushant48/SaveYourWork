@@ -129,9 +129,11 @@ public class FileSystemStorageService implements StorageService {
     @Override
 	public void deleteById(Long id, String name) {
 		try {
-			File file = new File(FileSystemStorageService.rootLocation + "\\" + name);			
-			Files.delete(file.toPath());
+			
+			File file = new File(FileSystemStorageService.rootLocation + "\\" + name);
+			Files.deleteIfExists(file.toPath());			
 			fileRepository.deleteById(id);
+		
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
