@@ -22,15 +22,15 @@ public class AuthenticationREST {
 	BCryptPasswordEncoder bCryptPasswordEncoder;
 	
 	@PostMapping("/login")
-	public boolean login(@RequestParam("username") String username, @RequestParam("password") String password) {
+	public Integer login(@RequestParam("username") String username, @RequestParam("password") String password) {
 			
 		User user = userRepository.findByUsername(username);
 		if(user!=null) {
 			if(bCryptPasswordEncoder.matches(password, user.getPassword())) {
-				return true;
+				return user.getId();
 			}
 		}
-		return false;
+		return -1;
 	}
 	
 	@PostMapping("/register")
