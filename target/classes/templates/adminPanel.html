@@ -18,7 +18,7 @@
 
 <body class="w3-oxygen">
 
-	<div class="w3-sidebar w3-bar-block w3-center w3-animate-left w3-dark-grey w3-mobile" style="padding-top: 100px">
+	<div class="w3-sidebar w3-bar-block w3-center w3-animate-left w3-dark-grey w3-hide-small w3-mobile" style="padding-top: 100px">
 		<a href="list-users" class="w3-bar-item w3-button w3-padding-16 w3-mobile">List Users</a>
 		<a href="userFeedback" class="w3-bar-item w3-button w3-padding-16 w3-mobile">Feedbacks</a>
 	</div>
@@ -29,7 +29,7 @@
 		List users
 	  -->
 
-	<div th:if="${currentPage == 'adminPanel'}" class="w3-container w3-section w3-mobile w3-xlarge" style="margin-left: 200px">
+	<div th:if="${currentPage == 'adminPanel'}" class="w3-container w3-section w3-mobile w3-xlarge w3-hide-small-content-shift w3-left-margin-200" >
 		<table class="w3-center w3-table w3-striped w3-hoverable" style="margin:auto;width:100%">
 			<!-- <tr>
 				<th class="w3-blue-grey w3-padding w3-animate-opacity">Id</th>
@@ -52,7 +52,7 @@
 		User Feedback
 	  -->
 	
-	<div th:if="${currentPage == 'userFeedback'}" class="w3-container w3-section w3-mobile w3-xlarge" style="margin-left: 200px">
+	<div th:if="${currentPage == 'userFeedback'}" class="w3-container w3-section w3-mobile w3-xlarge w3-hide-small-content-shift w3-left-margin-200">
 		<table class="w3-center w3-table w3-striped w3-hoverable" style="margin:auto;width:100%">
 			<!-- <tr>
 				<th class="w3-blue-grey w3-padding w3-animate-opacity">Id</th>

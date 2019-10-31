@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
-		
+
+	<!-- 
+		Normal Buttons for Navigation Bar.
+	 -->
+			
 	<a th:fragment="sitename" href="/" class="w3-mobile w3-lobster w3-xxlarge w3-custom-teal-fg w3-margin-left w3-hover-text-grey">SaveYourWork</a>
 	
 	<a th:fragment="btnLogin" href="login" class="w3-mobile w3-bar-item w3-padding-16 w3-right w3-hover-light-grey w3-hover-text-teal">Login</a>
@@ -16,7 +20,27 @@
 
 	<a th:fragment="btnAdminPanel" href="list-users" th:if="${#authorization.expression('hasAuthority(''SUPER_USER'')')}" class="w3-mobile w3-bar-item w3-padding-16 w3-right w3-hover-light-grey w3-hover-text-teal">Admin Panel</a>
 
-	<a th:fragment="btnAuthName" class="w3-mobile w3-bar-item w3-padding-16 w3-right w3-hover-text-teal">Welcome, [[${#authentication.name}]]</a>
+	<a th:fragment="btnAuthName" class="w3-mobile w3-hide-medium w3-hide-small w3-bar-item w3-padding-16 w3-right w3-hover-text-teal">Welcome, [[${#authentication.name}]]</a>
+
+
+	<!-- 
+		SideBar Buttons.
+	 -->
+	 
+	 <div th:fragment="sbAdminPanel" class="w3-mobile w3-hide-large w3-hide-medium">
+	 	<a href="list-users" class="w3-bar-item w3-button w3-padding-16 w3-mobile">List Users</a>
+		<a href="userFeedback" class="w3-bar-item w3-button w3-padding-16 w3-mobile">Feedbacks</a>
+	 </div>
+	 	
+	<div th:fragment="sbHome" class="w3-mobile w3-hide-large w3-hide-medium">
+	 	<!-- Trigger/Open the Modal -->
+		<a onclick="document.getElementById('modalbox').style.display='block'" class="w3-bar-item w3-button w3-padding-16 w3-mobile">Upload</a>
+		<a href="list-files" class="w3-bar-item w3-button w3-padding-16 w3-mobile">List Files</a>
+	 </div>
+	 
+	 <!-- 
+	 	Header Section for every page.
+	  -->
 
 	<header class="w3-container w3-padding-large w3-bar w3-card w3-white" style="position: sticky; z-index: 1">
 	
@@ -42,6 +66,7 @@
 			<span th:replace="includes :: btnAdminPanel"></span>
 			<span th:replace="includes :: btnHome"></span>
 			<span th:replace="includes :: btnAuthName"></span>
+			<span th:replace="includes :: sbHome"></span>
 		</div>
 	
 		<div th:if="${currentPage == 'login'}">
@@ -56,23 +81,16 @@
 			<span th:replace="includes :: btnHome"></span>
 		</div>
 		
-		<div th:if="${currentPage == 'adminPanel'}">
+		<div th:if="${currentPage == 'adminPanel' OR currentPage == 'userFeedback'}">
 			<span th:replace="includes :: sitename"></span>
 			<span th:replace="includes :: btnLogout"></span>
 			<span th:replace="includes :: btnHome"></span>
 			<span th:replace="includes :: btnMyFiles"></span>
 			<span th:replace="includes :: btnAuthName"></span>
+			<span th:replace="includes :: sbAdminPanel"></span>
 		</div>
 		
 		<div th:if="${currentPage == 'userDetails'}">
-			<span th:replace="includes :: sitename"></span>
-			<span th:replace="includes :: btnLogout"></span>
-			<span th:replace="includes :: btnHome"></span>
-			<span th:replace="includes :: btnMyFiles"></span>
-			<span th:replace="includes :: btnAuthName"></span>
-		</div>
-		
-		<div th:if="${currentPage == 'userFeedback'}">
 			<span th:replace="includes :: sitename"></span>
 			<span th:replace="includes :: btnLogout"></span>
 			<span th:replace="includes :: btnHome"></span>

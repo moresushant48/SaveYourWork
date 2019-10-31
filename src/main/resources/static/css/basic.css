@@ -8,6 +8,19 @@ a {
 	text-decoration : none;
 }
 
+.w3-left-margin-200 {
+	margin-left: 200px;
+}
+
+@media (max-width:600px) {
+
+	.w3-hide-small-content-shift {
+	margin-left: 0px !important
+	}
+	
+}
+
+
 .w3-custom-teal-fg {
 	color : #00bfa5;
 }
