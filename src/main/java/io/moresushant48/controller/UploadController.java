@@ -69,7 +69,7 @@ public class UploadController {
 		return mv; 
 	}
 
-    @GetMapping("/files/{filename:.+}")
+    @GetMapping("/uploads/{filename:.+}")
     @ResponseBody
     public ResponseEntity<Resource> serveFile(@PathVariable String filename) {
 

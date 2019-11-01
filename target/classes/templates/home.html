@@ -70,7 +70,7 @@
 				<td th:text="${file.fileName}" class="w3-padding w3-animate-opacity"/>
 				<!-- <td th:text="${file.fileType}" class="w3-padding w3-animate-opacity"/> -->
 				<td th:text="${file.fileSize}" class="w3-padding w3-animate-opacity"/>
-				<td class="w3-padding w3-animate-opacity w3-center"><a th:href="@{files/} + ${file.fileName}" class="fa fa-download"></a></td>
+				<td class="w3-padding w3-animate-opacity w3-center"><a th:href="@{uploads/} + ${file.fileName}" class="fa fa-download"></a></td>
 				<td class="w3-padding w3-animate-opacity w3-center"><a th:href="@{/delete-file(id=${file.id},name=${file.fileName})}" class="fa fa-trash"></a></td>
 			</tr>
 		</table>
