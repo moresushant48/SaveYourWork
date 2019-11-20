@@ -8,20 +8,21 @@
 			
 	<a th:fragment="sitename" href="/" class="w3-mobile w3-lobster w3-xxlarge w3-custom-teal-fg w3-margin-left w3-hover-text-grey">SaveYourWork</a>
 	
-	<a th:fragment="btnLogin" href="login" class="w3-mobile w3-bar-item w3-padding-16 w3-right w3-hover-light-grey w3-hover-text-teal">Login</a>
+	<a th:fragment="btnLogin" href="/login" class="w3-mobile w3-bar-item w3-padding-16 w3-right w3-hover-light-grey w3-hover-text-teal">Login</a>
 
-	<a th:fragment="btnLogout" href="logout" class="w3-mobile w3-bar-item w3-padding-16 w3-right w3-hover-light-grey w3-hover-text-teal">Logout</a>
+	<a th:fragment="btnLogout" href="/logout" class="w3-mobile w3-bar-item w3-padding-16 w3-right w3-hover-light-grey w3-hover-text-teal">Logout</a>
 	
-	<a th:fragment="btnSignUp" href="register" class="w3-mobile w3-bar-item w3-padding-16 w3-right w3-hover-light-grey w3-hover-text-teal">Sign Up</a>
+	<a th:fragment="btnSignUp" href="/register" class="w3-mobile w3-bar-item w3-padding-16 w3-right w3-hover-light-grey w3-hover-text-teal">Sign Up</a>
 		
-	<a th:fragment="btnMyFiles" href="file-home" class="w3-mobile w3-bar-item w3-padding-16 w3-right w3-hover-light-grey w3-hover-text-teal">My Files</a>
+	<a th:fragment="btnMyFiles" href="/file-home" class="w3-mobile w3-bar-item w3-padding-16 w3-right w3-hover-light-grey w3-hover-text-teal">My Files</a>
 	
 	<a th:fragment="btnHome" href="/" class="w3-mobile w3-bar-item w3-padding-16 w3-right w3-hover-light-grey w3-hover-text-teal">Home</a>	
 
-	<a th:fragment="btnAdminPanel" href="list-users" th:if="${#authorization.expression('hasAuthority(''SUPER_USER'')')}" class="w3-mobile w3-bar-item w3-padding-16 w3-right w3-hover-light-grey w3-hover-text-teal">Admin Panel</a>
+	<a th:fragment="btnAdminPanel" href="/list-users" th:if="${#authorization.expression('hasAuthority(''SUPER_USER'')')}" class="w3-mobile w3-bar-item w3-padding-16 w3-right w3-hover-light-grey w3-hover-text-teal">Admin Panel</a>
 
-	<a th:fragment="btnAuthName" class="w3-mobile w3-hide-medium w3-hide-small w3-bar-item w3-padding-16 w3-right w3-hover-text-teal">Welcome, [[${#authentication.name}]]</a>
+	<a th:fragment="btnAuthName" class="/w3-mobile w3-hide-medium w3-hide-small w3-bar-item w3-padding-16 w3-right w3-hover-text-teal">Welcome, [[${#authentication.name}]]</a>
 
+	<a th:fragment="btnAccount" href="/user/account" class="w3-mobile w3-bar-item w3-padding-16 w3-right w3-hover-light-grey w3-hover-text-teal">Account</a>
 
 	<!-- 
 		SideBar Buttons.
@@ -55,6 +56,7 @@
 				<span th:replace="includes :: sitename"></span>
 				<span th:replace="includes :: btnLogout"></span>
 				<span th:replace="includes :: btnAdminPanel"></span>
+				<span th:replace="includes :: btnAccount"></span>				
 				<span th:replace="includes :: btnMyFiles"></span>
 				<span th:replace="includes :: btnAuthName"></span>
 			</span>
@@ -64,6 +66,7 @@
 			<span th:replace="includes :: sitename"></span>
 			<span th:replace="includes :: btnLogout"></span>
 			<span th:replace="includes :: btnAdminPanel"></span>
+			<span th:replace="includes :: btnAccount"></span>
 			<span th:replace="includes :: btnHome"></span>
 			<span th:replace="includes :: btnAuthName"></span>
 			<span th:replace="includes :: sbHome"></span>
@@ -85,6 +88,7 @@
 			<span th:replace="includes :: sitename"></span>
 			<span th:replace="includes :: btnLogout"></span>
 			<span th:replace="includes :: btnHome"></span>
+			<span th:replace="includes :: btnAccount"></span>
 			<span th:replace="includes :: btnMyFiles"></span>
 			<span th:replace="includes :: btnAuthName"></span>
 			<span th:replace="includes :: sbAdminPanel"></span>
@@ -94,6 +98,16 @@
 			<span th:replace="includes :: sitename"></span>
 			<span th:replace="includes :: btnLogout"></span>
 			<span th:replace="includes :: btnHome"></span>
+			<span th:replace="includes :: btnAccount"></span>
+			<span th:replace="includes :: btnMyFiles"></span>
+			<span th:replace="includes :: btnAuthName"></span>
+		</div>
+		
+		<div th:if="${currentPage == 'account'}">
+			<span th:replace="includes :: sitename"></span>
+			<span th:replace="includes :: btnLogout"></span>
+			<span th:replace="includes :: btnHome"></span>
+			<span th:replace="includes :: btnAdminPanel"></span>
 			<span th:replace="includes :: btnMyFiles"></span>
 			<span th:replace="includes :: btnAuthName"></span>
 		</div>

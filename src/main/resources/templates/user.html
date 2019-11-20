@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" th:href="@{/css/basic.css}">
+	<link rel="stylesheet" th:href="@{/css/w3.css}">
+	<link href="https://fonts.googleapis.com/css?family=Ubuntu|Oxygen|Lobster&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	<title th:if="${currentPage == 'account'}">Account</title>
+
+</head>
+
+<body class="w3-oxygen">
+	
+	<span th:replace="includes :: header"></span>
+	
+	<div th:if="${currentPage == 'account'}" class="w3-container w3-section w3-card w3-white w3-mobile" style="margin:auto; width:400px; padding : 20px;">
+		
+		<h2 class="w3-center">Account</h2>
+		<hr>
+      	
+      	<h5 class="w3-text-grey">Username</h5>
+      	<h4 th:text="${user.username}"></h4>
+      	<hr>
+      	
+      	<h5 class="w3-text-grey">Email</h5>
+      	<h4 th:text="${user.email}"></h4>
+      	<hr>
+      	
+   	</div>
+    
+</body>
+</html>
