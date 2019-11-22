@@ -5,10 +5,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-	
+
+import io.moresushant48.Repository.UserRepository;
 import io.moresushant48.model.User;
 import io.moresushant48.services.UserService;
 
@@ -17,7 +19,25 @@ public class AuthenticationController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private UserRepository userRepository;
 
+	/*
+	 * Easy Login Way. Return the login page when requested with proper username.
+	 */
+	@GetMapping("/u/{username}")
+	public ModelAndView redirectLogin(@PathVariable("username") String username) {
+		ModelAndView mv = new ModelAndView();
+		
+		if( userRepository.findByUsername(username) != null )
+			mv.setViewName("redirect:/login?username=" + username);
+		else
+			mv.setViewName("redirect:/"); // return to home if username dosen't exist.
+		
+		return mv;
+	}
+	
 	/*
 	 * Return basic login page to the user.
 	 */
