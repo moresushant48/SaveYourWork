@@ -26,7 +26,7 @@
 		<div style="padding : 20px;">
 			<h2>Login</h2>
 			<hr>
-	      	<input name="username" tabindex="1" class="w3-input" type="text" placeholder="Username" pattern="[a-zA-Z0-9]{4,14}" title="* Only alphabates (a-z) & digits (0-9) are allowed. * Min 4 & Max 14 characters only." required autofocus>
+	      	<input name="username" tabindex="1" class="w3-input" type="text" th:value="${param.username}" placeholder="Username" pattern="[a-zA-Z0-9]{4,14}" title="* Only alphabates (a-z) & digits (0-9) are allowed. * Min 4 & Max 14 characters only." required autofocus>
 	      	<a href="/forgotUsername" tabindex="0" class="w3-left w3-margin-bottom w3-text-grey" style="padding: 2px">Forgot Username ?</a>
 	      	
 	      	<input name="password" tabindex="2" class="w3-input" type="password" placeholder="Password" pattern=".{3,15}" title="* Three or more characters. * Not more than 15 characters allowed." required>
