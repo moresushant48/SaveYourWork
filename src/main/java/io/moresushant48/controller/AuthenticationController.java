@@ -26,7 +26,7 @@ public class AuthenticationController {
 	/*
 	 * Easy Login Way. Return the login page when requested with proper username.
 	 */
-	@GetMapping("/{username}")
+	@GetMapping("/u/{username}")
 	public ModelAndView redirectLogin(@PathVariable("username") String username) {
 		ModelAndView mv = new ModelAndView();
 		
