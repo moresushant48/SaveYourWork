@@ -103,7 +103,7 @@
 			<span th:replace="includes :: btnAuthName"></span>
 		</div>
 		
-		<div th:if="${currentPage == 'account'}">
+		<div th:if="${currentPage == 'account' OR currentPage == 'resetPassword'} ">
 			<span th:replace="includes :: sitename"></span>
 			<span th:replace="includes :: btnLogout"></span>
 			<span th:replace="includes :: btnHome"></span>
