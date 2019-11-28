@@ -18,7 +18,7 @@
 	
 	<a th:fragment="btnHome" href="/" class="w3-mobile w3-bar-item w3-padding-16 w3-right w3-hover-light-grey w3-hover-text-teal">Home</a>	
 
-	<a th:fragment="btnAdminPanel" href="/list-users" th:if="${#authorization.expression('hasAuthority(''SUPER_USER'')')}" class="w3-mobile w3-bar-item w3-padding-16 w3-right w3-hover-light-grey w3-hover-text-teal">Admin Panel</a>
+	<a th:fragment="btnAdminPanel" href="/admin/list-users" th:if="${#authorization.expression('hasAuthority(''SUPER_USER'')')}" class="w3-mobile w3-bar-item w3-padding-16 w3-right w3-hover-light-grey w3-hover-text-teal">Admin Panel</a>
 
 	<a th:fragment="btnAuthName" class="/w3-mobile w3-hide-medium w3-hide-small w3-bar-item w3-padding-16 w3-right w3-hover-text-teal">Welcome, [[${#authentication.name}]]</a>
 
@@ -29,8 +29,8 @@
 	 -->
 	 
 	 <div th:fragment="sbAdminPanel" class="w3-mobile w3-hide-large w3-hide-medium">
-	 	<a href="list-users" class="w3-bar-item w3-button w3-padding-16 w3-mobile">List Users</a>
-		<a href="userFeedback" class="w3-bar-item w3-button w3-padding-16 w3-mobile">Feedbacks</a>
+	 	<a href="/admin/list-users" class="w3-bar-item w3-button w3-padding-16 w3-mobile">List Users</a>
+		<a href="/admin/userFeedback" class="w3-bar-item w3-button w3-padding-16 w3-mobile">Feedbacks</a>
 	 </div>
 	 	
 	<div th:fragment="sbHome" class="w3-mobile w3-hide-large w3-hide-medium">

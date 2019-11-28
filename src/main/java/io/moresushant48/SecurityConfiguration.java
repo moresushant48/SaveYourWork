@@ -50,7 +50,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 		.antMatchers("/gotNewPassword").permitAll()
 		.antMatchers("/rest/**").permitAll()
 		.antMatchers("/uploads/*").permitAll()
-		.antMatchers("/adminPanel").hasAuthority("SUPER_USER")
+		.antMatchers("/admin/**").hasAuthority("SUPER_USER")
 		.antMatchers("/file-home/**").hasAnyAuthority("SUPER_USER","ADMIN_USER","SITE_USER")
 		.anyRequest().authenticated()
 		.and()
