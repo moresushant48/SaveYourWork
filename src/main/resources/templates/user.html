@@ -10,6 +10,7 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	
 	<title th:if="${currentPage == 'account'}">Account</title>
+	<title th:if="${currentPage == 'resetPassword'}">Reset Password</title>
 
 </head>
 
@@ -30,7 +31,33 @@
       	<h4 th:text="${user.email}"></h4>
       	<hr>
       	
+      	<input class="w3-input w3-button w3-border w3-border-red" type="button" value="Change Password" onclick="location.href='/user/account/resetPassword'">
+      	
    	</div>
+   	
+   	<form th:if="${currentPage == 'resetPassword'}" th:action="@{/user/account/resetPassword}" method="post" class="w3-container w3-section w3-center w3-card w3-white w3-mobile" style="margin:auto;width:400px">
+		<div style="padding : 20px;">
+			<h2>Reset Password</h2>
+			<hr>
+	      	<input class="w3-input" type="email" placeholder="Email Address" th:value="${email}" required disabled="disabled">
+	      	
+	      	<br>
+	      	<input name="password" class="w3-input" type="password" placeholder="Password" pattern=".{3,15}" title="* Three or more characters. * Not more than 15 characters allowed." required>
+	      	<br>
+	      	<input class="w3-input w3-button w3-border w3-border-red" type="submit" value="Submit">
+	      	
+	      	<br>
+	      	<a href="." class="w3-left"><i class="fa fa-arrow-left"></i> Back</a>
+	      	<br>
+	      	
+	      	<div class="w3-panel w3-green" th:if="${param.success}">
+	      		<p>Password changed Successfully.<br><a href="/login" class="w3-text-white"><u>Please Login</u></a></p>
+	      	</div>
+	      	<div class="w3-panel w3-red" th:if="${param.failed}">
+	      		<p style="color:black;font-size:12pt">Couldn't change password.</p>
+	      	</div>
+      	</div>
+    </form>
     
 </body>
 </html>
