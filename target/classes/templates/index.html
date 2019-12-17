@@ -9,42 +9,72 @@
 	<link href="https://fonts.googleapis.com/css?family=Ubuntu|Oxygen|Lobster&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	
+	<style type="text/css">
+		#container_home{
+			height: 100vh;			
+		}
+		#bgimg{
+			max-width: 100%;
+			z-index: -1;
+			position: fixed;
+		}
+		.mySlides {display:none;}
+	</style>
+	
 	<title>HOME</title>
 
 </head>
 
 <body class="w3-oxygen">
+	
+	<img id="bgimg" alt="" th:src="@{/images/background.jpg}" class=" w3-opacity">
 
 	<span th:replace="includes :: header"></span>
-			
-	<div class="w3-container w3-display-container w3-mobile w3-xlarge">
 	
-		<div class="w3-section w3-row-padding w3-animate-opacity" style="width:100%">
-			<div class="w3-half w3-section">
-				<div class="w3-card">
-					<img th:src="@{/images/image1.jpg}" style="width: 100%">
-					<div class="w3-container w3-center w3-white">
-				      <p>SaveYourWork provides a <b>Convenient</b> & <b>Secure</b> File Sharing Service.</p>
-				    </div>
-				</div>
-			</div>
-			
-			<div class="w3-half w3-section w3-animate-opacity">
-				<div class="w3-card">
-					<img th:src="@{/images/image2.jpg}" style="width: 100%">
-					<div class="w3-container w3-center w3-white">
-				      <p>Upload your files and be able to access them from anywhere in the world, with ease.</p>
-				    </div>
-				</div>
-			</div>
-		</div>
-		<div class="w3-section w3-padding" style="width:100%">
-			<div class="w3-container w3-center w3-white w3-animate-opacity w3-card w3-border w3-border-teal">
-		      <p>
-		      	Access your account, without much efforts. 
-		      </p>
-		    </div>
-		</div>
+	<div id="container_home" class="w3-display-container w3-mobile w3-xlarge">
+		<div class="mySlides w3-display-middle w3-container w3-animate-opacity w3-center w3-text-white">
+			<img th:src="@{/images/files.svg}" height="180px" width="180px" />
+	      	<h1>SaveYourWork provides a <br><b>Convenient</b> & <b>Secure</b> File Sharing Service.</h1>
+	    </div>
+	    
+	    <div class="mySlides  w3-display-middle w3-container w3-animate-opacity w3-center w3-text-white">
+			<img th:src="@{/images/share.svg}" height="180px" width="180px" />
+	      	<h1>Upload your files and be able to access them from anywhere in the world, with ease.</h1>
+	    </div>
+    </div>
+
+	<script>
+		var slideIndex = 0;
+		carousel();
+		
+		function carousel() {
+		  var i;
+		  var x = document.getElementsByClassName("mySlides");
+		  for (i = 0; i < x.length; i++) {
+		    x[i].style.display = "none"; 
+		  }
+		  slideIndex++;
+		  if (slideIndex > x.length) {slideIndex = 1} 
+		  x[slideIndex-1].style.display = "block"; 
+		  setTimeout(carousel, 2000); 
+		}
+	</script>
+	
+	<div class="w3-container w3-center w3-white w3- w3-animate-opacity w3-card w3-large w3-row w3-padding-32">
+      <img class="w3-half " alt="" th:src="@{/images/DrawerAndFilesWebsite.svg}" height="500px">
+      
+      <div class="w3-half w3-section w3-left-align w3-padding-16">
+  		<h1>Download App Now</h1>
+  		<p style="line-height: 40px">As a Multi-Platform service, <br>Our Official SaveYourWork Application <br> is now available for all the Android Devices.</p>
+  		<a class="w3-button w3-padding-16 w3-section w3-border w3-border-teal">Download</a>	
+      </div>
+      <img class="w3-right" alt="" th:src="@{/images/android-logo.png}" height="150px">
+	</div>
+
+	<div class="w3-container w3-center w3-black w3-animate-opacity w3-card w3-xlarge">
+      <p>
+      	Access your account, without any efforts. 
+      </p>
 	</div>
 	
 	<span th:replace="includes :: footer"></span>
