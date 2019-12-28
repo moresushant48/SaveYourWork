@@ -19,6 +19,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import io.moresushant48.Repository.FileRepository;
+import io.moresushant48.model.Access;
 import io.moresushant48.model.User;
 
 @Service
@@ -74,6 +75,7 @@ public class FileSystemStorageService implements StorageService {
 		        	myFile.setFileType(file.getContentType());
 		        	myFile.setFileSize(String.format("%.2f", (double)file.getSize() / (1024*1024)) + " Mb");
 		        	myFile.setUser(user);
+		        	myFile.setAccess(new Access(1));
 		        	fileRepository.save(myFile);
             	}
             	

@@ -28,6 +28,10 @@ public class File {
 	private String fileSize;
 	
 	@ManyToOne
+	@JoinColumn(name = "access_id")
+	private Access access;
+	
+	@ManyToOne
 	@JoinColumn(name = "auth_user_id")
 	private User user;
 	
@@ -73,6 +77,14 @@ public class File {
 		this.fileSize = fileSize;
 	}
 	
+	public Access getAccess() {
+		return access;
+	}
+
+	public void setAccess(Access access) {
+		this.access = access;
+	}
+
 	public User getUser() {
 		return user;
 	}

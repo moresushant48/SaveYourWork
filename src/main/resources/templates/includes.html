@@ -46,7 +46,8 @@
 	<header class="w3-container w3-padding-large w3-bar w3-card w3-white" style="position: sticky; z-index: 1">
 	
 		<div th:if="${currentPage == 'index' OR currentPage == 'contactus' OR currentPage == 'feedback'
-					OR currentPage == 'forgotUsername' OR currentPage == 'forgotPassword' OR currentPage == 'newPassword'}">
+					OR currentPage == 'forgotUsername' OR currentPage == 'forgotPassword' OR currentPage == 'newPassword'
+					OR currentPage == 'publicFiles'}">
 			<span th:if="${#authentication.name == 'anonymousUser'}">
 				<span th:replace="includes :: sitename"></span>
 				<span th:replace="includes :: btnLogin"></span>
