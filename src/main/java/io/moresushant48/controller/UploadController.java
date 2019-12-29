@@ -53,10 +53,14 @@ public class UploadController {
     	
     	ModelAndView mv = new ModelAndView();
     	user = userRepository.findIdByUsername(pubUsername);
-    	mv.addObject("files", fileRepository.listFiles(user.getId()));
     	
-    	mv.addObject("currentPage", "publicFiles");
-		mv.setViewName("home");
+    	if(user != null) {
+			mv.addObject("files", fileRepository.listFiles(user.getId()));
+			mv.addObject("currentPage", "publicFiles");
+			mv.setViewName("home");
+		}else {
+			mv.setViewName("redirect:/");
+		}
     	return mv;
     }
     
