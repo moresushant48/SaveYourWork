@@ -2,6 +2,7 @@ package io.moresushant48.controller;
 
 import java.io.IOException;
 import java.security.Principal;
+import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
@@ -35,7 +36,7 @@ public class UploadController {
 	
     private final StorageService storageService;
     private User user;
-    private File[] myFiles;
+    private ArrayList<File> myFiles;
     
     @Autowired
     UserRepository userRepository;

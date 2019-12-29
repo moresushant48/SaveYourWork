@@ -7,13 +7,14 @@ import io.moresushant48.model.File;
 import io.moresushant48.model.User;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.stream.Stream;
 
 public interface StorageService {
 
     void init(String username);
     
-    void store(MultipartFile file, User user, File[] myFiles);
+    void store(MultipartFile file, User user, ArrayList<File> myFiles);
 
     void deleteById(Long id, String name);
 

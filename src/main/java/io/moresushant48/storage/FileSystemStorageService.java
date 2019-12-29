@@ -8,6 +8,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
 import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +34,7 @@ public class FileSystemStorageService implements StorageService {
     FileRepository fileRepository;
     
 	@Override
-    public void store(MultipartFile file, User user, io.moresushant48.model.File[] myFiles) {
+    public void store(MultipartFile file, User user, ArrayList<io.moresushant48.model.File> myFiles) {
         String filename = StringUtils.cleanPath(file.getOriginalFilename());
         try {
             if (file.isEmpty()) {

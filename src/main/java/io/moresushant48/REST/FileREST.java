@@ -1,5 +1,7 @@
 package io.moresushant48.REST;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,7 +24,7 @@ public class FileREST {
 	
 	private final StorageService storageService;
     private User user;
-    private File[] myFiles;
+    private ArrayList<File> myFiles;
 	
 	@Autowired
 	UserRepository userRepository;
@@ -36,9 +38,9 @@ public class FileREST {
     }
 	
 	@GetMapping("/list-files/{id}")
-	public File[] listAllFiles(@PathVariable("id") int id) {
+	public ArrayList<File> listAllFiles(@PathVariable("id") int id) {
 		
-		File[] files = fileRepository.listFiles(id);
+		ArrayList<File> files = fileRepository.listFiles(id);
 		return files;
 	}
 	
