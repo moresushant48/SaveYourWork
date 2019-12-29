@@ -13,4 +13,7 @@ public interface FileRepository extends JpaRepository<File, Long>{
 	
 	@Query(value = "SELECT * FROM user_files WHERE auth_user_id = ?1 ORDER BY file_name", nativeQuery = true)
 	public ArrayList<File> listFiles(int id);
+	
+	@Query(value = "SELECT * FROM user_files WHERE auth_user_id = ?1 && access_id = 3 ORDER BY file_name", nativeQuery = true)
+	public ArrayList<File> listPublicFiles(int id);
 }

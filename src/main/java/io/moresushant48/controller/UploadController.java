@@ -56,7 +56,7 @@ public class UploadController {
     	user = userRepository.findIdByUsername(pubUsername);
     	
     	if(user != null) {
-			mv.addObject("files", fileRepository.listFiles(user.getId()));
+			mv.addObject("files", fileRepository.listPublicFiles(user.getId()));
 			mv.addObject("currentPage", "publicFiles");
 			mv.setViewName("home");
 		}else {
