@@ -29,8 +29,8 @@
 		List users
 	  -->
 
-	<div th:if="${currentPage == 'adminPanel'}" class="w3-container w3-section w3-mobile w3-xlarge w3-hide-small-content-shift w3-left-margin-200" >
-		<table class="w3-center w3-table w3-striped w3-hoverable" style="margin:auto;width:100%">
+	<div th:if="${currentPage == 'adminPanel'}" class="w3-container w3-section w3-mobile w3-large w3-hide-small-content-shift w3-left-margin-200" >
+		<table class="w3-center w3-table w3-striped w3-hoverable" style="table-layout: fixed;">
 			<!-- <tr>
 				<th class="w3-blue-grey w3-padding w3-animate-opacity">Id</th>
 				<th class="w3-blue-grey w3-padding w3-animate-opacity">Username</th>
@@ -38,12 +38,12 @@
 				<th class="w3-blue-grey w3-padding w3-animate-opacity">Role</th>
 				<th class="w3-blue-grey w3-padding w3-animate-opacity">Remove</th>
 			</tr> -->
-			<tr th:each="user : ${users}">
-				<td th:text="${user.id}" class="w3-padding w3-animate-opacity"/>
-				<td th:text="${user.username}" class="w3-padding w3-animate-opacity"/>
-				<td th:text="${user.email}" class="w3-padding w3-animate-opacity"/>
-				<td class="w3-padding w3-animate-opacity"><a th:href="@{/admin/manage-role(id=${user.id})}" class="fa fa-edit"></a></td>
-				<td class="w3-padding w3-animate-opacity"><a th:href="@{/admin/delete-user(id=${user.id})}" class="fa fa-trash"></a></td>
+			<tr th:each="user : ${users}" class="w3-row" style="word-break: break-all;">
+				<td th:text="${user.id}" class="w3-padding w3-animate-opacity w3-col m1 s1"/>
+				<td th:text="${user.username}" class="w3-padding w3-animate-opacity w3-col m3 s3"/>
+				<td th:text="${user.email}" class="w3-padding w3-animate-opacity w3-col m6 s6" />
+				<td class="w3-padding w3-animate-opacity w3-col m1 s1"><a th:href="@{/admin/manage-role(id=${user.id})}" class="fa fa-edit"></a></td>
+				<td class="w3-padding w3-animate-opacity w3-col m1 s1"><a th:href="@{/admin/delete-user(id=${user.id})}" class="fa fa-trash"></a></td>
 			</tr>
 		</table>
 	</div>
@@ -52,17 +52,17 @@
 		User Feedback
 	  -->
 	
-	<div th:if="${currentPage == 'userFeedback'}" class="w3-container w3-section w3-mobile w3-xlarge w3-hide-small-content-shift w3-left-margin-200">
-		<table class="w3-center w3-table w3-striped w3-hoverable" style="margin:auto;width:100%">
+	<div th:if="${currentPage == 'userFeedback'}" class="w3-container w3-section w3-mobile w3-large w3-hide-small-content-shift w3-left-margin-200">
+		<table class="w3-center w3-table w3-striped w3-hoverable" style="table-layout: fixed;">
 			<!-- <tr>
 				<th class="w3-blue-grey w3-padding w3-animate-opacity">Id</th>
 				<th class="w3-blue-grey w3-padding w3-animate-opacity">Feedback</th>
 				<th class="w3-blue-grey w3-padding w3-animate-opacity">Delete</th>
 			</tr> -->
-			<tr th:each="feedback : ${feedbacks}">
-				<td th:text="${feedback.id}" class="w3-padding w3-animate-opacity"/>
-				<td th:text="${feedback.message}" class="w3-padding w3-animate-opacity"/>
-				<td class="w3-padding w3-animate-opacity"><a th:href="@{/admin/delete-feedback(id=${feedback.id})}" class="fa fa-trash"></a></td>
+			<tr th:each="feedback : ${feedbacks}" class="w3-row" style="word-break: break-all;">
+				<td th:text="${feedback.id}" class="w3-padding w3-animate-opacity w3-col m1 s1"/>
+				<td th:text="${feedback.message}" class="w3-padding w3-animate-opacity w3-col m10 s10"/>
+				<td class="w3-padding w3-animate-opacity w3-col m1 s1"><a th:href="@{/admin/delete-feedback(id=${feedback.id})}" class="fa fa-trash"></a></td>
 			</tr>
 		</table>
 	</div>

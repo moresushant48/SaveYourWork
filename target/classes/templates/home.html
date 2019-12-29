@@ -55,11 +55,11 @@
 		
 		<span th:replace="includes :: header"></span>
 				
-		<div class="w3-section w3-container w3-mobile w3-xlarge w3-hide-small-content-shift w3-left-margin-200">
+		<div class="w3-section w3-container w3-mobile w3-large w3-hide-small-content-shift w3-left-margin-200">
 		
 			<h1 th:if="${#arrays.length(files) == 0 }" class="w3-display-middle w3-center w3-border w3-border-teal w3-padding w3-hover-border-red">You don't have any files here.<br> Upload some.</h1>
 		
-			<table th:if="${#arrays.length(files) > 0 }" class="w3-center w3-table w3-striped w3-hoverable" style="margin:auto;width:100%">
+			<table th:if="${#arrays.length(files) > 0 }" class="w3-center w3-table w3-striped w3-hoverable w3-mobile" style="table-layout: fixed;">
 				<!-- <tr>
 					<th class="w3-blue-grey w3-padding w3-animate-opacity">Name</th>
 					<th class="w3-blue-grey w3-padding w3-animate-opacity">Type</th>
@@ -67,12 +67,13 @@
 					<th class="w3-blue-grey w3-padding w3-animate-opacity w3-center">Downloads</th>
 					<th class="w3-blue-grey w3-padding w3-animate-opacity w3-center">Remove</th>
 				</tr> -->
-				<tr th:each="file : ${files}">
-					<td th:text="${file.fileName}" class="w3-padding w3-animate-opacity"/>
+				<tr th:each="file : ${files}" class="w3-row">
+					<td th:text="${file.fileName}" class="w3-padding w3-animate-opacity w3-col m8 s8" style="word-break: break-all;" />
 					<!-- <td th:text="${file.fileType}" class="w3-padding w3-animate-opacity"/> -->
-					<td th:text="${file.fileSize}" class="w3-padding w3-animate-opacity"/>
-					<td class="w3-padding w3-animate-opacity w3-center"><a th:href="@{uploads/} + ${file.fileName}" class="fa fa-download"></a></td>
-					<td class="w3-padding w3-animate-opacity w3-center"><a th:href="@{/delete-file(id=${file.id},name=${file.fileName})}" class="fa fa-trash"></a></td>
+					<td th:text="${file.fileSize}" class="w3-padding w3-animate-opacity w3-col m2 s2"/>
+					<td class="w3-padding w3-animate-opacity w3-center w3-col m1 s1"><a th:href="@{uploads/} + ${file.fileName}" class="fa fa-download"></a></td>
+					<td class="w3-padding w3-animate-opacity w3-center w3-col m1 s1"><a th:href="@{/delete-file(id=${file.id},name=${file.fileName})}" class="fa fa-trash"></a></td>
+					
 				</tr>
 			</table>
 		</div>
@@ -88,11 +89,11 @@
 				<p>You are currently accessing [[${pubUsername}]]'s public share.</p>
 			</div>
 		
-			<table th:if="${#arrays.length(files) > 0 }" class="w3-center w3-table w3-striped w3-hoverable" style="margin:auto;width:100%">
-				<tr th:each="file : ${files}">
-					<td th:text="${file.fileName}" class="w3-padding w3-animate-opacity"/>
-					<td th:text="${file.fileSize}" class="w3-padding w3-animate-opacity"/>
-					<td class="w3-padding w3-animate-opacity w3-center"><a th:href="@{uploads/} + ${file.fileName}" class="fa fa-download"></a></td>
+			<table th:if="${#arrays.length(files) > 0 }" class="w3-center w3-table w3-striped w3-hoverable" style="table-layout: fixed;">
+				<tr th:each="file : ${files}" class="w3-row">
+					<td th:text="${file.fileName}" class="w3-padding w3-animate-opacity w3-col m9 s9" style="word-break: break-all;"/>
+					<td th:text="${file.fileSize}" class="w3-padding w3-animate-opacity w3-col m2 s2"/>
+					<td class="w3-padding w3-animate-opacity w3-center w3-col m1 s1"><a th:href="@{uploads/} + ${file.fileName}" class="fa fa-download"></a></td>
 				</tr>
 			</table>
 		</div>
