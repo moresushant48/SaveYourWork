@@ -35,8 +35,8 @@
 				<td th:text="${user.id}" class="w3-padding w3-animate-opacity w3-col m1 s1"/>
 				<td th:text="${user.username}" class="w3-padding w3-animate-opacity w3-col m3 s3"/>
 				<td th:text="${user.email}" class="w3-padding w3-animate-opacity w3-col m6 s6" />
-				<td class="w3-padding w3-animate-opacity w3-col m1 s1"><a th:href="@{/admin/manage-role(id=${user.id})}" class="fa fa-edit"></a></td>
-				<td class="w3-padding w3-animate-opacity w3-col m1 s1"><a th:href="@{/admin/delete-user(id=${user.id})}" class="fa fa-trash"></a></td>
+				<td class="w3-padding w3-animate-opacity w3-col m1 s1"><a th:href="@{/admin/manage-role(id=${user.id})}" class="fa fa-edit w3-text-blue"></a></td>
+				<td class="w3-padding w3-animate-opacity w3-col m1 s1"><a th:href="@{/admin/delete-user(id=${user.id})}" class="fa fa-trash w3-text-red"></a></td>
 			</tr>
 		</table>
 	</div>
@@ -50,7 +50,7 @@
 			<tr th:each="feedback : ${feedbacks}" class="w3-row" style="word-break: break-all;">
 				<td th:text="${feedback.id}" class="w3-padding w3-animate-opacity w3-col m1 s1"/>
 				<td th:text="${feedback.message}" class="w3-padding w3-animate-opacity w3-col m10 s10"/>
-				<td class="w3-padding w3-animate-opacity w3-col m1 s1"><a th:href="@{/admin/delete-feedback(id=${feedback.id})}" class="fa fa-trash"></a></td>
+				<td class="w3-padding w3-animate-opacity w3-col m1 s1"><a th:href="@{/admin/delete-feedback(id=${feedback.id})}" class="fa fa-trash w3-text-red"></a></td>
 			</tr>
 		</table>
 	</div>

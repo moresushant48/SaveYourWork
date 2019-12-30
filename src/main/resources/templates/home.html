@@ -88,8 +88,8 @@
 					</td>
 					<td th:text="${file.fileName}" class="w3-padding w3-animate-opacity w3-col m7 s7 w3-medium" style="word-break: break-all;" />
 					<td th:text="${file.fileSize}" class="w3-padding w3-animate-opacity w3-col m2 s2 w3-center"/>
-					<td class="w3-padding w3-animate-opacity w3-center w3-col m1 s1"><a th:href="@{uploads/} + ${file.fileName}" class="fa fa-download"></a></td>
-					<td class="w3-padding w3-animate-opacity w3-center w3-col m1 s1"><a th:href="@{/delete-file(id=${file.id},name=${file.fileName})}" class="fa fa-trash"></a></td>
+					<td class="w3-padding w3-animate-opacity w3-center w3-col m1 s1"><a th:href="@{uploads/} + ${file.fileName}" class="fa fa-download w3-text-green"></a></td>
+					<td class="w3-padding w3-animate-opacity w3-center w3-col m1 s1"><a th:href="@{/delete-file(id=${file.id},name=${file.fileName})}" class="fa fa-trash w3-text-red"></a></td>
 				</tr>
 			</table>
 		</div>
@@ -109,7 +109,7 @@
 				<tr th:each="file : ${files}" class="w3-row">
 					<td th:text="${file.fileName}" class="w3-padding w3-animate-opacity w3-col m9 s9" style="word-break: break-all;"/>
 					<td th:text="${file.fileSize}" class="w3-padding w3-animate-opacity w3-col m2 s2"/>
-					<td class="w3-padding w3-animate-opacity w3-center w3-col m1 s1"><a th:href="@{uploads/} + ${file.fileName}" class="fa fa-download"></a></td>
+					<td class="w3-padding w3-animate-opacity w3-center w3-col m1 s1"><a th:href="@{uploads/} + ${file.fileName}" class="fa fa-download w3-text-green"></a></td>
 				</tr>
 			</table>
 		</div>
