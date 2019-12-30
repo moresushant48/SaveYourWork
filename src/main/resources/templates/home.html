@@ -65,7 +65,7 @@
 						<i th:if="${file.access.access == 'PUBLIC'}" class="fa fa-info-circle fa-lg w3-text-red"></i>
 						<i th:if="${file.access.access == 'PRIVATE'}" class="fa fa-info-circle fa-lg w3-text-green"></i>
 						<i th:if="${file.access.access == 'PROTECTED'}" class="fa fa-info-circle fa-lg w3-text-blue"></i>
-						<span class="w3-container w3-padding w3-round w3-white w3-card w3-dropdown-content w3-medium w3-oxygen w3-row">
+						<span class="w3-container w3-padding w3-round w3-white w3-card w3-dropdown-content w3-medium w3-oxygen w3-row" style="position: absolute; left: 60%">
 							<span th:if="${file.access.access == 'PUBLIC'}">
 								<b th:text="${file.access.access}" class="w3-text-red w3-wide"></b>
 								<hr>
