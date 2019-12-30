@@ -61,8 +61,33 @@
 		
 			<table th:if="${#arrays.length(files) > 0 }" class="w3-center w3-table w3-striped w3-hoverable w3-mobile" style="table-layout: fixed;">
 				<tr th:each="file : ${files}" class="w3-row">
-					<td th:text="${file.fileName}" class="w3-padding w3-animate-opacity w3-col m8 s8" style="word-break: break-all;" />
-					<td th:text="${file.fileSize}" class="w3-padding w3-animate-opacity w3-col m2 s2"/>
+					<td class="w3-padding w3-animate-opacity w3-col m1 s1 w3-center w3-dropdown-hover" style="background-color: inherit;">
+						<i th:if="${file.access.access == 'PUBLIC'}" class="fa fa-info-circle fa-lg w3-text-red"></i>
+						<i th:if="${file.access.access == 'PRIVATE'}" class="fa fa-info-circle fa-lg w3-text-green"></i>
+						<i th:if="${file.access.access == 'PROTECTED'}" class="fa fa-info-circle fa-lg w3-text-blue"></i>
+						<span class="w3-container w3-padding w3-round w3-white w3-card w3-dropdown-content w3-medium w3-oxygen w3-row">
+							<span th:if="${file.access.access == 'PUBLIC'}">
+								<b th:text="${file.access.access}" class="w3-text-red w3-wide"></b>
+								<hr>
+								<a th:href="@{/list-files/private(fileId=${file.id})}" th:unless="${file.access.access == 'PRIVATE'}" class="w3-button w3-padding w3-green" style="width: 100%">Private</a>
+								<a th:href="@{/list-files/protected(fileId=${file.id})}" th:unless="${file.access.access == 'PROTECTED'}" class="w3-button w3-padding w3-blue" style="width: 100%">Protected</a>
+							</span>
+							<span th:if="${file.access.access == 'PRIVATE'}">
+							<b th:text="${file.access.access}" class="w3-text-green w3-wide"></b>
+								<hr>
+								<a th:href="@{/list-files/public(fileId=${file.id})}" th:unless="${file.access.access == 'PUBLIC'}" class="w3-button w3-padding w3-red" style="width: 100%">Public</a>
+								<a th:href="@{/list-files/protected(fileId=${file.id})}" th:unless="${file.access.access == 'PROTECTED'}" class="w3-button w3-padding w3-blue" style="width: 100%">Protected</a>
+							</span>
+							<span th:if="${file.access.access == 'PROTECTED'}">
+							<b th:text="${file.access.access}" class="w3-text-blue w3-wide"></b>
+								<hr>
+								<a th:href="@{/list-files/public(fileId=${file.id})}" th:unless="${file.access.access == 'PUBLIC'}" class="w3-button w3-padding w3-red" style="width: 100%">Public</a>
+								<a th:href="@{/list-files/private(fileId=${file.id})}" th:unless="${file.access.access == 'PRIVATE'}" class="w3-button w3-padding w3-green" style="width: 100%">Private</a>
+							</span>
+						</span>
+					</td>
+					<td th:text="${file.fileName}" class="w3-padding w3-animate-opacity w3-col m7 s7 w3-medium" style="word-break: break-all;" />
+					<td th:text="${file.fileSize}" class="w3-padding w3-animate-opacity w3-col m2 s2 w3-center"/>
 					<td class="w3-padding w3-animate-opacity w3-center w3-col m1 s1"><a th:href="@{uploads/} + ${file.fileName}" class="fa fa-download"></a></td>
 					<td class="w3-padding w3-animate-opacity w3-center w3-col m1 s1"><a th:href="@{/delete-file(id=${file.id},name=${file.fileName})}" class="fa fa-trash"></a></td>
 				</tr>
