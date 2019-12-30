@@ -8,21 +8,21 @@
 			
 	<a th:fragment="sitename" href="/" class="w3-mobile w3-lobster w3-xxlarge w3-custom-teal-fg w3-margin-left w3-hover-text-grey">SaveYourWork</a>
 	
-	<a th:fragment="btnLogin" href="/login" class="w3-mobile w3-bar-item w3-padding-16 w3-right w3-hover-light-grey w3-hover-text-teal">Login</a>
+	<a th:fragment="btnLogin" href="/login" class="w3-mobile w3-bar-item w3-padding-16 w3-right w3-hover-light-grey w3-hover-text-teal w3-round">Login</a>
 
-	<a th:fragment="btnLogout" href="/logout" class="w3-mobile w3-bar-item w3-padding-16 w3-right w3-hover-light-grey w3-hover-text-teal">Logout</a>
+	<a th:fragment="btnLogout" href="/logout" class="w3-mobile w3-bar-item w3-padding-16 w3-right w3-hover-light-grey w3-hover-text-teal w3-round">Logout</a>
 	
-	<a th:fragment="btnSignUp" href="/register" class="w3-mobile w3-bar-item w3-padding-16 w3-right w3-hover-light-grey w3-hover-text-teal">Sign Up</a>
+	<a th:fragment="btnSignUp" href="/register" class="w3-mobile w3-bar-item w3-padding-16 w3-right w3-hover-light-grey w3-hover-text-teal w3-round">Sign Up</a>
 		
-	<a th:fragment="btnMyFiles" href="/file-home" class="w3-mobile w3-bar-item w3-padding-16 w3-right w3-hover-light-grey w3-hover-text-teal">My Files</a>
+	<a th:fragment="btnMyFiles" href="/file-home" class="w3-mobile w3-bar-item w3-padding-16 w3-right w3-hover-light-grey w3-hover-text-teal w3-round">My Files</a>
 	
-	<a th:fragment="btnHome" href="/" class="w3-mobile w3-bar-item w3-padding-16 w3-right w3-hover-light-grey w3-hover-text-teal">Home</a>	
+	<a th:fragment="btnHome" href="/" class="w3-mobile w3-bar-item w3-padding-16 w3-right w3-hover-light-grey w3-hover-text-teal w3-round">Home</a>	
 
-	<a th:fragment="btnAdminPanel" href="/admin/list-users" th:if="${#authorization.expression('hasAuthority(''SUPER_USER'')')}" class="w3-mobile w3-bar-item w3-padding-16 w3-right w3-hover-light-grey w3-hover-text-teal">Admin Panel</a>
+	<a th:fragment="btnAdminPanel" href="/admin/list-users" th:if="${#authorization.expression('hasAuthority(''SUPER_USER'')')}" class="w3-mobile w3-bar-item w3-padding-16 w3-right w3-hover-light-grey w3-hover-text-teal w3-round">Admin Panel</a>
 
 	<a th:fragment="btnAuthName" class="/w3-mobile w3-hide-medium w3-hide-small w3-bar-item w3-padding-16 w3-right w3-hover-text-teal">Welcome, [[${#authentication.name}]]</a>
 
-	<a th:fragment="btnAccount" href="/user/account" class="w3-mobile w3-bar-item w3-padding-16 w3-right w3-hover-light-grey w3-hover-text-teal">Account</a>
+	<a th:fragment="btnAccount" href="/user/account" class="w3-mobile w3-bar-item w3-padding-16 w3-right w3-hover-light-grey w3-hover-text-teal w3-round">Account</a>
 
 	<!-- 
 		SideBar Buttons.

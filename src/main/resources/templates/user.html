@@ -18,7 +18,7 @@
 	
 	<span th:replace="includes :: header"></span>
 	
-	<div th:if="${currentPage == 'account'}" class="w3-container w3-section w3-card w3-white w3-mobile" style="margin:auto; width:400px; padding : 20px;">
+	<div th:if="${currentPage == 'account'}" class="w3-container w3-section w3-card w3-white w3-round w3-mobile" style="margin:auto; width:400px; padding : 20px;">
 		
 		<h2 class="w3-center">Account</h2>
 		<hr>
@@ -31,20 +31,20 @@
       	<h4 th:text="${user.email}"></h4>
       	<hr>
       	
-      	<input class="w3-input w3-button w3-border w3-border-red" type="button" value="Change Password" onclick="location.href='/user/account/resetPassword'">
+      	<input class="w3-input w3-button w3-border w3-border-red w3-round" type="button" value="Change Password" onclick="location.href='/user/account/resetPassword'">
       	
    	</div>
    	
-   	<form th:if="${currentPage == 'resetPassword'}" th:action="@{/user/account/resetPassword}" method="post" class="w3-container w3-section w3-center w3-card w3-white w3-mobile" style="margin:auto;width:400px">
+   	<form th:if="${currentPage == 'resetPassword'}" th:action="@{/user/account/resetPassword}" method="post" class="w3-container w3-section w3-center w3-card w3-white w3-round w3-mobile" style="margin:auto;width:400px">
 		<div style="padding : 20px;">
 			<h2>Reset Password</h2>
 			<hr>
-	      	<input class="w3-input" type="email" placeholder="Email Address" th:value="${email}" required disabled="disabled">
+	      	<input class="w3-input w3-round" type="email" placeholder="Email Address" th:value="${email}" required disabled="disabled">
 	      	
 	      	<br>
-	      	<input name="password" class="w3-input" type="password" placeholder="Password" pattern=".{3,15}" title="* Three or more characters. * Not more than 15 characters allowed." required>
+	      	<input name="password" class="w3-input w3-round" type="password" placeholder="Password" pattern=".{3,15}" title="* Three or more characters. * Not more than 15 characters allowed." required>
 	      	<br>
-	      	<input class="w3-input w3-button w3-border w3-border-red" type="submit" value="Submit">
+	      	<input class="w3-input w3-button w3-border w3-border-red w3-round" type="submit" value="Submit">
 	      	
 	      	<br>
 	      	<a href="." class="w3-left"><i class="fa fa-arrow-left"></i> Back</a>
