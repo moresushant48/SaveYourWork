@@ -17,6 +17,6 @@ public interface UserService {
 	public ModelAndView forgotPassword(ModelAndView mv, String email);
 	public ModelAndView changePassword(ModelAndView mv, String email, String password);
 	public ModelAndView verifyTokenAndEmail(ModelAndView mv, String receivedToken, String encodedEmail);
-	
+	public Boolean resetPassword(int id, String password);
 	
 }

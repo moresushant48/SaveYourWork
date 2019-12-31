@@ -178,5 +178,18 @@ public class UserServiceImpl implements UserService{
 		
 		
 		return mv;
+	}
+
+	@Override
+	public Boolean resetPassword(int id, String password) {
+		
+		User user = userRepository.getOne(id);
+		if(user != null) {
+			user.setPassword(new BCryptPasswordEncoder().encode(password));
+			if(userRepository.save(user) != null) {
+				return true;
+			}
+		}
+		return false;
 	}	
 }

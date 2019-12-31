@@ -13,6 +13,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import io.moresushant48.Repository.UserRepository;
 import io.moresushant48.model.User;
+import io.moresushant48.services.UserService;
+import io.moresushant48.servicesImpl.UserServiceImpl;
 
 @Controller
 @RequestMapping("/user")
@@ -22,6 +24,9 @@ public class UserController {
 	
 	@Autowired
 	UserRepository userRepository;
+	
+	@Autowired
+	UserService userService;
 
 	@GetMapping("/account")
 	public ModelAndView accountGET(Principal principal) {
@@ -60,8 +65,7 @@ public class UserController {
 	public ModelAndView resetPasswordPOST(@RequestParam("password") String password) {
 		ModelAndView mv = new ModelAndView();
 		
-		user.setPassword(new BCryptPasswordEncoder().encode(password));
-		if(userRepository.save(user) != null) {
+		if(userService.resetPassword(user.getId(), password)) {
 			mv.setViewName("redirect:/user/account/resetPassword?success=true");
 		}else {
 			mv.setViewName("redirect:/user/account/resetPassword?failed=true");
