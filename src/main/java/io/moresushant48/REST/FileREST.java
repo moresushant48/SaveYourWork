@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import io.moresushant48.Repository.FileRepository;
 import io.moresushant48.Repository.UserRepository;
+import io.moresushant48.model.Access;
 import io.moresushant48.model.File;
 import io.moresushant48.model.User;
 import io.moresushant48.storage.StorageService;
@@ -61,4 +62,15 @@ public class FileREST {
 		return true;
 	}
 
+	@PostMapping("/changeAccess/{fileId}")
+	public boolean changeAccess(@PathVariable("fileId") Long fileId, @RequestParam("accessId") int accessId) {
+		
+		File file =  fileRepository.getOne(fileId);
+		file.setAccess(new Access(accessId));
+		if(fileRepository.save(file) != null)
+			return true;
+		else
+			return false;
+	}
+	
 }
