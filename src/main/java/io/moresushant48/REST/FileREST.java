@@ -45,6 +45,12 @@ public class FileREST {
 		return files;
 	}
 	
+	@GetMapping("/list-files/public/{userId}")
+	public ArrayList<File> listPublicFiles(@PathVariable("userId") int userId) {
+		
+		return fileRepository.listPublicFiles(userId);
+	}
+	
 	@PostMapping("/upload-file/{id}")
 	public boolean handleFileUpload(@PathVariable("id") int id, @RequestPart("file") MultipartFile filename) {
 		
