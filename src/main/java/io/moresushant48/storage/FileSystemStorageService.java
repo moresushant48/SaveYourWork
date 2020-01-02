@@ -34,7 +34,7 @@ public class FileSystemStorageService implements StorageService {
     FileRepository fileRepository;
     
 	@Override
-    public void store(MultipartFile file, User user, ArrayList<io.moresushant48.model.File> myFiles) {
+    public void store(MultipartFile file, User user, ArrayList<io.moresushant48.model.File> myFiles, int accessId) {
         String filename = StringUtils.cleanPath(file.getOriginalFilename());
         try {
             if (file.isEmpty()) {
@@ -76,7 +76,7 @@ public class FileSystemStorageService implements StorageService {
 		        	myFile.setFileType(file.getContentType());
 		        	myFile.setFileSize(String.format("%.2f", (double)file.getSize() / (1024*1024)) + " Mb");
 		        	myFile.setUser(user);
-		        	myFile.setAccess(new Access(1));
+		        	myFile.setAccess(new Access(accessId));
 		        	fileRepository.save(myFile);
             	}
             	

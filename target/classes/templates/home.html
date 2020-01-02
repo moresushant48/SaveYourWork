@@ -33,14 +33,20 @@
 	
 	<!-- The Modal -->
 	<div id="modalbox" class="w3-modal">
-	 <div class="w3-modal-content w3-animate-top">
+	 <div class="w3-modal-content w3-animate-top w3-round">
 	   <div class="w3-container">
 	     <span onclick="document.getElementById('modalbox').style.display='none'" 
 	     class="w3-button w3-display-topright">&times;</span>
 	     <p>Choose a file to upload :
 	     	<form action="/upload-file" method="post" enctype="multipart/form-data">
-				<input class="w3-input w3-light-grey" type="file" name="file" multiple>
-				<input class="w3-input w3-button w3-border w3-border-red w3-section" type="submit" value="Upload">
+				<input class="w3-input w3-light-grey w3-section w3-round" type="file" name="file" multiple>
+				<p>Choose access method : </p>
+				<select class="w3-input w3-light-grey w3-round" name="accessId">
+					<option th:value="3">Public</option>
+					<option th:value="2">Protected</option>
+					<option th:value="1" selected="selected">Private</option>
+				</select>
+				<input class="w3-input w3-button w3-border w3-border-red w3-round w3-section" type="submit" value="Upload">
 			</form>
 	    </div>
 	  </div>

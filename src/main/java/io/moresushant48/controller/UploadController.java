@@ -100,10 +100,10 @@ public class UploadController {
     }
 
 	@PostMapping("/upload-file")
-	public String handleFileUpload(@RequestParam("file") MultipartFile[] files) {
+	public String handleFileUpload(@RequestParam("file") MultipartFile[] files, @RequestParam("accessId") int accessId) {
 		for(MultipartFile file : files) {
 			myFiles = fileRepository.listFiles(user.getId());
-			storageService.store(file, user, myFiles);
+			storageService.store(file, user, myFiles, accessId);
 		}
 		return "redirect:/list-files"; 
 	}

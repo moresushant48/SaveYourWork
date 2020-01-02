@@ -52,11 +52,11 @@ public class FileREST {
 	}
 	
 	@PostMapping("/upload-file/{id}")
-	public boolean handleFileUpload(@PathVariable("id") int id, @RequestPart("file") MultipartFile filename) {
+	public boolean handleFileUpload(@PathVariable("id") int id, @RequestPart("file") MultipartFile filename, @RequestParam("accessId") int accessId) {
 		
 		user = userRepository.getOne(id);
 		myFiles = fileRepository.listFiles(id);
-		storageService.store(filename, user, myFiles);
+		storageService.store(filename, user, myFiles, accessId);
 	
 		return true;
 	}

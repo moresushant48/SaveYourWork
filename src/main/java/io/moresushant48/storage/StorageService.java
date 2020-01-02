@@ -14,7 +14,7 @@ public interface StorageService {
 
     void init(String username);
     
-    void store(MultipartFile file, User user, ArrayList<File> myFiles);
+    void store(MultipartFile file, User user, ArrayList<File> myFiles, int accessId);
 
     void deleteById(Long id, String name);
 
