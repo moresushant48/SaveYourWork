@@ -25,16 +25,14 @@ public class AuthenticationREST {
 	public User login(@RequestParam("username") String username, @RequestParam("password") String password) {
 			
 		User user = userRepository.findByUsername(username);
+		
 		if(user!=null) {
+			System.out.println("Entered Pass : " + password);
 			if(bCryptPasswordEncoder.matches(password, user.getPassword())) {
 				return user;
 			}
 		}
-		else {
-			user = new User();
-			user.setUsername("void");
-		}
-	
+		user = new User();
 		return user;	
 	}
 	
