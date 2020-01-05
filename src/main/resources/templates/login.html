@@ -37,6 +37,9 @@
 	      	<div class="w3-panel w3-red w3-round" th:if="${param.error}">
 	      		<p style="font-size:12pt">Email or Password is invalid.</p>
 	      	</div>
+	      	<div class="w3-panel w3-red w3-round" th:if="${param.expired}">
+	      		<p style="font-size:12pt">You're already using your account somewhere.</p>
+	      	</div>
       	</div>
     </form>
     
