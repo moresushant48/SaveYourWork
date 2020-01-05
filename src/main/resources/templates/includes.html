@@ -18,7 +18,7 @@
 	
 	<a th:fragment="btnHome" href="/" class="w3-mobile w3-bar-item w3-padding-16 w3-right w3-hover-light-grey w3-hover-text-teal w3-round">Home</a>	
 
-	<a th:fragment="btnAdminPanel" href="/admin/list-users" th:if="${#authorization.expression('hasAuthority(''SUPER_USER'')')}" class="w3-mobile w3-bar-item w3-padding-16 w3-right w3-hover-light-grey w3-hover-text-teal w3-round">Admin Panel</a>
+	<a th:fragment="btnAdminPanel" href="/admin/analytics" th:if="${#authorization.expression('hasAuthority(''SUPER_USER'')')}" class="w3-mobile w3-bar-item w3-padding-16 w3-right w3-hover-light-grey w3-hover-text-teal w3-round">Admin Panel</a>
 
 	<a th:fragment="btnAuthName" class="/w3-mobile w3-hide-medium w3-hide-small w3-bar-item w3-padding-16 w3-right w3-hover-text-teal">Welcome, [[${#authentication.name}]]</a>
 
@@ -29,6 +29,7 @@
 	 -->
 	 
 	 <div th:fragment="sbAdminPanel" class="w3-mobile w3-hide-large w3-hide-medium">
+	 	<a href="/admin/analytics" class="w3-bar-item w3-button w3-padding-16 w3-mobile">Analytics</a>
 	 	<a href="/admin/list-users" class="w3-bar-item w3-button w3-padding-16 w3-mobile">List Users</a>
 		<a href="/admin/userFeedback" class="w3-bar-item w3-button w3-padding-16 w3-mobile">Feedbacks</a>
 	 </div>
@@ -85,7 +86,7 @@
 			<span th:replace="includes :: btnHome"></span>
 		</div>
 		
-		<div th:if="${currentPage == 'adminPanel' OR currentPage == 'userFeedback'}">
+		<div th:if="${currentPage == 'analytics' OR currentPage == 'listUsers' OR currentPage == 'userFeedback'}">
 			<span th:replace="includes :: sitename"></span>
 			<span th:replace="includes :: btnLogout"></span>
 			<span th:replace="includes :: btnHome"></span>

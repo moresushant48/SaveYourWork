@@ -1,6 +1,9 @@
 package io.moresushant48.controller;
 
+import java.security.Principal;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -9,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import io.moresushant48.Repository.FeedbackRepository;
+import io.moresushant48.Repository.FileRepository;
 import io.moresushant48.Repository.UserRepository;
+import io.moresushant48.model.AnalyticsData;
 import io.moresushant48.services.UserService;
 
 @Controller
@@ -23,12 +28,33 @@ public class AdminController {
 	UserRepository userRepository;
 	
 	@Autowired
+	FileRepository fileRepository;
+	
+	@Autowired
 	FeedbackRepository feedbackRepository;
 
+	@Autowired
+	SessionRegistry sessionRegistery;
+	
+	@GetMapping("/analytics")
+	public ModelAndView analytics(Principal principal) {
+		ModelAndView mv = new ModelAndView();
+	
+		AnalyticsData analyticsData = new AnalyticsData(userRepository.count(),
+				fileRepository.count(), feedbackRepository.count(), 
+				sessionRegistery.getAllPrincipals().stream()
+				.filter(u -> !sessionRegistery.getAllSessions(u, false).isEmpty()).count());
+		
+		mv.addObject("analyticsData", analyticsData);
+		mv.addObject("currentPage", "analytics");
+		mv.setViewName("adminPanel");
+		return mv;
+	}
+	
 	@GetMapping("/list-users")
 	public ModelAndView listUsers() {
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("currentPage", "adminPanel");
+		mv.addObject("currentPage", "listUsers");
 		mv.addObject("users", userService.listAllUsers());
 		mv.setViewName("adminPanel");
 		return mv;

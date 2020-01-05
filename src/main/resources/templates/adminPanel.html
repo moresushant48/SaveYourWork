@@ -10,8 +10,8 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	
 	
-	
-	<title th:if="${currentPage == 'adminPanel'}">Admin Panel</title>
+	<title th:if="${currentPage == 'analytics'}">Analytics</title>
+	<title th:if="${currentPage == 'listUsers'}">User List</title>
 	<title th:if="${currentPage == 'userFeedback'}">User Feedbacks</title>
 
 </head>
@@ -19,17 +19,67 @@
 <body class="w3-oxygen">
 
 	<div class="w3-sidebar w3-bar-block w3-center w3-animate-left w3-dark-grey w3-hide-small w3-mobile" style="padding-top: 100px">
+		<a href="/admin/analytics" class="w3-bar-item w3-button w3-padding-16 w3-mobile">Analytics</a>
 		<a href="/admin/list-users" class="w3-bar-item w3-button w3-padding-16 w3-mobile">List Users</a>
 		<a href="/admin/userFeedback" class="w3-bar-item w3-button w3-padding-16 w3-mobile">Feedbacks</a>
 	</div>
 
 	<span th:replace="includes :: header"></span>
+	
+	<div th:if="${currentPage == 'analytics'}" class="w3-container w3-section w3-mobile w3-large w3-hide-small-content-shift w3-left-margin-200">
+		<div class="w3-row-padding w3-center">
+			<div class="w3-section w3-col l4 m4 s4 w3-animate-zoom">
+				<div class="w3-card">
+					<header class="w3-container w3-teal">
+					  <i class="fa fa-user-circle-o fa-4x fa-fw w3-margin"></i>
+					</header>
+					<div class="w3-container w3-white">
+					  <h1 th:text="${analyticsData.totalCustomers}"></h1>
+					  <h3 class="w3-text-grey">Total Customers</h3>
+					</div>
+				</div>
+			</div>
+			<div class="w3-section w3-col l4 m4 s4 w3-animate-zoom">
+				<div class="w3-card">
+					<header class="w3-container w3-teal">
+					  <i class="fa fa-file-text-o fa-4x fa-fw w3-margin"></i>
+					</header>
+					<div class="w3-container w3-white">
+					  <h1 th:text="${analyticsData.totalFiles}"></h1>
+					  <h3 class="w3-text-grey">Total Files</h3>
+					</div>
+				</div>
+			</div>
+			<div class="w3-section w3-col l4 m4 s4 w3-animate-zoom">
+				<div class="w3-card">
+					<header class="w3-container w3-teal">
+					  <i class="fa fa-comments-o fa-4x fa-fw w3-margin"></i>
+					</header>
+					<div class="w3-container w3-white">
+					  <h1 th:text="${analyticsData.totalFeedbacks}"></h1>
+					  <h3 class="w3-text-grey">Total Feedbacks</h3>
+					</div>
+				</div>
+			</div>
+			<div class="w3-section w3-col w3-animate-zoom">
+				<div class="w3-card">
+					<header class="w3-container w3-teal">
+					  <i class="fa fa-globe fa-4x fa-fw w3-margin"></i>
+					</header>
+					<div class="w3-container w3-white">
+					  <h1 th:text="${analyticsData.totalOnline}"></h1>
+					  <h3 class="w3-text-grey">Total Online Users</h3>
+					</div>
+				</div>
+			</div>	
+		</div>
+	</div>
 		
 	<!--
 		List users
 	  -->
 
-	<div th:if="${currentPage == 'adminPanel'}" class="w3-container w3-section w3-mobile w3-large w3-hide-small-content-shift w3-left-margin-200" >
+	<div th:if="${currentPage == 'listUsers'}" class="w3-container w3-section w3-mobile w3-large w3-hide-small-content-shift w3-left-margin-200" >
 		<table class="w3-center w3-table w3-striped w3-hoverable" style="table-layout: fixed;">
 			<tr th:each="user : ${users}" class="w3-row" style="word-break: break-all;">
 				<td th:text="${user.id}" class="w3-padding w3-animate-opacity w3-col m1 s1"/>
