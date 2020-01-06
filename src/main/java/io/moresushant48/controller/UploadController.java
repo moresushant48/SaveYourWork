@@ -49,22 +49,6 @@ public class UploadController {
         this.storageService = storageService;
     }
     
-    @GetMapping("/{pubUsername}")
-    public ModelAndView publicFiles(@PathVariable("pubUsername") String pubUsername ) {
-    	
-    	ModelAndView mv = new ModelAndView();
-    	user = userRepository.findIdByUsername(pubUsername);
-    	
-    	if(user != null) {
-			mv.addObject("files", fileRepository.listPublicFiles(user.getId()));
-			mv.addObject("currentPage", "publicFiles");
-			mv.setViewName("home");
-		}else {
-			mv.setViewName("redirect:/");
-		}
-    	return mv;
-    }
-    
     @GetMapping("/file-home")
     public ModelAndView fileHome(Principal principal) {
     	ModelAndView mv = new ModelAndView();
