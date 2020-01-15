@@ -10,7 +10,6 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -57,19 +56,9 @@ public class UploadController {
     	System.out.println(principal.getName());
     	user = userRepository.findIdByUsername(principal.getName());
 		    	
-		mv.setViewName("redirect:/list-files");
+		mv.setViewName("redirect:/user/list-files");
     	return mv;
     }
-    
-	@GetMapping("/list-files")
-	public ModelAndView listUploadedFiles(Model model) throws IOException {
-	
-		ModelAndView mv = new ModelAndView();
-		model.addAttribute("files", fileRepository.listFiles(user.getId()));
-		mv.addObject("currentPage", "home");
-		mv.setViewName("home");
-		return mv; 
-	}
 
     @GetMapping("/uploads/{filename:.+}")
     @ResponseBody
@@ -89,7 +78,7 @@ public class UploadController {
 			myFiles = fileRepository.listFiles(user.getId());
 			storageService.store(file, user, myFiles, accessId);
 		}
-		return "redirect:/list-files"; 
+		return "redirect:/user/list-files"; 
 	}
 	
 	@GetMapping("/delete-file")

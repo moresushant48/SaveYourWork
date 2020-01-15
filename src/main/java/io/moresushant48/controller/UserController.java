@@ -1,20 +1,21 @@
 package io.moresushant48.controller;
 
+import java.io.IOException;
 import java.security.Principal;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import io.moresushant48.Repository.FileRepository;
 import io.moresushant48.Repository.UserRepository;
 import io.moresushant48.model.User;
 import io.moresushant48.services.UserService;
-import io.moresushant48.servicesImpl.UserServiceImpl;
 
 @Controller
 @RequestMapping("/user")
@@ -26,7 +27,21 @@ public class UserController {
 	UserRepository userRepository;
 	
 	@Autowired
+	FileRepository fileRepository;
+	
+	@Autowired
 	UserService userService;
+	
+	@GetMapping("/list-files")
+	public ModelAndView listUploadedFiles(Model model, Principal principal) throws IOException {	
+		ModelAndView mv = new ModelAndView();
+		
+		user = userRepository.findByUsername(principal.getName());
+		model.addAttribute("files", fileRepository.listFiles(user.getId()));
+		mv.addObject("currentPage", "home");
+		mv.setViewName("home");
+		return mv; 
+	}
 
 	@GetMapping("/account")
 	public ModelAndView accountGET(Principal principal) {
