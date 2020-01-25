@@ -1,5 +1,6 @@
 package io.moresushant48.servicesImpl;
 
+import java.security.SecureRandom;
 import java.util.UUID;
 
 import javax.transaction.Transactional;
@@ -80,6 +81,7 @@ public class UserServiceImpl implements UserService{
 				Role role = new Role();
 				role.setId(3);
 				user.setRole(role);
+				user.setPublicPass(String.valueOf(new SecureRandom().nextInt(999999)));
 				saveUser(user);
 				mv.setViewName("redirect:/register?success=true");
 				return mv;

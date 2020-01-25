@@ -38,6 +38,9 @@ public class User {
 	@Column(name = "password")
 	private String password;
 	
+	@Column(name = "public_pass")
+	private String publicPass;
+	
 	@ManyToOne
 	@JoinColumn(name = "auth_role_id")
 	private Role role;
@@ -75,6 +78,14 @@ public class User {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	public String getPublicPass() {
+		return publicPass;
+	}
+
+	public void setPublicPass(String publicPass) {
+		this.publicPass = publicPass;
 	}
 
 	@JsonManagedReference

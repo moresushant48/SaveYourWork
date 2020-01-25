@@ -44,7 +44,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 		
 		http.authorizeRequests()
 		.antMatchers("/").permitAll()
-		.antMatchers("/u/{username}").permitAll()
 		.antMatchers("/login").permitAll()
 		.antMatchers("/register").permitAll()
 		.antMatchers("/contactus").permitAll()
@@ -54,7 +53,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 		.antMatchers("/gotNewPassword").permitAll()
 		.antMatchers("/rest/**").permitAll()
 		.antMatchers("/uploads/*").permitAll()
-		.antMatchers("/{pubUsername}").permitAll()
+		.antMatchers("/{username}/**").permitAll()
 		.antMatchers("/admin/**").hasAuthority("SUPER_USER")
 		.antMatchers("/file-home/**").hasAnyAuthority("SUPER_USER","ADMIN_USER","SITE_USER")
 		.anyRequest().authenticated()
