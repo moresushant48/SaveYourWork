@@ -15,7 +15,7 @@ import io.moresushant48.model.File;
 @RequestMapping("/list-files")
 public class AccessController {
 
-	private ModelAndView mv = new ModelAndView("redirect:/list-files");
+	private ModelAndView mv = new ModelAndView("redirect:/user/list-files");
 	private File file;
 	private Access access = new Access();
 	
