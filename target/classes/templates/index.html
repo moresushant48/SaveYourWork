@@ -4,98 +4,117 @@
 <meta charset="ISO-8859-1">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<link rel="stylesheet" th:href="@{/css/basic.css}">
-	<link rel="stylesheet" th:href="@{/css/w3.css}">
-	<link href="https://fonts.googleapis.com/css?family=Ubuntu|Oxygen|Lobster&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<span th:replace="includes :: links"></span>
 	
 	<style type="text/css">
-		#container_home{
-			height: 100vh;			
-		}
-		#bgimg{
-			height: 100vh;
-			width: 100%;
-			object-fit: cover;
-			z-index: -1;
-			position: fixed;
-		}
 		.mySlides {display:none;}
 	</style>
-	
+
 	<title>HOME</title>
 
 </head>
 
-<body class="w3-oxygen">
+<body>
 	
-	<div>
-		<img id="bgimg" alt="" th:src="@{/images/background.jpg}" class="w3-opacity">
-	</div>
 	<span th:replace="includes :: header"></span>
 	
-	<div id="container_home" class="w3-display-container w3-mobile w3-xlarge">
-		<div class="mySlides w3-display-middle w3-container w3-animate-opacity w3-center w3-text-white">
-			<img th:src="@{/images/files.svg}" height="180px" width="180px" />
-			<h3 class="w3-hide-large">SaveYourWork provides a <br><b>Convenient</b> & <b>Secure</b> File Sharing Service.</h3>
-	      	<h1 class="w3-hide-medium w3-hide-small">SaveYourWork provides a <br><b>Convenient</b> & <b>Secure</b> File Sharing Service.</h1>
-	    </div>
-	    
-	    <div class="mySlides  w3-display-middle w3-container w3-animate-opacity w3-center w3-text-white">
-			<img th:src="@{/images/share.svg}" height="180px" width="180px" />
-	      	<h3 class="w3-hide-large">Upload your files and be able to access them from anywhere in the world, with ease.</h3>
-	      	<h1 class="w3-hide-medium w3-hide-small">Upload your files and be able to access them from anywhere in the world, with ease.</h1>
-	    </div>
-    </div>
+	<div id="intro" class="view">
 
-	<script>
-		var slideIndex = 0;
-		carousel();
-		
-		function carousel() {
-		  var i;
-		  var x = document.getElementsByClassName("mySlides");
-		  for (i = 0; i < x.length; i++) {
-		    x[i].style.display = "none"; 
-		  }
-		  slideIndex++;
-		  if (slideIndex > x.length) {slideIndex = 1} 
-		  x[slideIndex-1].style.display = "block"; 
-		  setTimeout(carousel, 2000); 
-		}
-	</script>
-	
-	<div class="w3-container w3-center w3-white w3- w3-animate-opacity w3-card w3-large w3-row w3-padding-32">
-      <img class="w3-half " alt="" th:src="@{/images/DrawerAndFilesWebsite.svg}" height="500px">
-      
-      <div class="w3-half w3-section w3-left-align w3-padding-16">
-  		<h1>Download App Now</h1>
-  		<p style="line-height: 40px">As a Multi-Platform service, <br>Our Official SaveYourWork Application <br> is now available for all the Android Devices.</p>
-  		<a class="w3-button w3-padding-16 w3-section w3-border w3-border-teal w3-round">Download</a>	
-      </div>
-      <img class="w3-right" alt="" th:src="@{/images/android-logo.png}" height="150px">
+		<div class="mask rgba-black-dark">
+
+			<div class="container-fluid d-flex align-items-center justify-content-center h-100">
+
+				<div class="row d-flex justify-content-center text-center">
+
+					<div class="mySlides col-md-10 animated fadeInUp slow">
+
+						<!-- Heading -->
+						<img class="animated flip fast delay-1s m-auto" th:src="@{/images/files.svg}" height="180px" width="180px" />
+
+						<!-- Divider -->
+						<hr class="hr-light">
+
+						<!-- Description -->
+						<h3 class="white-text my-4">SaveYourWork provides a <b>Convenient</b> & <b>Secure</b> File Sharing Service.</h3>
+						<a href="#about" class="btn cloudy-knoxville-gradient">Read more<i class="fa fa-book ml-2"></i></a>
+
+					</div>
+					<div class="mySlides col-md-10 animated fadeInUp slow">
+
+						<!-- Heading -->
+						<img class="animated flip fast delay-1s m-auto" th:src="@{/images/share.svg}" height="180px" width="180px" />
+
+						<!-- Divider -->
+						<hr class="hr-light">
+
+						<!-- Description -->
+						<h3 class="white-text my-4">Upload your files and be able to access them from anywhere in the world, with ease.</h3>
+						<a href="#about" class="btn cloudy-knoxville-gradient">Read more<i class="fa fa-book ml-2"></i></a>
+
+					</div>
+
+					<script>
+						var slideIndex = 0;
+						carousel();
+						
+						function carousel() {
+							var i;
+							var x = document.getElementsByClassName("mySlides");
+							for (i = 0; i < x.length; i++) {
+								x[i].style.display = "none"; 
+							}
+							slideIndex++;
+							if (slideIndex > x.length) {slideIndex = 1} 
+							x[slideIndex-1].style.display = "block"; 
+							setTimeout(carousel, 4000); 
+						}
+					</script>
+				</div>
+			</div>
+		</div>
 	</div>
 
-	<div class="w3-container w3-center w3-black w3-animate-opacity w3-card w3-xlarge">
-      <p>
-      	Access your account, without any efforts. 
-      </p>
-	</div>
-	
-	<div class="w3-container w3-center w3-white w3-animate-opacity w3-card w3-xlarge">
-      <br>
-      <h2>About Us</h2>
-      <hr>
-      <p style="line-height: 50px">
-      	“SaveYourWork” is an online platform where users can Upload & Download their files from anywhere in the world, at any time. They can write and save Text Documents like creating a simple To-Do List to Saving and Sharing your code with your colleagues and friends, On-The-Go. 
-      </p>
-      <div class="w3-card w3-padding w3-border w3-border-teal w3-round" style="width: 200px; margin: auto;">
-	      <a href="https://mobile.twitter.com/moresush48" target="_BLANK" class="fa fa-twitter-square fa-2x w3-hover-text-blue"></a>&nbsp;
-	      <a href="https://www.github.com/moresushant48/" target="_BLANK" class="fa fa-github fa-2x w3-hover-text-grey"></a>&nbsp;
-	      <a href="https://www.instagram.com/_moresushant48_/" target="_BLANK" class="fa fa-instagram fa-2x w3-hover-text-pink w3-animate-bottom"></a>
-      </div>
-      <br>
-	</div>
+	<main>
+		<div class="container-fluid">
+			<!-- APP PROMO  -->
+			<section class="row d-flex justify-content-center text-center p-5" style="min-height: 100vh;">
+				<div class="col-md-6 m-auto">
+					<img class="img-fluid" alt="" th:src="@{/images/DrawerAndFilesWebsite.svg}">
+				</div>
+				
+				<div class="col-md-6 m-auto view overlay">
+					<p class="h1-responsive"><span class="font-lobster ">“SaveYourWork”</span> for Android</p>
+					<p class="h6-responsive" style="line-height: 40px">As a Multi-Platform service, <br>Our Official SaveYourWork Application  is now available for all the Android Devices.</p>
+					<a class="btn purple-gradient m-2">Download</a>
+				</div>
+			</section>
+		</div>
+
+		<!-- BLACK BAR -->
+		<section class="aqua-gradient text-white p-4 text-center">
+				<h3>Access your account, without much efforts.</h3>
+		</section>
+
+		<div class="container-fluid">
+			<!-- ABOUT  -->
+			<section class="row d-flex justify-content-center text-center animate fadeInUp" id="about"  style="min-height: 100vh;">
+
+				<div class="container m-auto p-4">
+					<h2>About Us</h2>
+					<hr class="my-5">
+					<p class="h4-responsive" style="line-height: 60px">
+						“SaveYourWork” is an online platform where users can Upload & Download their files from anywhere in the world, at any time. They can write and save Text Documents like creating a simple To-Do List to Saving and Sharing your code with your colleagues and friends, On-The-Go. 
+					</p>
+					
+					<div class="container rounded row d-flex justify-content-center mt-5 mx-auto"	style="width: 200px">
+						<a href="https://mobile.twitter.com/moresush48" target="_BLANK" class="col-4 fa fa-twitter-square fa-2x text-info animated tada slow delay-1s infinite"></a>
+						<a href="https://www.github.com/moresushant48/" target="_BLANK" class="col-4 fa fa-github fa-2x text-dark animated tada slow delay-1s infinite"></a>
+						<a href="https://www.instagram.com/_moresushant48_/" target="_BLANK" class="col-4 fa fa-instagram fa-2x text-danger animated tada slow delay-1s infinite"></a>
+					</div>
+				</div>
+			</section>
+		</div>
+	</main>
 	
 	<span th:replace="includes :: footer"></span>
 </body>

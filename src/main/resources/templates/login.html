@@ -4,9 +4,7 @@
 <meta charset="ISO-8859-1">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<link rel="stylesheet" th:href="@{/css/basic.css}">
-	<link rel="stylesheet" th:href="@{/css/w3.css}">
-	<link href="https://fonts.googleapis.com/css?family=Ubuntu|Oxygen|Lobster&display=swap" rel="stylesheet">
+	<span th:replace="includes :: links"></span>
 	
 	<title th:if="${currentPage == 'login'}">Log In</title>
 	<title th:if="${currentPage == 'forgotUsername'}">Username</title>
@@ -14,100 +12,131 @@
 	<title th:if="${currentPage == 'newPassword'}">Reset Password</title>
 </head>
 
-<body class="w3-oxygen">
+<body>
 
 	<span th:replace="includes :: header"></span>
 
-	<!--
-		Login page
-	  -->
-
-	<form th:if="${currentPage == 'login'}" id="login_form" th:action="@{/login}" method="post" class="w3-container w3-section w3-center w3-card w3-white w3-round w3-mobile" style="margin:auto;width:400px">
-		<div style="padding : 20px;">
-			<h2>Login</h2>
-			<hr>
-	      	<input name="username" tabindex="1" class="w3-input w3-round" type="text" th:value="${param.username}" placeholder="Username" pattern="[a-zA-Z0-9]{4,14}" title="* Only alphabates (a-z) & digits (0-9) are allowed. * Min 4 & Max 14 characters only." required autofocus>
-	      	<a href="/forgotUsername" tabindex="0" class="w3-left w3-margin-bottom w3-text-grey" style="padding: 2px">Forgot Username ?</a>
-	      	
-	      	<input name="password" tabindex="2" class="w3-input w3-round" type="password" placeholder="Password" pattern=".{3,15}" title="* Three or more characters. * Not more than 15 characters allowed." required>
-	      	<a href="/forgotPassword" tabindex="0" class="w3-left w3-margin-bottom w3-text-grey" style="padding: 2px">Forgot password ?</a>
-	      	
-	      	<input tabindex="3" class="w3-input w3-button w3-border w3-border-red w3-round" type="submit" value="Submit">
-	      	
-	      	<div class="w3-panel w3-red w3-round" th:if="${param.error}">
-	      		<p style="font-size:12pt">Email or Password is invalid.</p>
-	      	</div>
-	      	<div class="w3-panel w3-red w3-round" th:if="${param.expired}">
-	      		<p style="font-size:12pt">You're already using your account somewhere.</p>
-	      	</div>
-      	</div>
-    </form>
-    
-    <!--  
-    	forgotUsername Page
-    -->
-    
-    <form th:if="${currentPage == 'forgotUsername'}" th:action="@{/forgotUsername}" method="post" class="w3-container w3-section w3-center w3-card w3-white w3-round w3-mobile" style="margin:auto;width:400px">
-		<div style="padding : 20px;">
-			<h2>Forgot Username</h2>
-	      	<hr>
-	      	<input name="email" class="w3-input w3-round" type="email" placeholder="Email Address" required autofocus>
-	      	<br>
-	      	<input class="w3-input w3-button w3-border w3-border-red w3-round" type="submit" value="Submit">
-	      	
-	      	<div class="w3-panel w3-green w3-round" th:if="${param.found}">
-	      		<p style="color:black;font-size:12pt">Credentials are sent to your Email.<br><a href="login" class="w3-text-blue">Please Login</a></p>
-      		</div>
-	      	<div class="w3-panel w3-red w3-round" th:if="${param.notfound}">
-	      		<p style="color:black;font-size:12pt">No such Email exists.</p>
-	      	</div>
-      	</div>
-    </form>
-    
-    <!--  
-    	forgotPassword Page
-    -->
-    
-    <form th:if="${currentPage == 'forgotPassword'}" th:action="@{/forgotPassword}" method="post" class="w3-container w3-section w3-center w3-card w3-white w3-round w3-mobile" style="margin:auto;width:400px">
-		<div style="padding : 20px;">
-			<h2>Forgot Password</h2>
-	      	<hr>
-	      	<input name="email" class="w3-input w3-round" type="email" placeholder="Email Address" required autofocus>
-	      	<br>
-	      	<input class="w3-input w3-button w3-border w3-border-red w3-round" type="submit" value="Submit">
-	      	
-	      	<div class="w3-panel w3-green w3-round" th:if="${param.found}">
-	      		<p style="color:black;font-size:12pt">Please check your E-Mail.</p>
-	      	</div>
-	      	<div class="w3-panel w3-red w3-round" th:if="${param.notfound}">
-	      		<p style="color:black;font-size:12pt">No such Email exists.</p>
-	      	</div>
-      	</div>
-    </form>
-    
-    <!--  
-    	New Password page
-    -->
-    
-	<form th:if="${currentPage == 'newPassword'}" th:action="@{/newPassword}" method="post" class="w3-container w3-section w3-center w3-card w3-white w3-round w3-mobile" style="margin:auto;width:400px">
-		<div style="padding : 20px;">
-			<h2>Reset Password</h2>
-			<hr>
-	      	<input class="w3-input" type="email" placeholder="Email Address" th:value="${userEmail}" required disabled="disabled">
-	      	<input name="email" type="hidden" th:value="${userEmail}" required="required">
-	      	<br>
-	      	<input name="password" class="w3-input" type="password" placeholder="Password" pattern=".{3,15}" title="* Three or more characters. * Not more than 15 characters allowed." required>
-	      	<br>
-	      	<input class="w3-input w3-button w3-border w3-border-red" type="submit" value="Submit">
-	      	
-	      	<div class="w3-panel w3-green" th:if="${param.success}">
-	      		<p style="color:black;font-size:12pt">Password changed Successfully.<br><a href="login" class="w3-text-blue">Please Login</a></p>
-	      	</div>
-	      	<div class="w3-panel w3-red" th:if="${param.unsuccess}">
-	      		<p style="color:black;font-size:12pt">Couldn't change password.</p>
-	      	</div>
-      	</div>
-    </form>
+	<main>
+	
+		<div class="container-fluid">
+		
+			<!-- 
+				Login Page.
+			 -->
+		
+			<section th:if="${currentPage == 'login'}" class="border border-light rounded bg-white form-size mx-auto p-lg-5 mt-4">
+				<p class="h3 mb-5 text-center text-primary">Sign In</p>
+				
+				<form th:action="@{/login}" method="post">
+				
+					<input name="username" tabindex="1" class="form-control mb-4" type="text" th:value="${param.username}" placeholder="Username" pattern="[a-zA-Z0-9]{4,14}" title="* Only alphabates (a-z) & digits (0-9) are allowed. * Min 4 & Max 14 characters only." required autofocus>
+				    
+				    <input name="password" tabindex="2" class="form-control mb-4" type="password" placeholder="Password" pattern=".{3,15}" title="* Three or more characters. * Not more than 15 characters allowed." required>
+				
+					<div class="text-center mb-4" th:if="${param.error}">
+			      		<p class="alert alert-danger" style="font-size:12pt">Email or Password is invalid.</p>
+			      	</div>
+			      	<div class="text-center mb-4" th:if="${param.expired}">
+			      		<p class="alert alert-danger" style="font-size:12pt">You're already using your account somewhere.</p>
+			      	</div>
+			      	
+				    <div class="d-flex justify-content-between">
+				        <div>
+				            <div class="custom-control custom-checkbox">
+				                <input type="checkbox" class="custom-control-input" id="rememberme">
+				                <label class="custom-control-label" for="rememberme">Remember me</label>
+				            </div>
+				        </div>
+				        <div>
+				            <a href="/forgotUsername">Forgot Username?</a> / 
+				            <a href="/forgotPassword">Password?</a>
+				        </div>
+				    </div>
+				
+				    <button class="btn btn-info btn-block my-4" type="submit">Login</button>
+				
+				    <div class="text-center">
+				        <p>Not a member?
+				            <a href="/register">Register</a>
+				        </p>
+				    </div>
+				</form>
+			</section>
+			
+			<!--  
+		    	forgotUsername Page
+		    -->
+			
+			<section th:if="${currentPage == 'forgotUsername'}" class="border border-light rounded bg-white form-size mx-auto p-lg-5 mt-4">
+				<p class="h3 mb-5 text-center text-primary">Forgot Username</p>
+				
+				<form th:action="@{/forgotUsername}" method="post">
+				
+					<input name="email" class="form-control mb-4" type="email" placeholder="Email Address" required autofocus>
+				
+					<div class="text-center mb-4" th:if="${param.found}">
+			      		<p class="alert alert-danger" >Credentials are sent to your Email.<br><a href="login" class="text-primary">Please Login</a></p>
+		      		</div>
+			      	<div class="text-center mb-4" th:if="${param.notfound}">
+			      		<p class="alert alert-danger" >No such Email exists.</p>
+			      	</div>
+				
+				    <button class="btn btn-info btn-block my-4" type="submit">Submit</button>
+				    
+				    <a href="/login"><i class="fa fa-arrow-left"></i> Back</a>
+				</form>
+			</section>
+			
+			<!--  
+		    	forgotPassword Page
+		    -->
+		
+			<section th:if="${currentPage == 'forgotPassword'}" class="border border-light rounded bg-white form-size mx-auto p-lg-5 mt-4">
+				<p class="h3 mb-5 text-center text-primary">Forgot Password</p>
+				
+				<form th:action="@{/forgotPassword}" method="post">
+				
+					<input name="email" class="form-control mb-4" type="email" placeholder="Email Address" required autofocus>
+				
+					<div class="text-center mb-4" th:if="${param.found}">
+			      		<p class="alert alert-danger" >Please check your E-Mail.</p>
+		      		</div>
+			      	<div class="text-center mb-4" th:if="${param.notfound}">
+			      		<p class="alert alert-danger" >No such Email exists.</p>
+			      	</div>
+				
+				    <button class="btn btn-info btn-block my-4" type="submit">Submit</button>
+				    
+				    <a href="/login"><i class="fa fa-arrow-left"></i> Back</a>
+				</form>
+			</section>
+			
+			<!--  
+		    	New Password page
+		    -->
+			<section th:if="${currentPage == 'newPassword'}" class="card form-size mx-auto mt-4">
+				<h5 class="card-header info-color white-text text-center py-4 mb-5">
+				    <strong>Reset Password</strong>
+				</h5>
+				<form th:action="@{/newPassword}" method="post" class="card-body px-lg-5 pt-0">
+				
+					<input name="email" class="form-control mb-4" type="email" placeholder="Email Address" th:value="${userEmail}" required disabled="disabled">
+					
+					<input name="password" class="form-control mb-4" type="password" placeholder="Password" pattern=".{3,15}" title="* Three or more characters. * Not more than 15 characters allowed." required>
+								      	
+			      	<div class="text-center mb-4" th:if="${param.success}">
+			      		<p class="alert alert-danger">Password changed Successfully.<br><a href="login" class="text-primary">Please Login</a></p>
+			      	</div>
+			      	<div class="text-center mb-4" th:if="${param.unsuccess}">
+			      		<p class="alert alert-danger">Couldn't change password.</p>
+			      	</div>
+				
+				    <button class="btn btn-info btn-block my-4" type="submit">Submit</button>
+				</form>
+			</section>
+		</div>
+		
+	</main>
     
 </body>
 </html>

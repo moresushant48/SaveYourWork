@@ -4,10 +4,7 @@
 <meta charset="ISO-8859-1">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<link rel="stylesheet" th:href="@{/css/basic.css}">
-	<link rel="stylesheet" th:href="@{/css/w3.css}">
-	<link href="https://fonts.googleapis.com/css?family=Ubuntu|Oxygen|Lobster&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<span th:replace="includes :: links"></span>
 	
 	<title>HOME</title>
 	
@@ -29,118 +26,170 @@
 
 </head>
 
-<body class="w3-oxygen">
-	
+<body>
+
 	<span th:replace="includes :: header"></span>
 
-	<!-- The Modal -->
-	<div id="modalbox" class="w3-modal">
-	 <div class="w3-modal-content w3-animate-top w3-round">
-	   <div class="w3-container">
-	     <span onclick="document.getElementById('modalbox').style.display='none'" 
-	     class="w3-button w3-display-topright">&times;</span>
-	     <p>Choose a file to upload :</p>
-	     	<form action="/upload-file" method="post" enctype="multipart/form-data">
-				<input class="w3-input w3-light-grey w3-section w3-round" type="file" name="file" multiple>
-				<p>Choose access method : </p>
-				<select class="w3-input w3-light-grey w3-round" name="accessId">
-					<option th:value="3">Public</option>
-					<option th:value="2">Protected</option>
-					<option th:value="1" selected="selected">Private</option>
-				</select>
-				<input class="w3-input w3-button w3-border w3-border-red w3-round w3-section" type="submit" value="Upload">
-			</form>
+	<nav th:if="${currentPage == 'home'}" class="navbar fixed-bottom navbar-expand-sm navbar-light bg-transparent card border border-light animated bounceInUp">
+	  <!-- Collapse button -->
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bottomnav"
+			aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<!-- Collapsible content -->
+		<div class="collapse navbar-collapse justify-content-end" id="bottomnav">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item">
+					<button id="modalActivate" type="button" class="btn btn-danger" style="width: 300px" data-toggle="modal" data-target="#exampleModalPreview">
+					  Upload
+					</button>
+				</li>
+				<li class="nav-item"><a href="list-files" class="btn btn-danger" style="width: 300px">List Files</a></li>
+			</ul>
+		</div>
+	</nav>
+
+	<!-- Modal -->
+	<div class="modal fade bottom" id="exampleModalPreview" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
+	  <div class="modal-dialog modal-fluid modal-full-height modal-bottom" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header aqua-gradient">
+	        <h5 class="modal-title text-white" id="exampleModalPreviewLabel">Choose File & Upload method</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <form action="/upload-file" method="post" enctype="multipart/form-data">
+		      <div class="modal-body">
+		        <input class="form-control" type="file" name="file" multiple>
+		        
+			    <select class="browser-default custom-select mt-4" name="accessId">
+			        <option value="" disabled="" selected="">Choose your option</option>
+			        <option value="3">Public</option>
+			        <option value="2">Protected</option>
+			        <option value="1" selected="selected">Private</option>
+			    </select>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn" data-dismiss="modal">Close</button>
+		        <button type="submit" class="btn purple-gradient">Upload</button>
+		      </div>
+	      </form>
 	    </div>
 	  </div>
 	</div>
+	<!-- Modal -->
 	
-	<div th:if="${currentPage == 'home'}">
-		<div class="w3-sidebar w3-bar-block w3-center w3-animate-left w3-dark-grey w3-hide-small w3-mobile" style="padding-top: 100px">
-			<!-- Trigger/Open the Modal -->
-			<a onclick="document.getElementById('modalbox').style.display='block'" class="w3-bar-item w3-button w3-padding-16 w3-mobile">Upload</a>
-			<a href="list-files" class="w3-bar-item w3-button w3-padding-16 w3-mobile">List Files</a>
-		</div>
+	<div th:if="${currentPage == 'home'}" class="p-3 mb-5">
 				
-		<div class="w3-section w3-container w3-mobile w3-large w3-hide-small-content-shift w3-left-margin-200">
+		<!-- 
+			User All Files
+		 -->
+				
+		<div class="table-responsive text-nowrap">
 		
-			<h1 th:if="${#arrays.length(files) == 0 }" class="w3-display-middle w3-center w3-border w3-border-teal w3-padding w3-hover-border-red">You don't have any files here.<br> Upload some.</h1>
+			<h1 th:if="${#arrays.length(files) == 0 }" class="alert alert-warning m-auto">You don't have any files here.<br> Upload some.</h1>
 		
-			<table th:if="${#arrays.length(files) > 0 }" class="w3-center w3-table w3-striped w3-hoverable w3-mobile" style="table-layout: fixed;">
-				<tr th:each="file : ${files}" class="w3-row">
-					<td class="w3-padding w3-animate-opacity w3-col m1 s1 w3-center w3-dropdown-hover" style="background-color: inherit;">
-						<i th:if="${file.access.access == 'PUBLIC'}" class="fa fa-info-circle fa-lg w3-text-red"></i>
-						<i th:if="${file.access.access == 'PRIVATE'}" class="fa fa-info-circle fa-lg w3-text-green"></i>
-						<i th:if="${file.access.access == 'PROTECTED'}" class="fa fa-info-circle fa-lg w3-text-blue"></i>
-						<span class="w3-container w3-padding w3-round w3-white w3-card w3-dropdown-content w3-medium w3-oxygen w3-row" style="position: absolute; left: 60%">
-							<span th:if="${file.access.access == 'PUBLIC'}">
-								<b th:text="${file.access.access}" class="w3-text-red w3-wide"></b>
-								<hr>
-								<a th:href="@{/list-files/private(fileId=${file.id})}" th:unless="${file.access.access == 'PRIVATE'}" class="w3-button w3-padding w3-green" style="width: 100%">Private</a>
-								<a th:href="@{/list-files/protected(fileId=${file.id})}" th:unless="${file.access.access == 'PROTECTED'}" class="w3-button w3-padding w3-blue" style="width: 100%">Protected</a>
-							</span>
-							<span th:if="${file.access.access == 'PRIVATE'}">
-							<b th:text="${file.access.access}" class="w3-text-green w3-wide"></b>
-								<hr>
-								<a th:href="@{/list-files/public(fileId=${file.id})}" th:unless="${file.access.access == 'PUBLIC'}" class="w3-button w3-padding w3-red" style="width: 100%">Public</a>
-								<a th:href="@{/list-files/protected(fileId=${file.id})}" th:unless="${file.access.access == 'PROTECTED'}" class="w3-button w3-padding w3-blue" style="width: 100%">Protected</a>
-							</span>
-							<span th:if="${file.access.access == 'PROTECTED'}">
-							<b th:text="${file.access.access}" class="w3-text-blue w3-wide"></b>
-								<hr>
-								<a th:href="@{/list-files/public(fileId=${file.id})}" th:unless="${file.access.access == 'PUBLIC'}" class="w3-button w3-padding w3-red" style="width: 100%">Public</a>
-								<a th:href="@{/list-files/private(fileId=${file.id})}" th:unless="${file.access.access == 'PRIVATE'}" class="w3-button w3-padding w3-green" style="width: 100%">Private</a>
-							</span>
-						</span>
+			<table th:if="${#arrays.length(files) > 0 }" class="table table-hover bg-white text-center border border-light mb-5" style="table-layout: fixed;">
+				
+				<tr th:each="file : ${files}">
+					<td class="" style="background-color: inherit;">
+						<div class="dropdown dropright">
+						  	<i class="dropdown-toggle" id="dropdownMenu3" data-toggle="dropdown"
+						    	aria-haspopup="true" aria-expanded="false">
+						    	<i th:if="${file.access.access == 'PUBLIC'}" class="fa fa-info-circle fa-lg text-danger"></i>
+						    	<i th:if="${file.access.access == 'PRIVATE'}" class="fa fa-info-circle fa-lg text-success"></i>
+								<i th:if="${file.access.access == 'PROTECTED'}" class="fa fa-info-circle fa-lg text-primary"></i>
+						  	</i>
+						  							  	
+						  	<div class="dropdown-menu text-center p-2" aria-labelledby="dropdownMenu3">
+						    	<span th:if="${file.access.access == 'PUBLIC'}">
+						    		<h6 class="dropdown-header text-danger" th:text="${file.access.access}">PUBLIC</h6>
+						    		<div class="dropdown-divider"></div>
+									<a th:href="@{/list-files/private(fileId=${file.id})}" th:unless="${file.access.access == 'PRIVATE'}" class="btn btn-success" style="width: 100%">Private</a><br>
+									<a th:href="@{/list-files/protected(fileId=${file.id})}" th:unless="${file.access.access == 'PROTECTED'}" class="btn btn-primary" style="width: 100%">Protected</a>
+								</span>
+								<span th:if="${file.access.access == 'PRIVATE'}">
+						    		<h6 class="dropdown-header text-success" th:text="${file.access.access}">PRIVATE</h6>
+						    		<div class="dropdown-divider"></div>
+									<a th:href="@{/list-files/public(fileId=${file.id})}" th:unless="${file.access.access == 'PUBLIC'}" class="btn btn-danger" style="width: 100%">Public</a><br>
+									<a th:href="@{/list-files/protected(fileId=${file.id})}" th:unless="${file.access.access == 'PROTECTED'}" class="btn btn-primary" style="width: 100%">Protected</a>
+								</span>
+								<span th:if="${file.access.access == 'PROTECTED'}">
+						    		<h6 class="dropdown-header text-primary" th:text="${file.access.access}">PROTECTED</h6>
+						    		<div class="dropdown-divider"></div>
+									<a th:href="@{/list-files/public(fileId=${file.id})}" th:unless="${file.access.access == 'PUBLIC'}" class="btn btn-danger" style="width: 100%">Public</a><br>
+									<a th:href="@{/list-files/private(fileId=${file.id})}" th:unless="${file.access.access == 'PRIVATE'}" class="btn btn-success" style="width: 100%">Private</a>
+								</span>
+							</div>
+						</div>
 					</td>
-					<td th:text="${file.fileName}" class="w3-padding w3-animate-opacity w3-col m7 s7 w3-medium" style="word-break: break-all;" />
-					<td th:text="${file.fileSize}" class="w3-padding w3-animate-opacity w3-col m2 s2 w3-center"/>
-					<td class="w3-padding w3-animate-opacity w3-center w3-col m1 s1"><a th:href="@{uploads/} + ${file.fileName}" class="fa fa-download w3-text-green"></a></td>
-					<td class="w3-padding w3-animate-opacity w3-center w3-col m1 s1"><a th:href="@{/delete-file(id=${file.id},name=${file.fileName})}" class="fa fa-trash w3-text-red"></a></td>
+					<td th:text="${file.fileName}"  class="text-left" style="word-break: break-all;" />
+					<td class="text-right" th:text="${file.fileSize}"/>
+					<td class="text-right"><a th:href="@{uploads/} + ${file.fileName}" class="fa fa-download text-success"></a></td>
+					<td><a th:href="@{/delete-file(id=${file.id},name=${file.fileName})}" class="fa fa-trash text-danger"></a></td>
 				</tr>
 			</table>
 		</div>
 	</div>
 	
-	<div th:if="${currentPage == 'fileAccess'}" class="w3-center w3-display-middle w3-white w3-card w3-round w3-padding">
-
-		<h2>Choose to See the files.</h2>
-		<a th:href="@{/} + ${username} + @{/protected/login}" class="w3-button w3-blue w3-padding-16 w3-input">Protected</a>
-		<a th:href="@{/} + ${username} + @{/public}" class="w3-button w3-red w3-padding-16 w3-input">Public</a>
-
+	<!-- 
+		Public / Protected view chooser.
+	 -->
+	
+	<div th:if="${currentPage == 'fileAccess'}" class="container-fluid p-5">
+		
+			<div class="bg-white border border-light m-auto form-size text-center p-5">
+				
+				<p class="h2-responsive blue-grey-text">Choose to See the files.</p>
+				
+				<div class="row">
+					<a th:href="@{/} + ${username} + @{/protected/login}" class="btn purple-gradient col">Protected</a>
+					<a th:href="@{/} + ${username} + @{/public}" class="btn purple-gradient col">Public</a>			
+				</div>
+			</div>			
+		
 	</div>
 
-	<form th:if="${currentPage == 'askTempPass'}" th:action="@{/} + ${username} + @{/protected/login}" method="post" class="w3-container w3-section w3-center w3-card w3-white w3-round w3-mobile" style="margin:auto;width:400px">
-		
-		<div style="padding : 20px;">
-			<h2>Login</h2>
-					<br>
-	      	<input name="password" tabindex="2" class="w3-input w3-round" type="password" placeholder="Password" pattern=".{1,6}" title="* Max 6 characters." required>
-					<br>
-	      	<input tabindex="3" class="w3-input w3-button w3-border w3-border-red w3-round" type="submit" value="Submit">
-	      	<br>
-	      	<div class="w3-panel w3-red w3-round" th:if="${param.error}">
-	      		<p style="font-size:12pt">Wrong password.</p>
-	      	</div>
-	      	<div class="w3-panel w3-red w3-round" th:if="${param.expired}">
-	      		<p style="font-size:12pt">You're already using your account somewhere.</p>
-	      	</div>
-      	</div>
-    </form>
+	<!-- 
+		Form for Asking Temporary code generated by the user.
+	 -->
 
-	<div th:if="${currentPage == 'fileAccessPublic' OR currentPage == 'fileAccessProtected'}">
+	<section th:if="${currentPage == 'askTempPass'}" class="border border-light bg-white form-size mx-auto p-5 m-5">
+		<p class="h3 mb-5 text-center text-primary">Sign In</p>
 		
-		<div class="w3-section w3-container w3-mobile w3-xlarge">
-			<h1 th:if="${#arrays.length(files) == 0 }" class="w3-display-middle w3-center w3-border w3-border-teal w3-padding w3-hover-border-red">[[${username}]] does not have a share.</h1>
-			
-			<div class="w3-panel w3-green w3-large w3-center">
-				<p>You are currently accessing [[${username}]]'s file share.</p>
-			</div>
+		<form th:action="@{/} + ${username} + @{/protected/login}" method="post" class="card-body px-lg-5 pt-0">
 		
-			<table th:if="${#arrays.length(files) > 0 }" class="w3-center w3-table w3-striped w3-hoverable" style="table-layout: fixed;">
-				<tr th:each="file : ${files}" class="w3-row">
-					<td th:text="${file.fileName}" class="w3-padding w3-animate-opacity w3-col m9 s9" style="word-break: break-all;"/>
-					<td th:text="${file.fileSize}" class="w3-padding w3-animate-opacity w3-col m2 s2"/>
-					<td class="w3-padding w3-animate-opacity w3-center w3-col m1 s1"><a th:href="@{uploads/} + ${file.fileName}" class="fa fa-download w3-text-green"></a></td>
+			<input id="password" name="password" tabindex="2" class="form-control mb-4" type="password" placeholder="Password" pattern=".{1,6}" title="* Max 6 characters." required>
+	      	
+	      	<div class="text-center mb-4" th:if="${param.error}">
+	      		<p class="alert alert-danger">Wrong password.</p>
+	      	</div>
+	      	<div class="text-center mb-4" th:if="${param.expired}">
+	      		<p class="alert alert-danger">You're already using your account somewhere.</p>
+	      	</div>
+	      	
+		    <button class="btn btn-info btn-block my-4" type="submit">Submit</button>
+		</form>
+	</section>
+    
+    <!-- 
+    	PUBLIC & PROTECTED files access.
+     -->
+
+	<div th:if="${currentPage == 'fileAccessPublic' OR currentPage == 'fileAccessProtected'}" class="container-fluid">
+		
+		<h1 th:if="${#arrays.length(files) == 0 }" class="alert alert-warning text-center m-3">[[${username}]] has not shared anything.</h1>
+		
+		<p th:unless="${#arrays.length(files) == 0 }" class="h3-responsive alert alert-success text-center m-3">You are currently accessing [[${username}]]'s file share.</p>
+	
+		<div class="table-responsive text-nowrap">
+			<table th:if="${#arrays.length(files) > 0 }" class="table table-hover bg-white text-center border border-light" style="table-layout: fixed;">
+				<tr th:each="file : ${files}">
+					<td th:text="${file.fileName}" style="word-break: break-all;"/>
+					<td th:text="${file.fileSize}"/>
+					<td><a th:href="@{/uploads/} + ${file.fileName}" class="fa fa-download text-success"></a></td>
 				</tr>
 			</table>
 		</div>

@@ -4,11 +4,7 @@
 <meta charset="ISO-8859-1">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<link rel="stylesheet" th:href="@{/css/basic.css}">
-	<link rel="stylesheet" th:href="@{/css/w3.css}">
-	<link href="https://fonts.googleapis.com/css?family=Ubuntu|Oxygen|Lobster&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	
+	<span th:replace="includes :: links"></span>	
 	
 	<title th:if="${currentPage == 'analytics'}">Analytics</title>
 	<title th:if="${currentPage == 'listUsers'}">User List</title>
@@ -16,59 +12,73 @@
 
 </head>
 
-<body class="w3-oxygen">
+<body>
 
-	<div class="w3-sidebar w3-bar-block w3-center w3-animate-left w3-dark-grey w3-hide-small w3-mobile" style="padding-top: 100px">
-		<a href="/admin/analytics" class="w3-bar-item w3-button w3-padding-16 w3-mobile">Analytics</a>
-		<a href="/admin/list-users" class="w3-bar-item w3-button w3-padding-16 w3-mobile">List Users</a>
-		<a href="/admin/userFeedback" class="w3-bar-item w3-button w3-padding-16 w3-mobile">Feedbacks</a>
-	</div>
+	<nav class="navbar fixed-bottom navbar-expand-sm navbar-sm navbar-light bg-transparent card border border-light animated bounceInUp">
+	  <!-- Collapse button -->
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bottomnav"
+			aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<!-- Collapsible content -->
+		<div class="collapse navbar-collapse justify-content-end" id="bottomnav">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item"><a href="/admin/analytics" class="btn btn-danger" style="width: 300px">Analytics</a></li>
+				<li class="nav-item"><a href="/admin/list-users" class="btn btn-danger" style="width: 300px">List Users</a></li>
+				<li class="nav-item"><a href="/admin/userFeedback" class="btn btn-danger" style="width: 300px">Feedbacks</a></li>
+			</ul>
+		</div>
+	</nav>
 
 	<span th:replace="includes :: header"></span>
 	
-	<div th:if="${currentPage == 'analytics'}" class="w3-container w3-section w3-mobile w3-large w3-hide-small-content-shift w3-left-margin-200">
-		<div class="w3-row-padding w3-center">
-			<div class="w3-section w3-col l4 m4 s4 w3-animate-zoom">
-				<div class="w3-card">
-					<header class="w3-container w3-teal">
-					  <i class="fa fa-user-circle-o fa-4x fa-fw w3-margin"></i>
+	<div th:if="${currentPage == 'analytics'}" class="container-fluid p-3">
+		<div class="row m-2">
+			<div class="col">
+				<div class="card green text-white text-center animated flipInX">
+					<header class="card-header">
+					  <i class="fa fa-user-circle-o fa-4x fa-fw"></i>
 					</header>
-					<div class="w3-container w3-white">
+					<div class="card-body">
 					  <h1 th:text="${analyticsData.totalCustomers}"></h1>
-					  <h3 class="w3-text-grey">Total Customers</h3>
+					  <h3>Total Customers</h3>
 					</div>
 				</div>
 			</div>
-			<div class="w3-section w3-col l4 m4 s4 w3-animate-zoom">
-				<div class="w3-card">
-					<header class="w3-container w3-teal">
-					  <i class="fa fa-file-text-o fa-4x fa-fw w3-margin"></i>
+			<div class="col">
+				<div class="card green text-white text-center animated flipInX">
+					<header class="card-header">
+					  <i class="fa fa-file-text-o fa-4x fa-fw"></i>
 					</header>
-					<div class="w3-container w3-white">
+					<div class="card-body">
 					  <h1 th:text="${analyticsData.totalFiles}"></h1>
-					  <h3 class="w3-text-grey">Total Files</h3>
+					  <h3>Total Files</h3>
 					</div>
 				</div>
 			</div>
-			<div class="w3-section w3-col l4 m4 s4 w3-animate-zoom">
-				<div class="w3-card">
-					<header class="w3-container w3-teal">
-					  <i class="fa fa-comments-o fa-4x fa-fw w3-margin"></i>
+		</div>
+		
+		<div class="row m-2">
+			<div class="col">
+				<div class="card green text-white text-center animated flipInX">
+					<header class="card-header">
+					  <i class="fa fa-comments-o fa-4x fa-fw"></i>
 					</header>
-					<div class="w3-container w3-white">
+					<div class="card-body">
 					  <h1 th:text="${analyticsData.totalFeedbacks}"></h1>
-					  <h3 class="w3-text-grey">Total Feedbacks</h3>
+					  <h3>Total Feedbacks</h3>
 					</div>
 				</div>
 			</div>
-			<div class="w3-section w3-col w3-animate-zoom">
-				<div class="w3-card">
-					<header class="w3-container w3-teal">
-					  <i class="fa fa-globe fa-4x fa-fw w3-margin"></i>
+			<div class="col">
+				<div class="card green text-white text-center animated flipInX">
+					<header class="card-header">
+					  <i class="fa fa-globe fa-4x fa-fw"></i>
 					</header>
-					<div class="w3-container w3-white">
+					<div class="card-body">
 					  <h1 th:text="${analyticsData.totalOnline}"></h1>
-					  <h3 class="w3-text-grey">Total Online Users</h3>
+					  <h3>Total Online Users</h3>
 					</div>
 				</div>
 			</div>	
@@ -79,14 +89,14 @@
 		List users
 	  -->
 
-	<div th:if="${currentPage == 'listUsers'}" class="w3-container w3-section w3-mobile w3-large w3-hide-small-content-shift w3-left-margin-200" >
-		<table class="w3-center w3-table w3-striped w3-hoverable" style="table-layout: fixed;">
-			<tr th:each="user : ${users}" class="w3-row" style="word-break: break-all;">
-				<td th:text="${user.id}" class="w3-padding w3-animate-opacity w3-col m1 s1"/>
-				<td th:text="${user.username}" class="w3-padding w3-animate-opacity w3-col m3 s3"/>
-				<td th:text="${user.email}" class="w3-padding w3-animate-opacity w3-col m6 s6" />
-				<td class="w3-padding w3-animate-opacity w3-col m1 s1"><a th:href="@{/admin/manage-role(id=${user.id})}" class="fa fa-edit w3-text-blue"></a></td>
-				<td class="w3-padding w3-animate-opacity w3-col m1 s1"><a th:href="@{/admin/delete-user(id=${user.id})}" class="fa fa-trash w3-text-red"></a></td>
+	<div th:if="${currentPage == 'listUsers'}" class="container-fluid p-3 mb-5">
+		<table class="table table-hover bg-white border border-light text-center animated fadeIn" style="table-layout: fixed;">
+			<tr th:each="user : ${users}" style="word-break: break-all;">
+				<td th:text="${user.id}"/>
+				<td th:text="${user.username}" class="text-left"/>
+				<td th:text="${user.email}" class="text-left"/>
+				<td><a th:href="@{/admin/manage-role(id=${user.id})}" class="fa fa-edit text-primary"></a></td>
+				<td><a th:href="@{/admin/delete-user(id=${user.id})}" class="fa fa-trash text-danger"></a></td>
 			</tr>
 		</table>
 	</div>
@@ -95,12 +105,12 @@
 		User Feedback
 	  -->
 	
-	<div th:if="${currentPage == 'userFeedback'}" class="w3-container w3-section w3-mobile w3-large w3-hide-small-content-shift w3-left-margin-200">
-		<table class="w3-center w3-table w3-striped w3-hoverable" style="table-layout: fixed;">
-			<tr th:each="feedback : ${feedbacks}" class="w3-row" style="word-break: break-all;">
-				<td th:text="${feedback.id}" class="w3-padding w3-animate-opacity w3-col m1 s1"/>
-				<td th:text="${feedback.message}" class="w3-padding w3-animate-opacity w3-col m10 s10"/>
-				<td class="w3-padding w3-animate-opacity w3-col m1 s1"><a th:href="@{/admin/delete-feedback(id=${feedback.id})}" class="fa fa-trash w3-text-red"></a></td>
+	<div th:if="${currentPage == 'userFeedback'}" class="container-fluid p-3 mb-5">
+		<table class="table table-hover bg-white border border-light text-center animated fadeIn" style="table-layout: fixed;">
+			<tr th:each="feedback : ${feedbacks}" style="word-break: break-all;">
+				<td th:text="${feedback.id}"/>
+				<td th:text="${feedback.message}" class="text-left"/>
+				<td><a th:href="@{/admin/delete-feedback(id=${feedback.id})}" class="fa fa-trash text-danger"></a></td>
 			</tr>
 		</table>
 	</div>

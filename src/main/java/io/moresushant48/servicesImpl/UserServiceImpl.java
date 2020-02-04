@@ -64,7 +64,7 @@ public class UserServiceImpl implements UserService{
 	
 	// Return User object filled with User detail of respective id.
 	public User getUserDetails(int id) {
-		return userRepository.getUserDetails(id);
+		return userRepository.getOne(id);
 	}
 	
 	public void updateRole(int roleID, int userID) {

@@ -1,7 +1,32 @@
 @charset "ISO-8859-1";
 
+html {
+	margin: 0px;
+	scroll-behavior: smooth;
+}
+
 body {
-	background-color : ghostwhite;
+	margin: 0px;
+	background-color : ghostwhite !important;
+	font-family: 'Oxygen', sans-serif !important;
+}
+
+html,
+body,
+#intro {
+	height: 100%;
+}
+
+#intro {
+    background: url("/images/background.jpg")no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.bg-transparent {
+	background-color: transparent !important;
 }
 
 a {
@@ -20,20 +45,25 @@ a {
 	
 }
 
+@media (min-width: 600px) {
+	.form-size {
+		width: 500px;
+	}	
+}
 
-.w3-custom-teal-fg {
+.teal-fg {
 	color : #00bfa5;
 }
 
-.w3-custom-teal-bg {
+.teal-bg {
 	background-color : #00bfa5;
 	color : white;
 }
 
-.w3-oxygen {
+.font-oxygen {
 	font-family: 'Oxygen', sans-serif;
 }
 
-.w3-lobster {
+.font-lobster {
 	font-family: 'Lobster', sans-serif;
 }

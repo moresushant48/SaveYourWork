@@ -4,44 +4,43 @@
 <meta charset="ISO-8859-1">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<link rel="stylesheet" th:href="@{/css/basic.css}">
-	<link rel="stylesheet" th:href="@{/css/w3.css}">
-	<link href="https://fonts.googleapis.com/css?family=Ubuntu|Oxygen|Lobster&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<span th:replace="includes :: links"></span>
 	
 	<title>User Details</title>	
 
 </head>
 
-<body class="w3-oxygen">
+<body>
 
 	<span th:replace="includes :: header"></span>
 	
-	<form action="/admin/updateRole" method="post" class="w3-container w3-section w3-card-2 w3-round-large w3-xlarge w3-white w3-mobile" style="margin:auto;width:400px">
-		<table style="padding: 20px" class="w3-table w3-row-padding w3-padding w3-margin-top">
-			<tr>
-				<td class="fa fa-user"></td>
-				<td>&nbsp;[[${user.username}]]</td>
-			</tr>
-			<tr>
-				<td class="fa fa-envelope"></td>
-				<td>&nbsp;[[${user.email}]]</td>
-			</tr>
-			<tr>
-				<td class="fa fa-key"></td>
-				<td class="w3-large">
-					&nbsp;&nbsp;<input type="radio" name="role" value="1"> &nbsp; SUPER_USER <br>
-					&nbsp;&nbsp;<input type="radio" name="role" value="2"> &nbsp; SITE_ADMIN <br>
-					&nbsp;&nbsp;<input type="radio" name="role" value="3"> &nbsp; SITE_USER</td>
-			</tr>
-			<tr>
-				<td><input type="hidden" th:value="${user.id}" th:name="id"></td>
-				<td></td>
-			</tr>
-			
-		</table>
-		<input type="submit" class="w3-input w3-button w3-border w3-border-teal w3-margin-bottom" value="Update Role">
+	<div class="container-fluid">
+	<form action="/admin/updateRole" method="post" class="border border-light rounded my-5 mx-auto p-lg-5 p-3 bg-white text-center form-size">
+		
+		<div class="mb-4">
+			<i class="fa fa-user-o fa-2x blue-grey-text"></i><br>
+			<p class="badge badge-primary" th:if="${user.role.role}" th:text="${user.role.role}"></p>
+			<p class="h4-responsive">[[${user.username}]]</p>
+		</div>
+		<div class="mb-4">
+			<i class="fa fa-envelope-o fa-2x blue-grey-text"></i>
+			<p class="h4-responsive">[[${user.email}]]</p>
+		</div>
+		<div class="mb-4">
+			<i class="fa fa-key fa-2x blue-grey-text"></i>
+			<select name="role" class="form-control mt-2">
+				<option value="2">Secondary Admin</option>
+				<option value="3">Normal User</option>
+			</select>
+			<input type="hidden" th:value="${user.id}" th:name="id">
+		</div>
+		<input type="submit" class="btn purple-gradient" value="Update Role">
+		<br>	
+		<a onclick="location.href='/admin/list-users'" class="text-primary"><i class="fa fa-arrow-left m-2"></i> Back</a>	
 	</form>
+	
+	
+	</div>
 	
 </body>
 </html>

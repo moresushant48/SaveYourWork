@@ -4,21 +4,18 @@
 <meta charset="ISO-8859-1">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<link rel="stylesheet" th:href="@{/css/basic.css}">
-	<link rel="stylesheet" th:href="@{/css/w3.css}">
-	<link href="https://fonts.googleapis.com/css?family=Ubuntu|Oxygen|Lobster&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<span th:replace="includes :: links"></span>
 	
 	<title>Error</title>
 </head>
 <body>
 
-	<form class="w3-container w3-display-middle w3-center w3-padding-16">
-	
-		<i class="fa fa-frown-o fa-4x w3-text-blue-grey" aria-hidden="true"></i>
-		<h2 class="w3-text-blue-grey">Something went wrong !</h2>
-		<input type="button" class="w3-input w3-custom-teal-bg w3-section w3-hover-grey" value="Go Home" onclick="location.href='/'">
-	
+	<form class="container-fluid d-flex text-center vh-100">
+		<div class="m-auto">
+			<i class="fa fa-frown-o fa-4x blue-grey-text animated wobble" aria-hidden="true"></i>
+			<p class="h2-responsive">Something went wrong !</p>
+			<input type="button" class="btn purple-gradient" value="Go Home" onclick="location.href='/'">
+		</div>
 	</form>
 
 </body>

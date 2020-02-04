@@ -2,131 +2,137 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
 
+	<span th:fragment="links">
+		<link rel="stylesheet" th:href="@{/css/basic.css}">
+		<link href="https://fonts.googleapis.com/css?family=Ubuntu|Oxygen|Lobster&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+		<!-- Bootstrap core CSS -->
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+		<!-- Material Design Bootstrap -->
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.11.0/css/mdb.min.css" rel="stylesheet"> 
+		<!-- JQuery -->
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<!-- Bootstrap tooltips -->
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+		<!-- Bootstrap core JavaScript -->
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
+		<!-- MDB core JavaScript -->
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.12.0/js/mdb.min.js"></script>
+	</span>
+
 	<!-- 
 		Normal Buttons for Navigation Bar.
 	 -->
 			
-	<a th:fragment="sitename" href="/" class="w3-mobile w3-lobster w3-xxlarge w3-custom-teal-fg w3-margin-left w3-hover-text-grey">SaveYourWork</a>
+	<a th:fragment="sitename" href="#" class="navbar-brand h3-responsive p-3 lead font-lobster" style="color:#00bfa5;">SaveYourWork</a>
 	
-	<a th:fragment="btnLogin" href="/login" class="w3-mobile w3-bar-item w3-padding-16 w3-right w3-hover-light-grey w3-hover-text-teal w3-round">Login</a>
+	<li th:fragment="btnLogin" class="nav-item"><a href="/login" class="nav-link h6-responsive p-3">Login</a></li>
 
-	<a th:fragment="btnLogout" href="/logout" class="w3-mobile w3-bar-item w3-padding-16 w3-right w3-hover-light-grey w3-hover-text-teal w3-round">Logout</a>
+	<li th:fragment="btnLogout" class="nav-item"><a href="/logout" class="nav-link h6-responsive p-3">Logout</a></li>
 	
-	<a th:fragment="btnSignUp" href="/register" class="w3-mobile w3-bar-item w3-padding-16 w3-right w3-hover-light-grey w3-hover-text-teal w3-round">Sign Up</a>
-		
-	<a th:fragment="btnMyFiles" href="/file-home" class="w3-mobile w3-bar-item w3-padding-16 w3-right w3-hover-light-grey w3-hover-text-teal w3-round">My Files</a>
+	<li th:fragment="btnSignUp" class="nav-item"><a href="/register" class="nav-link h6-responsive p-3">Sign Up</a></li>
 	
-	<a th:fragment="btnHome" href="/" class="w3-mobile w3-bar-item w3-padding-16 w3-right w3-hover-light-grey w3-hover-text-teal w3-round">Home</a>	
+	<li th:fragment="btnMyFiles" class="nav-item"><a href="/file-home" class="nav-link h6-responsive p-3">My Files</a></li>
+	
+	<li th:fragment="btnHome" class="nav-item"><a href="/" class="nav-link h6-responsive p-3">Home</a></li>
 
-	<a th:fragment="btnAdminPanel" href="/admin/analytics" th:if="${#authorization.expression('hasAuthority(''SUPER_USER'')')}" class="w3-mobile w3-bar-item w3-padding-16 w3-right w3-hover-light-grey w3-hover-text-teal w3-round">Admin Panel</a>
+	<li th:fragment="btnAdminPanel" class="nav-item"><a href="/admin/analytics" th:if="${#authorization.expression('hasAuthority(''SUPER_USER'')')}" class="nav-link h6-responsive p-3">Admin Panel</a></li>
 
-	<a th:fragment="btnAuthName" class="/w3-mobile w3-hide-medium w3-hide-small w3-bar-item w3-padding-16 w3-right w3-hover-text-teal">Welcome, [[${#authentication.name}]]</a>
+	<li th:fragment="btnAuthName" class="nav-item"><a class="nav-link h6-responsive p-3">Welcome, [[${#authentication.name}]]</a></li>
 
-	<a th:fragment="btnAccount" href="/user/account" class="w3-mobile w3-bar-item w3-padding-16 w3-right w3-hover-light-grey w3-hover-text-teal w3-round">Account</a>
-
-	<!-- 
-		SideBar Buttons.
-	 -->
-	 
-	 <div th:fragment="sbAdminPanel" class="w3-mobile w3-hide-large w3-hide-medium">
-	 	<a href="/admin/analytics" class="w3-bar-item w3-button w3-padding-16 w3-mobile">Analytics</a>
-	 	<a href="/admin/list-users" class="w3-bar-item w3-button w3-padding-16 w3-mobile">List Users</a>
-		<a href="/admin/userFeedback" class="w3-bar-item w3-button w3-padding-16 w3-mobile">Feedbacks</a>
-	 </div>
-	 	
-	<div th:fragment="sbHome" class="w3-mobile w3-hide-large w3-hide-medium">
-	 	<!-- Trigger/Open the Modal -->
-		<a onclick="document.getElementById('modalbox').style.display='block'" class="w3-bar-item w3-button w3-padding-16 w3-mobile">Upload</a>
-		<a href="list-files" class="w3-bar-item w3-button w3-padding-16 w3-mobile">List Files</a>
-	 </div>
+	<li th:fragment="btnAccount" class="nav-item"><a href="/user/account" class="nav-link h6-responsive p-3">Account</a></li>
 	 
 	 <!-- 
 	 	Header Section for every page.
 	  -->
 
-	<header class="w3-container w3-padding-large w3-bar w3-card w3-white" style="position: sticky; z-index: 1">
-	
-		<div th:if="${currentPage == 'index' OR currentPage == 'contactus' OR currentPage == 'feedback'
-					OR currentPage == 'forgotUsername' OR currentPage == 'forgotPassword' OR currentPage == 'newPassword'
-					OR currentPage == 'fileAccessPublic' OR currentPage == 'fileAccessProtected' OR currentPage == 'askTempPass'
-					OR currentPage == 'fileAccess' }">
-			<span th:if="${#authentication.name == 'anonymousUser'}">
-				<span th:replace="includes :: sitename"></span>
-				<span th:replace="includes :: btnLogin"></span>
-				<span th:replace="includes :: btnSignUp"></span>
+	<header class="navbar sticky-top navbar-expand-lg navbar-light bg-white">
+		
+		<span th:replace="includes :: sitename"></span>
+		
+		<!-- Collapse button -->
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav"
+			aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<!-- Collapsible content -->
+		<div class="collapse navbar-collapse justify-content-end" id="nav">
+
+			<span th:if="${currentPage == 'index' OR currentPage == 'contactus' OR currentPage == 'feedback'
+						OR currentPage == 'forgotUsername' OR currentPage == 'forgotPassword' OR currentPage == 'newPassword'
+						OR currentPage == 'fileAccessPublic' OR currentPage == 'fileAccessProtected' OR currentPage == 'askTempPass'
+						OR currentPage == 'fileAccess' }">
+				<ul th:if="${#authentication.name == 'anonymousUser'}" class="navbar-nav mr-auto">
+					<span th:replace="includes :: btnLogin"></span>
+					<span th:replace="includes :: btnSignUp"></span>
+				</ul>
+				<ul th:if="${#authentication.name != 'anonymousUser'}" class="navbar-nav mr-auto">
+					<span th:replace="includes :: btnAuthName"></span>
+					<span th:replace="includes :: btnMyFiles"></span>
+					<span th:replace="includes :: btnAccount"></span>				
+					<span th:replace="includes :: btnAdminPanel"></span>
+					<span th:replace="includes :: btnLogout"></span>
+				</ul>
 			</span>
-			<span th:if="${#authentication.name != 'anonymousUser'}">
-				<span th:replace="includes :: sitename"></span>
-				<span th:replace="includes :: btnLogout"></span>
-				<span th:replace="includes :: btnAdminPanel"></span>
-				<span th:replace="includes :: btnAccount"></span>				
-				<span th:replace="includes :: btnMyFiles"></span>
-				<span th:replace="includes :: btnAuthName"></span>
-			</span>
-		</div>
 			
-		<div th:if="${currentPage == 'home'}">
-			<span th:replace="includes :: sitename"></span>
-			<span th:replace="includes :: btnLogout"></span>
-			<span th:replace="includes :: btnAdminPanel"></span>
-			<span th:replace="includes :: btnAccount"></span>
-			<span th:replace="includes :: btnHome"></span>
-			<span th:replace="includes :: btnAuthName"></span>
-			<span th:replace="includes :: sbHome"></span>
-		</div>
-	
-		<div th:if="${currentPage == 'login'}">
-			<span th:replace="includes :: sitename"></span>
-			<span th:replace="includes :: btnSignUp"></span>
-			<span th:replace="includes :: btnHome"></span>
-		</div>
+			<span>
+			<ul th:if="${currentPage == 'home'}" class="navbar-nav mr-auto">
+				<span th:replace="includes :: btnAuthName"></span>
+				<span th:replace="includes :: btnHome"></span>
+				<span th:replace="includes :: btnAccount"></span>
+				<span th:replace="includes :: btnAdminPanel"></span>
+				<span th:replace="includes :: btnLogout"></span>
+			</ul>
 		
-		<div th:if="${currentPage == 'register'}">
-			<span th:replace="includes :: sitename"></span>
-			<span th:replace="includes :: btnLogin"></span>
-			<span th:replace="includes :: btnHome"></span>
+			<ul th:if="${currentPage == 'login'}" class="navbar-nav mr-auto">
+				<span th:replace="includes :: btnHome"></span>
+				<span th:replace="includes :: btnSignUp"></span>
+			</ul>
+			
+			<ul th:if="${currentPage == 'register'}" class="navbar-nav mr-auto">
+				<span th:replace="includes :: btnHome"></span>
+				<span th:replace="includes :: btnLogin"></span>
+			</ul>
+			
+			<ul th:if="${currentPage == 'analytics' OR currentPage == 'listUsers' OR currentPage == 'userFeedback'}" class="navbar-nav mr-auto">
+				<span th:replace="includes :: btnAuthName"></span>
+				<span th:replace="includes :: btnMyFiles"></span>
+				<span th:replace="includes :: btnAccount"></span>
+				<span th:replace="includes :: btnHome"></span>
+				<span th:replace="includes :: btnLogout"></span>
+			</ul>
+			
+			<ul th:if="${currentPage == 'userDetails'}" class="navbar-nav mr-auto">
+				<span th:replace="includes :: btnAuthName"></span>
+				<span th:replace="includes :: btnMyFiles"></span>
+				<span th:replace="includes :: btnAccount"></span>
+				<span th:replace="includes :: btnHome"></span>
+				<span th:replace="includes :: btnLogout"></span>
+			</ul>
+			
+			<ul th:if="${currentPage == 'account' OR currentPage == 'resetPassword'} " class="navbar-nav mr-auto">
+				<span th:replace="includes :: btnAuthName"></span>
+				<span th:replace="includes :: btnMyFiles"></span>
+				<span th:replace="includes :: btnAdminPanel"></span>
+				<span th:replace="includes :: btnHome"></span>
+				<span th:replace="includes :: btnLogout"></span>
+			</ul>
+			</span>
 		</div>
-		
-		<div th:if="${currentPage == 'analytics' OR currentPage == 'listUsers' OR currentPage == 'userFeedback'}">
-			<span th:replace="includes :: sitename"></span>
-			<span th:replace="includes :: btnLogout"></span>
-			<span th:replace="includes :: btnHome"></span>
-			<span th:replace="includes :: btnAccount"></span>
-			<span th:replace="includes :: btnMyFiles"></span>
-			<span th:replace="includes :: btnAuthName"></span>
-			<span th:replace="includes :: sbAdminPanel"></span>
-		</div>
-		
-		<div th:if="${currentPage == 'userDetails'}">
-			<span th:replace="includes :: sitename"></span>
-			<span th:replace="includes :: btnLogout"></span>
-			<span th:replace="includes :: btnHome"></span>
-			<span th:replace="includes :: btnAccount"></span>
-			<span th:replace="includes :: btnMyFiles"></span>
-			<span th:replace="includes :: btnAuthName"></span>
-		</div>
-		
-		<div th:if="${currentPage == 'account' OR currentPage == 'resetPassword'} ">
-			<span th:replace="includes :: sitename"></span>
-			<span th:replace="includes :: btnLogout"></span>
-			<span th:replace="includes :: btnHome"></span>
-			<span th:replace="includes :: btnAdminPanel"></span>
-			<span th:replace="includes :: btnMyFiles"></span>
-			<span th:replace="includes :: btnAuthName"></span>
-		</div>
-				
+
 	</header>
 	
-	<footer th:fragment="footer" class="w3-container w3-padding-large w3-mobile w3-center w3-row w3-black">
-	
-		<p class="w3-half w3-left-align w3-mobile">&copy; Copyright 2019 Sushant More - All Rights Reserved</p>
-		
-		<p class="w3-half w3-right-align w3-mobile">
-			<a href="feedback" class="w3-hover-text-teal">Feedback</a>&nbsp;&nbsp;
-			<a href="contactus" class="w3-hover-text-teal">Contact</a>
-		</p>
-		
-		
+	<footer th:fragment="footer" class="page-footer font-small teal">
+		<div class="container-fluid py-3 text-center">
+			<a href="/feedback">Feedback</a>&nbsp;&nbsp;
+			<a href="/contactus">Contact</a>
+		</div>
+
+		<div class="footer-copyright text-center py-3">
+			&copy; 2020 Copyright:Sushant More - All Rights Reserved
+		</div>
 	</footer>
 </body>
 </html>
