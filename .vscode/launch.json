@@ -10,7 +10,17 @@
       "request": "launch",
       "port": 9252,
       "webRoot": "${workspaceFolder}",
-      "url": "http://127.0.0.1:51197/p/SaveYourWork/src/main/resources/templates/home.html?_cmAuth\u003deswaukmbla"
+      "url": "http://127.0.0.1:51197/p/SaveYourWork/src/main/resources/templates/home.html?_cmAuth=eswaukmbla"
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot-SaveYourWorkApplication<SaveYourWork>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "console": "internalConsole",
+      "mainClass": "io.moresushant48.SaveYourWorkApplication",
+      "projectName": "SaveYourWork",
+      "args": ""
     }
   ]
 }
