@@ -2,6 +2,7 @@ package io.moresushant48.controller;
 
 import java.io.IOException;
 import java.security.Principal;
+import java.security.SecureRandom;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -89,6 +90,21 @@ public class UserController {
 		return mv;
 	}
 	
+	/*
+	 * Generate new Security Key (used for protected file access) for user acc. 
+	 */
 	
-	
+	@GetMapping("/account/genKey")
+	public ModelAndView genKey() {
+		ModelAndView mv = new ModelAndView("redirect:/user/account");
+		
+		if(user == null) {
+			mv.setViewName("redirect:/user/account");	
+		}else {
+			user.setPublicPass(String.valueOf(new SecureRandom().nextInt(999999)));
+			userRepository.save(user);
+		}
+		
+		return mv;
+	}
 }

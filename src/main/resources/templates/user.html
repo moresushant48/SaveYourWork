@@ -16,24 +16,30 @@
 	<span th:replace="includes :: header"></span>
 	
 	<div th:if="${currentPage == 'account'}" class="container mt-3">
-		<div class="m-auto bg-white border border-light p-lg-5 form-size rounded">
+		<div class="m-auto bg-white border border-light text-center p-lg-5 form-size rounded">
 		
 		<div class="form-group">
 			<p class="h1-responsive text-center text-primary">Account</p>
 		</div>
       	<hr>
       	<div class="form-group mb-2">
-      		<label for="username">Username</h5>
+      		<i class="fa fa-user-o fa-2x blue-grey-text"></i>
       		<p id="username" class="h3-responsive" th:text="${user.username}"></p>
       	</div>      	
       	
       	<div class="form-group mb-2">
-	      	<label for="email">Email</label>
-	      	<p id="username" class="h3-responsive" th:text="${user.email}"></p>
+	      	<i class="fa fa-envelope-o fa-2x blue-grey-text"></i>
+	      	<p id="email" class="h3-responsive" th:text="${user.email}"></p>
       	</div>
       	
+      	<div class="form-group mb-2">
+	      	<a href="/user/account/genKey" class="btn amy-crisp-gradient text-white w-100 mr-2">
+	      	<p id="publicPass" class="h3-responsive font-weight-bold text-monospace" th:text="${user.publicPass}"></p>
+	      	Generate Security Key
+	      	</a>
+      	</div>
       	
-     	<input class="btn purple-gradient w-100 mr-2" type="button" value="Change Password" onclick="location.href='/user/account/resetPassword'">
+     	<a href="/user/account/resetPassword" class="btn purple-gradient w-100 mr-2">Change Password</a>
       	
       	</div>
    	</div>
@@ -47,7 +53,7 @@
 			<input name="password" class="form-control mb-4" type="password" placeholder="Password" pattern=".{3,15}" title="* Three or more characters. * Not more than 15 characters allowed." required>	   
 			
 			<div class="text-center mb-4" th:if="${param.success}">
-	      		<p class="alert alert-success">Password changed Successfully.<br><a href="/login" class="text-primary"><u>Please Login</u></a></p>
+	      		<p class="alert alert-success">Password changed Successfully.<br><a href="/login" class="text-primary">Please Login</a></p>
 	      	</div>
 	      	<div class="text-center mb-4" th:if="${param.failed}">
 	      		<p class="alert alert-danger">Couldn't change password.</p>
