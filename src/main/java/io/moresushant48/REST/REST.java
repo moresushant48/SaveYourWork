@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import io.moresushant48.Repository.UserRepository;
+import io.moresushant48.model.Role;
 import io.moresushant48.model.User;
 
 @RestController
@@ -27,8 +28,12 @@ public class REST {
 	
 	@GetMapping("/{id}")
 	@JsonIgnore
-	public Optional<User> viewList(@PathVariable("id") int id) {
+	public User viewList(@PathVariable("id") int id) {
 		
-		return userRepository.findById(id);
+		User user = userRepository.findById(id).get();
+		user.setPassword("null");
+		
+
+		return user;
 	}
 }
