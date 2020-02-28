@@ -85,6 +85,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 		.invalidateHttpSession(true)
 		.and()
 		
+		.rememberMe().key("moresushant48")
+		.and()
+		
 		//exception
 		.exceptionHandling()
 		.accessDeniedPage("/accessDenied");
