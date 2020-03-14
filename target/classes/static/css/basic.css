@@ -7,7 +7,8 @@ html {
 
 body {
 	margin: 0px;
-	background-color : ghostwhite !important;
+	background-color : #2b3140 !important;
+	color : white !important;
 	font-family: 'Oxygen', sans-serif !important;
 }
 
@@ -23,6 +24,14 @@ body,
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+}
+
+.navbar {
+	box-shadow: none !important;
+}
+
+.bg-color {
+	background-color : #2b3140;
 }
 
 .bg-transparent {
@@ -42,13 +51,17 @@ a {
 	.w3-hide-small-content-shift {
 	margin-left: 0px !important
 	}
+	.hide {
+		display: none;
+	}
 	
 }
 
 @media (min-width: 600px) {
 	.form-size {
 		width: 500px;
-	}	
+		
+	}
 }
 
 .teal-fg {

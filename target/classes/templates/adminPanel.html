@@ -14,7 +14,7 @@
 
 <body>
 
-	<nav class="navbar fixed-bottom navbar-expand-sm navbar-sm navbar-light bg-transparent card border border-light animated bounceInUp">
+	<nav class="navbar fixed-bottom navbar-expand-sm navbar-sm navbar-light bg-transparent card animated bounceInUp">
 	  <!-- Collapse button -->
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bottomnav"
 			aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,10 +33,11 @@
 
 	<span th:replace="includes :: header"></span>
 	
-	<div th:if="${currentPage == 'analytics'}" class="container-fluid p-3">
-		<div class="row m-2">
-			<div class="col">
-				<div class="card green text-white text-center animated flipInX">
+	<div th:if="${currentPage == 'analytics'}" class="container-fluid p-3 row m-auto animated fadeIn slow">
+				
+		<div class="col-sm">
+			<div class="row-fluid my-4">
+				<div class="card text-success text-center">
 					<header class="card-header">
 					  <i class="fa fa-user-circle-o fa-4x fa-fw"></i>
 					</header>
@@ -46,8 +47,8 @@
 					</div>
 				</div>
 			</div>
-			<div class="col">
-				<div class="card green text-white text-center animated flipInX">
+			<div class="row-fluid my-4">
+				<div class="card text-success text-center">
 					<header class="card-header">
 					  <i class="fa fa-file-text-o fa-4x fa-fw"></i>
 					</header>
@@ -59,9 +60,13 @@
 			</div>
 		</div>
 		
-		<div class="row m-2">
-			<div class="col">
-				<div class="card green text-white text-center animated flipInX">
+		<div class="col-sm">
+			<img alt="" th:src="@{/images/graph.svg}" class="img-fluid">
+		</div>
+		
+		<div class="col-sm">
+			<div class="row-fluid my-4">
+				<div class="card text-success text-center">
 					<header class="card-header">
 					  <i class="fa fa-comments-o fa-4x fa-fw"></i>
 					</header>
@@ -71,8 +76,8 @@
 					</div>
 				</div>
 			</div>
-			<div class="col">
-				<div class="card green text-white text-center animated flipInX">
+			<div class="row-fluid my-4">
+				<div class="card text-success text-center">
 					<header class="card-header">
 					  <i class="fa fa-globe fa-4x fa-fw"></i>
 					</header>
@@ -81,7 +86,7 @@
 					  <h3>Total Online Users</h3>
 					</div>
 				</div>
-			</div>	
+			</div>
 		</div>
 	</div>
 		
@@ -90,13 +95,13 @@
 	  -->
 
 	<div th:if="${currentPage == 'listUsers'}" class="container-fluid p-3 mb-5">
-		<table class="table table-hover bg-white border border-light text-center animated fadeIn" style="table-layout: fixed;">
+		<table class="table table-hover bg-light border border-light text-center animated fadeIn" style="table-layout: fixed;">
 			<tr th:each="user : ${users}" style="word-break: break-all;">
 				<td th:text="${user.id}"/>
 				<td th:text="${user.username}" class="text-left"/>
 				<td th:text="${user.email}" class="text-left"/>
-				<td><a th:href="@{/admin/manage-role(id=${user.id})}" class="fa fa-edit text-primary"></a></td>
-				<td><a th:href="@{/admin/delete-user(id=${user.id})}" class="fa fa-trash text-danger"></a></td>
+				<td><a th:href="@{/admin/manage-role(id=${user.id})}" class="fa fa-edit fa-lg text-primary"></a></td>
+				<td><a th:href="@{/admin/delete-user(id=${user.id})}" class="fa fa-trash fa-lg text-danger"></a></td>
 			</tr>
 		</table>
 	</div>
@@ -106,11 +111,11 @@
 	  -->
 	
 	<div th:if="${currentPage == 'userFeedback'}" class="container-fluid p-3 mb-5">
-		<table class="table table-hover bg-white border border-light text-center animated fadeIn" style="table-layout: fixed;">
+		<table class="table table-hover bg-light border border-light text-center animated fadeIn" style="table-layout: fixed;">
 			<tr th:each="feedback : ${feedbacks}" style="word-break: break-all;">
 				<td th:text="${feedback.id}"/>
 				<td th:text="${feedback.message}" class="text-left"/>
-				<td><a th:href="@{/admin/delete-feedback(id=${feedback.id})}" class="fa fa-trash text-danger"></a></td>
+				<td><a th:href="@{/admin/delete-feedback(id=${feedback.id})}" class="fa fa-trash fa-lg text-danger"></a></td>
 			</tr>
 		</table>
 	</div>

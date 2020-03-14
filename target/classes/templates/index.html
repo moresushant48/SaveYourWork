@@ -8,6 +8,9 @@
 	
 	<style type="text/css">
 		.mySlides {display:none;}
+		header {
+			background: transparent !important;
+		}
 	</style>
 
 	<title>HOME</title>
@@ -15,10 +18,10 @@
 </head>
 
 <body>
+		
+	<div id="intro" class="view">
 	
 	<span th:replace="includes :: header"></span>
-	
-	<div id="intro" class="view">
 
 		<div class="mask rgba-black-dark">
 
@@ -36,7 +39,7 @@
 
 						<!-- Description -->
 						<h3 class="white-text my-4">SaveYourWork provides a <b>Convenient</b> & <b>Secure</b> File Sharing Service.</h3>
-						<a href="#about" class="btn cloudy-knoxville-gradient">Read more<i class="fa fa-book ml-2"></i></a>
+						<a href="#about" class="btn cloudy-knoxville-gradient text-dark">Read more<i class="fa fa-book ml-2"></i></a>
 
 					</div>
 					<div class="mySlides col-md-10 animated fadeInUp slow">
@@ -49,7 +52,7 @@
 
 						<!-- Description -->
 						<h3 class="white-text my-4">Upload your files and be able to access them from anywhere in the world, with ease.</h3>
-						<a href="#about" class="btn cloudy-knoxville-gradient">Read more<i class="fa fa-book ml-2"></i></a>
+						<a href="#about" class="btn cloudy-knoxville-gradient text-dark">Read more<i class="fa fa-book ml-2"></i></a>
 
 					</div>
 
@@ -74,16 +77,16 @@
 		</div>
 	</div>
 
-	<main>
+	<main class="bg-white">
 		<div class="container-fluid">
 			<!-- APP PROMO  -->
-			<section class="row d-flex justify-content-center text-center p-5" style="min-height: 100vh;">
+			<section class="row d-flex justify-content-center text-center text-dark p-5" style="min-height: 100vh;">
 				<div class="col-md-6 m-auto">
 					<img class="img-fluid" alt="" th:src="@{/images/DrawerAndFilesWebsite.svg}">
 				</div>
 				
 				<div class="col-md-6 m-auto view overlay">
-					<p class="h1-responsive"><span class="font-lobster ">“SaveYourWork”</span> for Android</p>
+					<p class="h1-responsive"><span class="font-lobster teal-fg">“SaveYourWork”</span> for Android</p>
 					<p class="h6-responsive" style="line-height: 40px">As a Multi-Platform service, <br>Our Official SaveYourWork Application  is now available for all the Android Devices.</p>
 					<a class="btn purple-gradient m-2">Download</a>
 				</div>
@@ -97,7 +100,7 @@
 
 		<div class="container-fluid">
 			<!-- ABOUT  -->
-			<section class="row d-flex justify-content-center text-center animate fadeInUp" id="about"  style="min-height: 100vh;">
+			<section class="row d-flex justify-content-center text-center text-dark animate fadeInUp" id="about"  style="min-height: 100vh;">
 
 				<div class="container m-auto p-4">
 					<h2>About Us</h2>

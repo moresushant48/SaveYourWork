@@ -30,25 +30,10 @@
 
 	<span th:replace="includes :: header"></span>
 
-	<nav th:if="${currentPage == 'home'}" class="navbar fixed-bottom navbar-expand-sm navbar-light bg-transparent card border border-light animated bounceInUp">
-	  <!-- Collapse button -->
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bottomnav"
-			aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-
-		<!-- Collapsible content -->
-		<div class="collapse navbar-collapse justify-content-end" id="bottomnav">
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item">
-					<button id="modalActivate" type="button" class="btn btn-danger" style="width: 300px" data-toggle="modal" data-target="#exampleModalPreview">
-					  Upload
-					</button>
-				</li>
-				<li class="nav-item"><a href="list-files" class="btn btn-danger" style="width: 300px">List Files</a></li>
-			</ul>
-		</div>
-	</nav>
+	<button id="modalActivate" type="button"
+		style="width: 70px; height: 70px; border-radius: 50px; position: fixed; right : 10px; bottom : 10px" 
+		class="btn btn-danger fa fa-plus fa-lg float-right text-center" data-toggle="modal" data-target="#exampleModalPreview">
+	</button>
 
 	<!-- Modal -->
 	<div class="modal fade bottom" id="exampleModalPreview" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
@@ -65,14 +50,14 @@
 		        <input class="form-control" type="file" name="file" multiple>
 		        
 			    <select class="browser-default custom-select mt-4" name="accessId">
-			        <option value="" disabled="" selected="">Choose your option</option>
+			        <option value="" disabled="disabled" selected="selected">Choose your option</option>
 			        <option value="3">Public</option>
 			        <option value="2">Protected</option>
 			        <option value="1" selected="selected">Private</option>
 			    </select>
 		      </div>
 		      <div class="modal-footer">
-		        <button type="button" class="btn" data-dismiss="modal">Close</button>
+		        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
 		        <button type="submit" class="btn purple-gradient">Upload</button>
 		      </div>
 	      </form>
@@ -91,7 +76,7 @@
 		
 			<h1 th:if="${#arrays.length(files) == 0 }" class="alert alert-warning m-auto">You don't have any files here.<br> Upload some.</h1>
 		
-			<table th:if="${#arrays.length(files) > 0 }" class="table table-hover bg-white text-center border border-light mb-5" style="table-layout: fixed;">
+			<table th:if="${#arrays.length(files) > 0 }" class="table table-hover bg-light text-center" style="table-layout: fixed;">
 				
 				<tr th:each="file : ${files}">
 					<td class="" style="background-color: inherit;">
@@ -127,8 +112,8 @@
 					</td>
 					<td th:text="${file.fileName}"  class="text-left" style="word-break: break-all;" />
 					<td class="text-right" th:text="${file.fileSize}"/>
-					<td class="text-right"><a th:href="@{uploads/} + ${file.fileName}" class="fa fa-download text-success"></a></td>
-					<td><a th:href="@{/delete-file(id=${file.id},name=${file.fileName})}" class="fa fa-trash text-danger"></a></td>
+					<td class="text-right"><a th:href="@{/uploads/} + ${file.fileName}" class="fa fa-download fa-lg text-success"></a></td>
+					<td><a th:href="@{/delete-file(id=${file.id},name=${file.fileName})}" class="fa fa-trash fa-lg text-danger"></a></td>
 				</tr>
 			</table>
 		</div>
@@ -140,9 +125,9 @@
 	
 	<div th:if="${currentPage == 'fileAccess'}" class="container-fluid p-5">
 		
-			<div class="bg-white border border-light m-auto form-size text-center p-5">
+			<div class="bg-light border border-light m-auto form-size text-dark text-center p-5">
 				
-				<p class="h2-responsive blue-grey-text">Choose to See the files.</p>
+				<p class="h2-responsive">Choose to See the files.</p>
 				
 				<div class="row">
 					<a th:href="@{/} + ${username} + @{/protected/login}" class="btn purple-gradient col">Protected</a>
@@ -185,11 +170,11 @@
 		<p th:unless="${#arrays.length(files) == 0 }" class="h3-responsive alert alert-success text-center m-3">You are currently accessing [[${username}]]'s file share.</p>
 	
 		<div class="table-responsive text-nowrap">
-			<table th:if="${#arrays.length(files) > 0 }" class="table table-hover bg-white text-center border border-light" style="table-layout: fixed;">
+			<table th:if="${#arrays.length(files) > 0 }" class="table table-hover bg-light text-center" style="table-layout: fixed;">
 				<tr th:each="file : ${files}">
 					<td th:text="${file.fileName}" style="word-break: break-all;"/>
 					<td th:text="${file.fileSize}"/>
-					<td><a th:href="@{/uploads/} + ${file.fileName}" class="fa fa-download text-success"></a></td>
+					<td><a th:href="@{/uploads/} + ${file.fileName}" class="fa fa-download fa-lg text-success"></a></td>
 				</tr>
 			</table>
 		</div>
