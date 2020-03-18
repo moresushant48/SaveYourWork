@@ -10,21 +10,23 @@
 	<title th:if="${currentPage == 'forgotUsername'}">Username</title>
 	<title th:if="${currentPage == 'forgotPassword'}">Password</title>
 	<title th:if="${currentPage == 'newPassword'}">Reset Password</title>
+			
 </head>
 
 <body>
 
-	<span th:replace="includes :: header"></span>
+	<span th:replace="includes :: trans"></span>
 
 	<main>
-	
+    
+    <span th:replace="includes :: header"></span>
 		<div class="container-fluid">
 		
 			<!-- 
 				Login Page.
 			 -->
 		
-			<section th:if="${currentPage == 'login'}" class="border border-light rounded bg-light form-size text-dark mx-auto p-lg-5 mt-4">
+			<section th:if="${currentPage == 'login'}" class="border border-light rounded bg-light form-size text-dark mx-auto p-lg-5 mt-4 anim-fadeUp">
 				<p class="h3 mb-5 text-center text-primary">Sign In</p>
 				
 				<form th:action="@{/login}" method="post">
@@ -137,6 +139,6 @@
 		</div>
 		
 	</main>
-    
+	  
 </body>
 </html>

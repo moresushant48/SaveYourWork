@@ -80,3 +80,34 @@ a {
 .font-lobster {
 	font-family: 'Lobster', sans-serif;
 }
+
+/* Loading Screen Styling */
+
+.loading-screen {
+	position: relative;
+	padding-left: 0;
+	padding-right: 0;
+	padding-top: 0;
+	background-color: #4BEDC2;
+	width: 100%;
+	height: 100%;
+	transform: scaleY(0) skewX(0);
+	transform-origin: top left;
+	text-align: center;
+}
+
+.loading-screen-logo {
+	height: 20vh;
+	margin-top: 40vh;
+}
+
+.loading-container {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+	overflow: hidden;
+	z-index: 10;
+	pointer-events: none;
+}

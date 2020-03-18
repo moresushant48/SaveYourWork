@@ -28,8 +28,6 @@
 
 <body>
 
-	<span th:replace="includes :: header"></span>
-
 	<button id="modalActivate" type="button"
 		style="width: 70px; height: 70px; border-radius: 50px; position: fixed; right : 10px; bottom : 10px" 
 		class="btn btn-danger fa fa-plus fa-lg float-right text-center" data-toggle="modal" data-target="#exampleModalPreview">
@@ -65,20 +63,26 @@
 	  </div>
 	</div>
 	<!-- Modal -->
+
+	<span th:replace="includes :: trans"></span>
+
+	<main>
+
+	<span th:replace="includes :: header"></span>
 	
 	<div th:if="${currentPage == 'home'}" class="p-3 mb-5">
 				
 		<!-- 
 			User All Files
 		 -->
-				
+
 		<div class="table-responsive text-nowrap">
-		
-			<h1 th:if="${#arrays.length(files) == 0 }" class="alert alert-warning m-auto">You don't have any files here.<br> Upload some.</h1>
+			
+			<h1 th:if="${#arrays.length(files) == 0 }" class="text-center lead m-3"> <i class="fa fa-frown-o fa-4x"></i><br>You don't have any files here.<br> Upload some.</h1>
 		
 			<table th:if="${#arrays.length(files) > 0 }" class="table table-hover bg-light text-center" style="table-layout: fixed;">
 				
-				<tr th:each="file : ${files}">
+				<tr th:each="file : ${files}" th:id="tr + ${file.id}">
 					<td class="" style="background-color: inherit;">
 						<div class="dropdown dropright">
 						  	<i class="dropdown-toggle" id="dropdownMenu3" data-toggle="dropdown"
@@ -113,7 +117,8 @@
 					<td th:text="${file.fileName}"  class="text-left" style="word-break: break-all;" />
 					<td class="text-right" th:text="${file.fileSize}"/>
 					<td class="text-right"><a th:href="@{/uploads/} + ${file.fileName}" class="fa fa-download fa-lg text-success"></a></td>
-					<td><a th:href="@{/delete-file(id=${file.id},name=${file.fileName})}" class="fa fa-trash fa-lg text-danger"></a></td>
+					<td><a th:id="${file.id}" th:href="@{/delete-file(id=${file.id},name=${file.fileName})}" class="del fa fa-trash fa-lg text-danger"></a></td>
+					
 				</tr>
 			</table>
 		</div>
@@ -165,7 +170,7 @@
 
 	<div th:if="${currentPage == 'fileAccessPublic' OR currentPage == 'fileAccessProtected'}" class="container-fluid">
 		
-		<h1 th:if="${#arrays.length(files) == 0 }" class="alert alert-warning text-center m-3">[[${username}]] has not shared anything.</h1>
+		<h1 th:if="${#arrays.length(files) == 0 }" class="text-center lead m-3"> <i class="fa fa-frown-o fa-4x"></i><br>[[${username}]] has not shared anything.</h1>
 		
 		<p th:unless="${#arrays.length(files) == 0 }" class="h3-responsive alert alert-success text-center m-3">You are currently accessing [[${username}]]'s file share.</p>
 	
@@ -179,6 +184,6 @@
 			</table>
 		</div>
 	</div>
-	
+	</main>
 </body>
 </html>

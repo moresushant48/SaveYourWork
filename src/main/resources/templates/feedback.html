@@ -43,8 +43,12 @@
 
 <body onload="disable()">
 
-	<span th:replace="includes :: header"></span>
+	<span th:replace="includes :: trans"></span>
 
+	<main>
+	
+	<span th:replace="includes :: header"></span>
+	
 	<form id="feedback_form" th:action="@{/feedback}" th:object="${feedback}" method="post" class="container-fluid">
 		<div class="border border-light rounded bg-light form-size text-dark mx-auto p-lg-5 m-4 text-center">
 			
@@ -65,5 +69,6 @@
 	      	
       	</div>
     </form>
+	</main>
 </body>
 </html>

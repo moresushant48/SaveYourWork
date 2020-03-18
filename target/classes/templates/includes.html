@@ -24,7 +24,17 @@
 	
 	<!-- Local css -->
 	<script type="text/javascript" th:src="@{/js/basic.js}"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.4/gsap.min.js" integrity="sha256-6EA3edRalZC0PA7PmE6+Eedf0pgmMNZYOQpgAaZ2h3A=" crossorigin="anonymous"></script>
 </span>
+
+<div th:fragment="trans" class="loading-container">
+	<div class="loading-screen">
+		<h1 class="navbar-brand h1-responsive font-lobster loading-screen-logo">SaveYourWork</h1>
+		<script type="text/javascript">
+			animate();
+		</script>
+	</div>
+</div>
 
 <body>
 	<!-- 
@@ -53,7 +63,7 @@
 	 	Header Section for every page.
 	  -->
 
-	<header class="navbar sticky-top navbar-expand-lg navbar-dark bg-color" >
+	<header class="navbar navbar-expand-lg navbar-dark bg-color nav-anim" style="z-index: 8">
 		
 		<span th:replace="includes :: sitename"></span>
 		

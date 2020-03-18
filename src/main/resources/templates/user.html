@@ -12,11 +12,15 @@
 </head>
 
 <body>
+
+	<span th:replace="includes :: trans"></span>
+	
+	<main>
 	
 	<span th:replace="includes :: header"></span>
 	
 	<div th:if="${currentPage == 'account'}" class="container mt-3">
-		<div class="m-auto bg-light border border-light text-center p-lg-5 form-size text-dark rounded">
+		<div class="m-auto bg-light border border-light text-center p-lg-5 form-size text-dark rounded anim-fadeUp">
 		
 		<div class="form-group">
 			<p class="h1-responsive text-center text-primary">Account</p>
@@ -64,6 +68,8 @@
 			<a href="."><i class="fa fa-arrow-left"></i> Back</a>
 	    </div>
 	</form>
+    
+    </main>
     
 </body>
 </html>

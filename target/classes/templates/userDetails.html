@@ -12,6 +12,10 @@
 
 <body>
 
+	<span th:replace="includes :: trans"></span>
+
+	<main>
+
 	<span th:replace="includes :: header"></span>
 	
 	<div class="container-fluid">
@@ -38,9 +42,8 @@
 		<br>	
 		<a onclick="location.href='/admin/list-users'" class="text-primary"><i class="fa fa-arrow-left m-2"></i> Back</a>	
 	</form>
-	
-	
 	</div>
 	
+	</main>
 </body>
 </html>
