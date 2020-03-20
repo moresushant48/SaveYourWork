@@ -82,10 +82,10 @@ public class UploadController {
 	}
 	
 	@GetMapping("/delete-file")
-	public String deleteFile(@RequestParam("id") Long id, @RequestParam("name") String name) {
+	@ResponseBody
+	public void deleteFile(@RequestParam("id") Long id, @RequestParam("name") String name) {
 		
 		fileSystemStorageService.deleteById(id,name);
-		return "redirect:/list-files";
 	}
 	 
     @ExceptionHandler(StorageFileNotFoundException.class)

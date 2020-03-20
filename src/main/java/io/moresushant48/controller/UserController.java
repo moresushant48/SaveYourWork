@@ -38,10 +38,10 @@ public class UserController {
 		ModelAndView mv = new ModelAndView();
 		
 		user = userRepository.findByUsername(principal.getName());
-		model.addAttribute("files", fileRepository.listFiles(user.getId()));
+		model.addAttribute("uid",user.getId());
 		mv.addObject("currentPage", "home");
 		mv.setViewName("home");
-		return mv; 
+		return mv;
 	}
 
 	@GetMapping("/account")
