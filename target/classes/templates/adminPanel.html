@@ -38,7 +38,13 @@
 	<span th:replace="includes :: header"></span>
 	
 	<div th:if="${currentPage == 'analytics'}" class="container-fluid p-3 row m-auto animated fadeIn slow">
-				
+		
+		<script type="text/javascript">
+			$(document).ready(function () {
+				setInterval(getAnalytics, 2000);
+			});
+		</script>
+		
 		<div class="col-sm">
 			<div class="row-fluid my-4">
 				<div class="card text-success text-center">
@@ -46,7 +52,7 @@
 					  <i class="fa fa-user-circle-o fa-4x fa-fw"></i>
 					</header>
 					<div class="card-body">
-					  <h1 th:text="${analyticsData.totalCustomers}"></h1>
+					  <h1 id="totalCustomers"></h1>
 					  <h3>Total Customers</h3>
 					</div>
 				</div>
@@ -57,7 +63,7 @@
 					  <i class="fa fa-file-text-o fa-4x fa-fw"></i>
 					</header>
 					<div class="card-body">
-					  <h1 th:text="${analyticsData.totalFiles}"></h1>
+					  <h1 id="totalFiles"></h1>
 					  <h3>Total Files</h3>
 					</div>
 				</div>
@@ -75,7 +81,7 @@
 					  <i class="fa fa-comments-o fa-4x fa-fw"></i>
 					</header>
 					<div class="card-body">
-					  <h1 th:text="${analyticsData.totalFeedbacks}"></h1>
+					  <h1 id="totalFeedbacks"></h1>
 					  <h3>Total Feedbacks</h3>
 					</div>
 				</div>
@@ -86,7 +92,7 @@
 					  <i class="fa fa-globe fa-4x fa-fw"></i>
 					</header>
 					<div class="card-body">
-					  <h1 th:text="${analyticsData.totalOnline}"></h1>
+					  <h1 id="totalOnline"></h1>
 					  <h3>Total Online Users</h3>
 					</div>
 				</div>

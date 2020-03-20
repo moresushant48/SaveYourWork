@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import io.moresushant48.Repository.FeedbackRepository;
@@ -38,17 +39,19 @@ public class AdminController {
 	
 	@GetMapping("/analytics")
 	public ModelAndView analytics(Principal principal) {
-		ModelAndView mv = new ModelAndView();
+		ModelAndView mv = new ModelAndView("adminPanel");
+		mv.addObject("currentPage", "analytics");
+		return mv;
+	}
 	
-		AnalyticsData analyticsData = new AnalyticsData(userRepository.count(),
+	@GetMapping("/analytics/get")
+	@ResponseBody
+	public AnalyticsData getAnalyticsData() {
+		
+		return new AnalyticsData(userRepository.count(),
 				fileRepository.count(), feedbackRepository.count(), 
 				sessionRegistery.getAllPrincipals().stream()
 				.filter(u -> !sessionRegistery.getAllSessions(u, false).isEmpty()).count());
-		
-		mv.addObject("analyticsData", analyticsData);
-		mv.addObject("currentPage", "analytics");
-		mv.setViewName("adminPanel");
-		return mv;
 	}
 	
 	@GetMapping("/list-users")
