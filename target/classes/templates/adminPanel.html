@@ -105,14 +105,31 @@
 	  -->
 
 	<div th:if="${currentPage == 'listUsers'}" class="container-fluid p-3 mb-5">
-		<table class="table table-hover bg-light border border-light text-center animated fadeIn" style="table-layout: fixed;">
-			<tr th:each="user : ${users}" style="word-break: break-all;">
+				
+		<table id="usersTable" class="table table-hover bg-light w-100 text-center" style="table-layout: fixed;">
+			<!-- <tr th:each="user : ${users}" style="word-break: break-all;">
 				<td th:text="${user.id}"/>
 				<td th:text="${user.username}" class="text-left"/>
 				<td th:text="${user.email}" class="text-left"/>
 				<td><a th:href="@{/admin/manage-role(id=${user.id})}" class="fa fa-edit fa-lg text-primary"></a></td>
 				<td><a th:href="@{/admin/delete-user(id=${user.id})}" class="fa fa-trash fa-lg text-danger"></a></td>
-			</tr>
+			</tr> -->
+			
+			<thead class="bg-dark text-white">
+				<tr>
+					<th>Id</th>
+					<th>Username</th>
+					<th>Email</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			
+			<script type="text/javascript">
+				$(document).ready(function () {
+					feedUsersTable();
+				});
+			</script>
+			
 		</table>
 	</div>
 

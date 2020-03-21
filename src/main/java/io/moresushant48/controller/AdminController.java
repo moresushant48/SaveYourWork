@@ -1,6 +1,7 @@
 package io.moresushant48.controller;
 
 import java.security.Principal;
+import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.session.SessionRegistry;
@@ -16,6 +17,7 @@ import io.moresushant48.Repository.FeedbackRepository;
 import io.moresushant48.Repository.FileRepository;
 import io.moresushant48.Repository.UserRepository;
 import io.moresushant48.model.AnalyticsData;
+import io.moresushant48.model.User;
 import io.moresushant48.services.UserService;
 
 @Controller
@@ -56,27 +58,30 @@ public class AdminController {
 	
 	@GetMapping("/list-users")
 	public ModelAndView listUsers() {
-		ModelAndView mv = new ModelAndView();
+		ModelAndView mv = new ModelAndView("adminPanel");
 		mv.addObject("currentPage", "listUsers");
-		mv.addObject("users", userService.listAllUsers());
-		mv.setViewName("adminPanel");
 		return mv;
 	}
 	
+	@GetMapping("/list-users/get")
+	@ResponseBody
+	public User[] getUsers() {
+		
+		return userService.listAllUsers();
+	}
+	
 	@GetMapping("/delete-user")
-	public ModelAndView deleteUser(@RequestParam("id") int id) {
-		ModelAndView mv = new ModelAndView();
+	@ResponseBody
+	public void deleteUser(@RequestParam("id") int id) {
+		
 		userRepository.deleteById(id);
-		mv.setViewName("redirect:/admin/list-users");
-		return mv;
 	}
 	
 	@GetMapping("/manage-role")
 	public ModelAndView role(@RequestParam("id") int id) {
-		ModelAndView mv = new ModelAndView();
+		ModelAndView mv = new ModelAndView("userDetails");
 		mv.addObject("currentPage", "userDetails");
 		mv.addObject("user", userService.getUserDetails(id));
-		mv.setViewName("userDetails");
 		return mv;
 	}
 	
