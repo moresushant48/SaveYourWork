@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import io.moresushant48.Repository.FileRepository;
@@ -95,16 +96,12 @@ public class UserController {
 	 */
 	
 	@GetMapping("/account/genKey")
-	public ModelAndView genKey() {
-		ModelAndView mv = new ModelAndView("redirect:/user/account");
+	@ResponseBody
+	public String genKey() {
 		
-		if(user == null) {
-			mv.setViewName("redirect:/user/account");	
-		}else {
-			user.setPublicPass(String.valueOf(new SecureRandom().nextInt(999999)));
-			userRepository.save(user);
-		}
+		user.setPublicPass(String.valueOf(new SecureRandom().nextInt(999999)));
+		userRepository.save(user);
 		
-		return mv;
+		return user.getPublicPass();
 	}
 }

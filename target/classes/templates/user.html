@@ -37,10 +37,30 @@
       	</div>
       	
       	<div class="form-group mb-2">
-	      	<a href="/user/account/genKey" class="btn amy-crisp-gradient text-white w-100 mr-2">
+            	
+	      	<a id="btnGenKey" href="/user/account/genKey" class="btn amy-crisp-gradient text-white w-100 mr-2">
 	      	<p id="publicPass" class="h3-responsive font-weight-bold text-monospace" th:text="${user.publicPass}"></p>
 	      	Generate Security Key
 	      	</a>
+	      	
+	      	<script type="text/javascript">
+      		
+      		$("#btnGenKey").click(function(event) {
+      			
+      			event.preventDefault();
+      			alert("alerted");
+      			$.ajax({
+      				url: '/user/account/genKey',
+      				type: 'get',
+      				success: function(response){
+      					
+      					$('#publicPass').text(response);
+      				}
+      			});
+      			
+      		});
+      	
+      	</script>
       	</div>
       	
      	<a href="/user/account/resetPassword" class="btn purple-gradient w-100 mr-2">Change Password</a>
