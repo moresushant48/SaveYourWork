@@ -17,6 +17,7 @@ import io.moresushant48.Repository.FeedbackRepository;
 import io.moresushant48.Repository.FileRepository;
 import io.moresushant48.Repository.UserRepository;
 import io.moresushant48.model.AnalyticsData;
+import io.moresushant48.model.Feedback;
 import io.moresushant48.model.User;
 import io.moresushant48.services.UserService;
 
@@ -95,18 +96,22 @@ public class AdminController {
 	
 	@GetMapping("/userFeedback")
 	public ModelAndView userFeedback() {
-		ModelAndView mv = new ModelAndView();
-		mv.addObject("feedbacks",feedbackRepository.getFeedbacks());
+		ModelAndView mv = new ModelAndView("adminPanel");
 		mv.addObject("currentPage", "userFeedback");
-		mv.setViewName("adminPanel");
 		return mv;
 	}
 	
+	@GetMapping("/userFeedback/get")
+	@ResponseBody
+	public Feedback[] getFeedbacks() {
+		
+		return feedbackRepository.getFeedbacks();
+	}
+	
 	@GetMapping("/delete-feedback")
-	public ModelAndView deleteFeedback(@RequestParam("id") Long id) {
-		ModelAndView mv = new ModelAndView();
+	@ResponseBody
+	public void deleteFeedback(@RequestParam("id") Long id) {
+		
 		feedbackRepository.deleteById(id);
-		mv.setViewName("redirect:/admin/userFeedback");
-		return mv;
 	}
 }
