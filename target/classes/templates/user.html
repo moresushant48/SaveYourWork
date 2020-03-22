@@ -20,7 +20,7 @@
 	<span th:replace="includes :: header"></span>
 	
 	<div th:if="${currentPage == 'account'}" class="container mt-3">
-		<div class="m-auto bg-light border border-light text-center p-lg-5 form-size text-dark rounded anim-fadeUp">
+		<div class="m-auto bg-light border border-light text-center p-lg-5 p-4 form-size text-dark rounded anim-fadeUp">
 		
 		<div class="form-group">
 			<p class="h1-responsive text-center text-primary">Account</p>
@@ -48,7 +48,6 @@
       		$("#btnGenKey").click(function(event) {
       			
       			event.preventDefault();
-      			alert("alerted");
       			$.ajax({
       				url: '/user/account/genKey',
       				type: 'get',
