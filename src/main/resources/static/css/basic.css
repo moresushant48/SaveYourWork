@@ -111,3 +111,12 @@ a {
 	z-index: 10;
 	pointer-events: none;
 }
+
+.inner {
+position: relative;
+  
+}
+.outer {
+  border-bottom: 1px solid rgba(0,0,0,.1);
+  overflow: hidden;
+}
