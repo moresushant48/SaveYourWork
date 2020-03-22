@@ -12,10 +12,6 @@ function animate(){
 	
 }
 
-function scramble(){
-	gsap.to(".scramble", {duration: 1.5, scrambleText:{text: "{original}", chars:"XOXO", revealDelay:0.4, tweenLength:false}});
-}
-
 function animOnce() {
 	
 	gsap.from("main", {duration: 1, delay: 0.6, opacity: 0, translateY: 30});
