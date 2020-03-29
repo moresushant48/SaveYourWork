@@ -1,14 +1,14 @@
 package io.moresushant48.storage;
 
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.stream.Stream;
+
 import org.springframework.core.io.Resource;
 import org.springframework.web.multipart.MultipartFile;
 
 import io.moresushant48.model.File;
 import io.moresushant48.model.User;
-
-import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.stream.Stream;
 
 public interface StorageService {
 

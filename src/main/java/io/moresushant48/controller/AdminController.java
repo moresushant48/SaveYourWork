@@ -1,7 +1,6 @@
 package io.moresushant48.controller;
 
 import java.security.Principal;
-import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.session.SessionRegistry;
