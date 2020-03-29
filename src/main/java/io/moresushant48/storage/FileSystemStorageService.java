@@ -37,9 +37,9 @@ public class FileSystemStorageService implements StorageService {
     public void store(MultipartFile file, User user, ArrayList<io.moresushant48.model.File> myFiles, int accessId) {
         String filename = StringUtils.cleanPath(file.getOriginalFilename());
         try {
-            if (file.isEmpty()) {
-                throw new StorageException("Failed to store empty file " + filename);
-            }
+//            if (file.isEmpty()) {
+//                throw new StorageException("Failed to store empty file " + filename);
+//            }
             if (filename.contains("..")) {
                 // This is a security check
                 throw new StorageException(
