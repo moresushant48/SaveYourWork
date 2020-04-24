@@ -46,8 +46,10 @@
 </span>
 
 <div th:fragment="trans" class="loading-container">
-	<div class="loading-screen">
-		<h1 class="navbar-brand h1-responsive font-lobster loading-screen-logo">SaveYourWork</h1>
+	<div class="loading-screen bg-white">
+		<h1 class="navbar-brand h1-responsive font-lobster loading-screen-logo">
+			<img alt="SaveYourWork" th:src="@{/images/MainLogoWhiteBG.png}" width="200px" height="200px">
+		</h1>
 		<script type="text/javascript">
 			animate();
 		</script>
