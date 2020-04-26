@@ -19,4 +19,6 @@ public interface FileRepository extends JpaRepository<File, Long>{
 
 	@Query(value = "SELECT * FROM user_files WHERE auth_user_id = ?1 && access_id = 2 ORDER BY file_name", nativeQuery = true)
 	public ArrayList<File> listProtectedFiles(int id);
+	
+	public void deleteByUserId(int uid);
 }

@@ -20,52 +20,74 @@
 	<span th:replace="includes :: header"></span>
 	
 	<div th:if="${currentPage == 'account'}" class="container mt-3">
-		<div class="m-auto bg-light border border-light text-center p-lg-5 p-4 form-size text-dark rounded anim-fadeUp">
-		
-		<div class="form-group">
-			<p class="h1-responsive text-center text-primary">Account</p>
+	
+		<!-- Container -->
+		<div class="m-auto bg-light text-dark form-size p-lg-5 p-4 rounded">
+			<p class="h2-responsive text-primary">Personal Details</p>
+			<hr>
+			<!-- ROW -->
+			<div class="row d-flex justify-content-center h6-responsive">
+				<div class="col-4">
+					<p class="text-right text-muted">Username</p>
+				</div>
+				<div class="col-8">
+					<p th:text="${user.username}"></p>
+				</div>
+			</div>
+			
+			<!-- ROW -->
+			<div class="row d-flex justify-content-center h6-responsive">
+				<div class="col-4">
+					<p class="text-right text-muted">Email</p>
+				</div>
+				<div class="col-8">
+					<p th:text="${user.email}"></p>
+				</div>
+			</div>
 		</div>
-      	<hr>
-      	<div class="form-group mb-2">
-      		<i class="fa fa-user-o fa-2x blue-grey-text"></i>
-      		<p id="username" class="h3-responsive" th:text="${user.username}"></p>
-      	</div>      	
-      	
-      	<div class="form-group mb-2">
-	      	<i class="fa fa-envelope-o fa-2x blue-grey-text"></i>
-	      	<p id="email" class="h3-responsive" th:text="${user.email}"></p>
-      	</div>
-      	
-      	<div class="form-group mb-2">
+		<br>
+		
+		<!-- Container -->
+		<div class="m-auto bg-light text-dark form-size p-lg-5 p-4 rounded">
+			<p class="h2-responsive text-primary">Security</p>
+			<hr>
+			<div class="form-group mb-2">
             	
-	      	<a id="btnGenKey" href="/user/account/genKey" class="btn amy-crisp-gradient text-white w-100 mr-2">
-	      	<p id="publicPass" class="h3-responsive font-weight-bold text-monospace" th:text="${user.publicPass}"></p>
-	      	Generate Security Key
-	      	</a>
+		      	<a id="btnGenKey" href="/user/account/genKey" class="btn amy-crisp-gradient text-white w-100 mr-2">
+		      	<p id="publicPass" class="h3-responsive font-weight-bold text-monospace" th:text="${user.publicPass}"></p>
+		      	Generate New Security Key
+		      	</a>
+		      			      	
+		      	<script type="text/javascript">
+	      		
+	      		$("#btnGenKey").click(function(event) {
+	      			
+	      			event.preventDefault();
+	      			$.get('/user/account/genKey', function(response){
+	      					$('#publicPass').text(response);
+	      				});
+	      		});
 	      	
-	      	<script type="text/javascript">
-      		
-      		$("#btnGenKey").click(function(event) {
-      			
-      			event.preventDefault();
-      			$.ajax({
-      				url: '/user/account/genKey',
-      				type: 'get',
-      				success: function(response){
-      					
-      					$('#publicPass').text(response);
-      				}
-      			});
-      			
-      		});
+	      		</script>
+      		</div>
       	
-      	</script>
-      	</div>
-      	
-     	<a href="/user/account/resetPassword" class="btn purple-gradient w-100 mr-2">Change Password</a>
+     		<a href="/user/account/resetPassword" class="btn purple-gradient w-100 mr-2">Change Password</a>
       	
       	</div>
-   	</div>
+      	<br>
+      	
+      	<!-- Container -->
+		<div class="m-auto bg-light text-dark form-size p-lg-5 p-4 rounded">
+			<p class="h2-responsive text-primary">Account</p>
+			<hr>
+			<input id="uid" hidden="hidden" type="text" th:value="${user.id}" />
+			<a href="#" class="delete-acc-alert btn peach-gradient w-100 mr-2">Delete My Account</a>
+			
+			
+		</div>
+		<br>
+			
+	</div>
    	
    	<form th:if="${currentPage == 'resetPassword'}" th:action="@{/user/account/resetPassword}" method="post" class="container-fluid mt-3">
    		<div class="border border-light bg-light p-5 form-size text-center text-dark m-auto bg-white">

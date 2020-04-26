@@ -112,6 +112,10 @@ a {
 	pointer-events: none;
 }
 
+.modal-header, .bootbox-body {
+	color: black !important;
+}
+
 .inner {
 position: relative;
   
