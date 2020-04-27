@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.moresushant48.Repository.FileRepository;
 import io.moresushant48.Repository.UserRepository;
 import io.moresushant48.model.User;
 import io.moresushant48.services.UserService;
@@ -25,6 +26,9 @@ public class UserREST {
 	
 	@Autowired
 	UserService userService;
+
+	@Autowired
+	FileRepository fileRepository;
 	
 	@GetMapping("/getUserId")
 	public Integer getUserId(@RequestParam("username") String username) {
@@ -57,6 +61,18 @@ public class UserREST {
 	public Boolean resetPassword(@PathVariable("userId") int userId, @RequestParam("password") String password) {
 
 		return userService.resetPassword(userId, password);
+	}
+	
+	@GetMapping("/account/delete/{userId}")
+	public boolean deleteUserAccount(@PathVariable("userId") int userId) {
+		
+		if(userRepository.existsById(userId)) {
+			userRepository.deleteById(userId);
+			fileRepository.deleteByUserId(userId);
+		}
+		
+		
+		return true;
 	}
 	
 }
