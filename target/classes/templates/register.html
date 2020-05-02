@@ -7,6 +7,7 @@
 	<span th:replace="includes :: links"></span>
 	
 	<title>Sign Up</title>
+	
 </head>
 
 <body>
@@ -25,27 +26,45 @@
 				
 				<p class="h3 mb-5 text-center text-primary">Register</p>
 				
-				<form th:action="@{/register}" th:object="${registerDetails}" method="post">
+				<div th:object="${registerDetails}">
 				
-					<input name="email" th:field="*{email}" class="form-control mb-4" type="email" placeholder="Email Address" required autofocus>
+					<input id="email" name="email" th:field="*{email}" class="form-control mb-4" type="email" placeholder="Email Address" required autofocus>
 							
-					<input name="username" th:field="*{username}" class="form-control mb-4" type="text" placeholder="Username" pattern="[a-zA-Z0-9]{4,14}" title="* Only alphabates (a-z) & digits (0-9) are allowed. * Min 4 & Max 14 characters only." required>
+					<input id="username" name="username" th:field="*{username}" class="form-control mb-4" type="text" placeholder="Username" pattern="[a-zA-Z0-9]{4,14}" title="* Only alphabates (a-z) & digits (0-9) are allowed. * Min 4 & Max 14 characters only." required>
 													
-					<input name="password" th:field="*{password}" class="form-control mb-4" type="password" placeholder="Password" pattern=".{3,15}" title="* Three or more characters. * Not more than 15 characters allowed." required>
-								      	
-			      	<div class="text-center mb-4" th:if="${param.success}">
-			      		<p class="alert alert-success">Registered Successfully</p>
-			      	</div>
-			      	<div class="text-center mb-4" th:if="${param.userexists}">	
-			      		<p class="alert alert-warning">Username already exists, use another.</p>
-			      	</div>
-			      	<div class="text-center mb-4" th:if="${param.emailexists}">	
-			      		<p class="alert alert-warning">Account exists for your E-mail, please try to login.</p>
+					<input id="password" name="password" th:field="*{password}" class="form-control mb-4" type="password" placeholder="Password" pattern=".{3,15}" title="* Three or more characters. * Not more than 15 characters allowed." required>
+								      				      	
+			      	<div id="reply" class="text-center mb-4">	
+			      		
 			      	</div>
 				
-				    <button class="btn btn-info btn-block my-4" type="submit">Submit</button>
-				    
-				</form>
+				    <button id="btnRegister" class="btn btn-info btn-block my-4" type="submit">Submit</button>
+				    <script type="text/javascript">
+	
+						$("#btnRegister").click(function(){
+														
+							var registerDetails = {};
+							registerDetails.email = $("#email").val();
+							registerDetails.username = $("#username").val();
+							registerDetails.password = $("#password").val();
+							
+							$.post("/register", registerDetails, function(data, status) {
+								
+								if(data == "email")
+									$("#reply").html("<p class='alert alert-warning'>Account exists for your E-mail, please try to login.</p>");
+								else if(data == "username")
+									$("#reply").html("<p class='alert alert-warning'>Username already exists, use another.</p>");
+								else if(data == "success") {
+									$("#reply").html("<p class='alert alert-success'>Succesfully Registered</p>");
+									setInterval(function(){ window.location.href = '/login' }, 1000);
+								}
+								
+							});
+							
+						});
+					
+					</script>
+				</div>
 			</section>
 		</div>
 		

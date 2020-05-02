@@ -12,7 +12,7 @@ public interface UserService {
 	public User[] listAllUsers();
 	public User getUserDetails(int id);
 	public void updateRole(int roleID, int userID);
-	public ModelAndView registerUser(User user, ModelAndView mv);
+	public String registerUser(User user);
 	public ModelAndView forgotUsername(ModelAndView mv, String email);
 	public ModelAndView forgotPassword(ModelAndView mv, String email);
 	public ModelAndView changePassword(ModelAndView mv, String email, String password);

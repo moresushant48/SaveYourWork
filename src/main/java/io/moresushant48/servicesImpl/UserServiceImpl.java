@@ -74,7 +74,7 @@ public class UserServiceImpl implements UserService{
 	/*
 	 * Check for Username and Email existence and Add the User accordingly
 	 */
-	public ModelAndView registerUser(User user, ModelAndView mv) {
+	public String registerUser(User user) {
 		if(findByEmail(user.getEmail()) == null) {
 			
 			if(findByUsername(user.getUsername()) == null) {
@@ -83,15 +83,15 @@ public class UserServiceImpl implements UserService{
 				user.setRole(role);
 				user.setPublicPass(String.valueOf(new SecureRandom().nextInt(999999)));
 				saveUser(user);
-				mv.setViewName("redirect:/register?success=true");
-				return mv;
+				
+				return "success";
 			}else {
-				mv.setViewName("redirect:/register?userexists=true");
-				return mv;
+				
+				return "username";
 			}
 		} else {
-			mv.setViewName("redirect:/register?emailexists=true");
-			return mv;
+			
+			return "email"; 
 		}
 	}
 	

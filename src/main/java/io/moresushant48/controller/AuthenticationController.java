@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import io.moresushant48.Repository.UserRepository;
@@ -63,11 +64,10 @@ public class AuthenticationController {
 	 * Control the entered data, check for username, email existence, and then add the user.
 	 */
 	@PostMapping("/register")
-	public ModelAndView registerPost(@ModelAttribute("registerDetails") User user) {
+	@ResponseBody
+	public String registerPost(@ModelAttribute("registerDetails") User user) {
 		
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("register");
-		return mv = userService.registerUser(user,mv);
+		return userService.registerUser(user);
 	}
 	
 	/*

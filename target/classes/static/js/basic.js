@@ -2,6 +2,10 @@
  * 
  */
 
+$(document).bind("contextmenu",function(e) { 
+	e.preventDefault();
+});
+
 function animate(){
 	
 	var tl = gsap.timeline();
