@@ -75,8 +75,21 @@
 	<li th:fragment="btnMyFiles" class="nav-item"><a href="/file-home" class="nav-link h6-responsive p-3">My Files</a></li>
 	
 	<li th:fragment="btnHome" class="nav-item"><a href="/" class="nav-link h6-responsive p-3">Home</a></li>
-
-	<li th:fragment="btnAdminPanel" class="nav-item"><a href="/admin/analytics" th:if="${#authorization.expression('hasAuthority(''SUPER_USER'')')}" class="nav-link h6-responsive p-3">Admin Panel</a></li>
+	
+	<!-- Split button -->
+	<li th:fragment="btnAdminPanel" class="nav-item btn-group" th:if="${#authorization.expression('hasAuthority(''SUPER_USER'')')}">
+	  <!-- <a class="nav-link h6-responsive py-3">Admin</button> -->
+	  <a class="nav-link h6-responsive py-3 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+	    aria-expanded="false">
+	    Admin
+	    <span class="sr-only">Toggle Dropdown</span>
+	  </a>
+	  <div class="dropdown-menu">
+	    <a class="dropdown-item" href="/admin/analytics">Analytics</a>
+	    <a class="dropdown-item" href="/admin/list-users">List Users</a>
+	    <a class="dropdown-item" href="/admin/userFeedback">User Feedbacks</a>
+	  </div>
+	</li>
 
 	<li th:fragment="btnAuthName" class="nav-item"><a class="nav-link h6-responsive p-3">Welcome, [[${#authentication.name}]]</a></li>
 
