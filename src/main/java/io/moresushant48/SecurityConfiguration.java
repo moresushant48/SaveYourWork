@@ -88,6 +88,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 		.rememberMe().key("moresushant48")
 		.and()
 		
+		.cors().and()
+		
 		//exception
 		.exceptionHandling()
 		.accessDeniedPage("/accessDenied");
@@ -107,6 +109,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 	@Override
 	public void configure(WebSecurity web) throws Exception {
 		
-		web.ignoring().antMatchers("/resources/**","/static/**","/css/**","/js/**","/images/**");
+		web.ignoring().antMatchers("/resources/**","/static/**","/css/**","/js/**","/images/**","/rest/**");
 	}
 }
