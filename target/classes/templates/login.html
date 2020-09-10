@@ -15,8 +15,6 @@
 
 <body>
 
-	<span th:replace="includes :: trans"></span>
-
 	<main>
     
     <span th:replace="includes :: header"></span>
@@ -26,7 +24,7 @@
 				Login Page.
 			 -->
 		
-			<section th:if="${currentPage == 'login'}" class="border border-light rounded bg-light form-size text-dark mx-auto p-lg-5 p-4 mt-4 anim-fadeUp">
+			<section th:if="${currentPage == 'login'}" class="border border-light rounded bg-white form-size text-dark mx-auto p-lg-5 p-4 mt-4 anim-fadeUp">
 				<p class="h3 mb-5 text-center text-primary">Sign In</p>
 				
 				<form th:action="@{/login}" method="post">
@@ -69,7 +67,7 @@
 		    	forgotUsername Page
 		    -->
 			
-			<section th:if="${currentPage == 'forgotUsername'}" class="border border-light rounded bg-light form-size text-dark mx-auto p-lg-5 p-4 mt-4">
+			<section th:if="${currentPage == 'forgotUsername'}" class="border border-light rounded bg-white form-size text-dark mx-auto p-lg-5 p-4 mt-4">
 				<p class="h3 mb-5 text-center text-primary">Forgot Username</p>
 				
 				<form th:action="@{/forgotUsername}" method="post">
@@ -93,7 +91,7 @@
 		    	forgotPassword Page
 		    -->
 		
-			<section th:if="${currentPage == 'forgotPassword'}" class="border border-light rounded bg-light form-size text-dark mx-auto p-lg-5 p-4 mt-4">
+			<section th:if="${currentPage == 'forgotPassword'}" class="border border-light rounded bg-white form-size text-dark mx-auto p-lg-5 p-4 mt-4">
 				<p class="h3 mb-5 text-center text-primary">Forgot Password</p>
 				
 				<form th:action="@{/forgotPassword}" method="post">
@@ -116,7 +114,7 @@
 			<!--  
 		    	New Password page
 		    -->
-			<section th:if="${currentPage == 'newPassword'}" class="card bg-light form-size text-dark mx-auto p-4 mt-4">
+			<section th:if="${currentPage == 'newPassword'}" class="card bg-white form-size text-dark mx-auto p-4 mt-4">
 				<h5 class="card-header info-color white-text text-center py-4 mb-5">
 				    <strong>Reset Password</strong>
 				</h5>
